@@ -1,0 +1,226 @@
+/* ============ razrez (3D-разрез пола и стены с ценой) ============ */
+.raschet__razrez {
+  margin-bottom: var(--head-gap);
+}
+
+.razrez {
+  display: flex;
+  align-items: stretch;
+  gap: var(--grid-gap);
+}
+
+.razrez__stage {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-l);
+}
+
+/* Высоту сцены на компьютере задаёт панель справа, холст только заполняет место. */
+.razrez__scene {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 460px;
+  background: var(--color-pale);
+}
+
+.razrez__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.razrez__canvas:active {
+  cursor: grabbing;
+}
+
+.razrez__hint {
+  position: absolute;
+  top: var(--space-m);
+  left: var(--space-m);
+  z-index: 1;
+  padding: 6px 12px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  pointer-events: none;
+  background: var(--color-surface);
+  border-radius: var(--radius-round);
+  transition: opacity var(--transition);
+}
+
+.razrez__hint--gone {
+  opacity: 0;
+}
+
+.razrez__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-l);
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.razrez__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-l);
+  padding: var(--space-m) var(--card-pad);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.razrez__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.razrez__swatch {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(7, 31, 71, 0.18);
+  border-radius: 4px;
+}
+
+.razrez__mm {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.razrez__panel {
+  display: flex;
+  flex: 0 0 440px;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: var(--card-pad-l);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-l);
+}
+
+.razrez__group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: reveal 0.3s ease-out;
+}
+
+.razrez__range {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.razrez__label {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-s);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.razrez__value {
+  font-weight: 700;
+  color: var(--color-primary-text);
+}
+
+.razrez__slider {
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.razrez__scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+/* Галочки здесь пункты настройки, а не мелкая строка согласия: текст крупнее и тёмный. */
+.razrez__check {
+  align-items: center;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.razrez__total {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-top: 20px;
+  margin-top: auto;
+  border-top: 1px solid var(--color-border);
+}
+
+.razrez__total-label {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.razrez__sum {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  color: var(--color-navy);
+  font-variant-numeric: tabular-nums;
+}
+
+.razrez__per {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+.razrez__note {
+  margin-top: -8px;
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .razrez {
+    flex-direction: column;
+  }
+
+  /* В колонке нулевая основа с overflow: hidden схлопнула бы сцену в ноль. */
+  .razrez__stage,
+  .razrez__panel {
+    flex: none;
+  }
+
+  .razrez__scene {
+    flex: none;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .razrez__scene {
+    aspect-ratio: 1 / 1;
+  }
+
+  .razrez__sum {
+    font-size: 28px;
+  }
+}
