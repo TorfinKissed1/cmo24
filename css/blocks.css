@@ -1464,6 +1464,11 @@
   font-size: var(--fs-xs);
 }
 
+/* Реквизиты переносятся только между частями: номер не отрывается от «ИНН» и «ОГРНИП». */
+.footer__legal-part {
+  white-space: nowrap;
+}
+
 .footer__policy {
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -1960,17 +1965,60 @@
     width: 100%;
   }
 
+  /* Телефон с мессенджерами поднят под логотип: внизу страницы чаще ищут, как связаться. */
   .footer__top {
     flex-direction: column;
-  }
-
-  .footer__nav {
-    grid-template-columns: repeat(2, auto);
-    justify-content: start;
+    align-items: stretch;
+    gap: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 
   .footer__contacts {
-    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px var(--space-m);
+    order: 1;
+    padding-block: var(--space-m);
+    margin-top: var(--space-l);
+    border-block: 1px solid var(--color-border-on-dark);
+  }
+
+  .footer__phone {
+    font-size: 17px;
+  }
+
+  .footer__contacts .messengers__link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer__nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 var(--space-m);
+    order: 2;
+    padding-block: var(--space-s);
+    border-bottom: 1px solid var(--color-border-on-dark);
+  }
+
+  .footer__link {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-top: var(--space-m);
+  }
+
+  .footer__policy {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .next__card {
