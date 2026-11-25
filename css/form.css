@@ -3,32 +3,42 @@
 .lead-form {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: var(--space-m);
   color: var(--color-text);
 }
 
 .lead-form--card {
-  padding: var(--space-l);
+  padding: var(--card-pad-l);
   background: var(--color-surface);
-  border-radius: var(--radius-m);
-  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-l);
+}
+
+.lead-form__head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .lead-form__title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   line-height: 1.2;
   color: var(--color-navy);
 }
 
+.lead-form__text {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
 .lead-form__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: var(--space-m);
 }
 
 .lead-form__row > .field {
-  flex: 1 1 160px;
+  flex: 1 1 180px;
 }
 
 /* Приманка для ботов уведена за экран: display:none часть ботов пропускает. */
@@ -46,6 +56,8 @@
 
 .lead-form__submit {
   width: 100%;
+  min-height: 56px;
+  font-size: var(--fs-body);
 }
 
 .lead-form__status {
@@ -73,41 +85,22 @@
 }
 
 .field__label {
-  font-size: var(--fs-xs);
+  font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--color-text-muted);
-}
-
-.field__control {
-  position: relative;
-}
-
-.field__icon {
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  width: 18px;
-  height: 18px;
-  color: var(--color-text-muted);
-  transform: translateY(-50%);
-  pointer-events: none;
+  color: var(--color-navy);
 }
 
 /* Кольца фокуса у поля нет: курсор и так показывает, куда пишешь, меняется только цвет рамки. */
 .field__input {
   width: 100%;
   height: var(--control-height);
-  padding: 0 14px;
+  padding: 0 var(--space-m);
   font-size: var(--fs-body);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-s);
   outline: none;
   transition: border-color var(--transition);
-}
-
-.field__icon + .field__input {
-  padding-left: 42px;
 }
 
 .field__input:focus,
@@ -118,7 +111,7 @@
 
 .field__input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .field--error .field__input {
@@ -139,7 +132,88 @@
   animation: reveal 0.25s ease-out;
 }
 
-/* ============ choice (выбор одного варианта кружками) ============ */
+/* ============ work-pick (выбор вида работ плитками) ============ */
+.work-pick {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.work-pick__legend {
+  padding: 0;
+  margin-bottom: 8px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--color-navy);
+}
+
+.work-pick__options {
+  display: flex;
+  gap: 12px;
+}
+
+.work-pick__item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.work-pick__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Иконка над подписью: так плитка влезает в узкую форму на телефоне и в полосе калькулятора. */
+.work-pick__tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 100%;
+  min-height: 88px;
+  padding: 12px 8px;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--color-navy);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-m);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.work-pick__icon {
+  width: 30px;
+  height: 30px;
+  color: var(--color-primary);
+}
+
+.work-pick__input:checked + .work-pick__tile {
+  background: var(--color-pale);
+  border-color: var(--color-navy);
+}
+
+.work-pick__input:focus-visible + .work-pick__tile {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.field--error .work-pick__tile {
+  border-color: var(--color-error);
+}
+
+@media (hover: hover) {
+  .work-pick__item:hover .work-pick__input:not(:checked) + .work-pick__tile {
+    border-color: var(--color-border-strong);
+  }
+}
+
+/* ============ choice (материал стен, кружками) ============ */
 .choice {
   display: flex;
   flex-direction: column;
@@ -148,10 +222,10 @@
 
 .choice__legend {
   padding: 0;
-  margin-bottom: 4px;
-  font-size: var(--fs-xs);
+  margin-bottom: 8px;
+  font-size: var(--fs-small);
   font-weight: 600;
-  color: var(--color-text-muted);
+  color: var(--color-navy);
 }
 
 .choice__options {
@@ -211,16 +285,6 @@
   outline-offset: 2px;
 }
 
-.field--error .choice__dot {
-  border-color: var(--color-error);
-}
-
-@media (hover: hover) {
-  .choice__item:hover .choice__input:not(:checked) + .choice__dot {
-    border-color: var(--color-navy-soft);
-  }
-}
-
 /* ============ check (галочка согласия) ============ */
 .check {
   position: relative;
@@ -241,6 +305,7 @@
 
 .check__box {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   width: 20px;
@@ -296,11 +361,13 @@
 
 @media (max-width: 768px) {
   .lead-form--card {
-    padding: var(--space-l) var(--space-m);
-    padding-bottom: max(var(--space-l), env(safe-area-inset-bottom));
+    padding: var(--card-pad-l) var(--card-pad);
+    padding-bottom: max(var(--card-pad-l), env(safe-area-inset-bottom));
+    border-radius: var(--radius-m);
   }
 
   .lead-form__title {
-    font-size: 20px;
+    font-size: 21px;
   }
 }
+
