@@ -9,9 +9,9 @@
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="preload" href="fonts/montserrat-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/montserrat-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/base.css?v=5">
-  <link rel="stylesheet" href="css/form.css?v=5">
-  <link rel="stylesheet" href="css/blocks.css?v=5">
+  <link rel="stylesheet" href="css/base.css?v=6">
+  <link rel="stylesheet" href="css/form.css?v=6">
+  <link rel="stylesheet" href="css/blocks.css?v=6">
 </head>
 <body class="page page--with-bar">
 
@@ -39,7 +39,7 @@
       <a class="messengers__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><img class="messengers__icon" src="img/messengers/max.svg" width="36" height="36" alt=""></a>
     </div>
 
-    <a class="header__call" href="tel:+79779948917" aria-label="Позвонить" data-goal="click_phone"><svg class="header__call-icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg></a>
+    <a class="header__call" href="tel:+79779948917" aria-label="Позвонить" data-goal="click_phone"><svg class="header__call-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 7.3 7.3l1.4-2.2L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a>
     <button class="burger header__burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="menu" data-menu-toggle>
       <span class="burger__line"></span>
     </button>
@@ -72,64 +72,55 @@
       <img class="hero__image" src="img/hero.webp" width="1536" height="1024" alt="Мастер у машины для полусухой стяжки в новостройке">
     </picture>
     <div class="container hero__inner">
-      <div class="hero__main">
-        <div class="hero__content">
-          <p class="hero__place">Москва и Московская область</p>
-          <h1 class="hero__title">Стяжка пола и&nbsp;штукатурка стен <span class="hero__accent">машиной</span></h1>
-          <ul class="hero__points">
-            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Договор и&nbsp;смета до&nbsp;начала работ</li>
-            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Ходить по&nbsp;стяжке можно через 12&nbsp;часов</li>
-            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Гарантия 5&nbsp;лет</li>
-          </ul>
+      <div class="hero__content">
+        <p class="hero__place">Москва и&nbsp;Московская область</p>
+        <h1 class="hero__title">Полусухая стяжка и&nbsp;штукатурка стен <span class="hero__accent">машиной</span></h1>
+        <p class="hero__lead"><b class="hero__price">от&nbsp;450&nbsp;₽/м² с&nbsp;материалом.</b> Договор и&nbsp;смета до&nbsp;начала работ.</p>
+        <ul class="hero__badges">
+          <li class="hero__badge"><svg class="hero__badge-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>До&nbsp;250&nbsp;м² стяжки за&nbsp;день</li>
+          <li class="hero__badge"><svg class="hero__badge-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Ходить можно через 12&nbsp;часов</li>
+          <li class="hero__badge"><svg class="hero__badge-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Гарантия 5&nbsp;лет по&nbsp;договору</li>
+        </ul>
+      </div>
+
+      <form class="hero-form" action="html/spasibo-korotkaya.html" method="post" novalidate
+            data-lead-form data-goal="form_short" data-thanks="html/spasibo-korotkaya.html">
+        <div class="lead-form__trap" aria-hidden="true">
+          <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
         </div>
+        <input type="hidden" name="form" value="short">
 
-        <form class="lead-form lead-form--card hero__form" action="html/spasibo-korotkaya.html" method="post" novalidate
-              data-lead-form data-goal="form_short" data-thanks="html/spasibo-korotkaya.html">
-          <div class="lead-form__head">
-            <h2 class="lead-form__title">Узнайте стоимость работ</h2>
-            <p class="lead-form__text">Перезвоним и&nbsp;назовём цену по&nbsp;вашему объекту.</p>
-          </div>
-          <div class="lead-form__trap" aria-hidden="true">
-            <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
-          </div>
-          <input type="hidden" name="form" value="short">
-
-          <fieldset class="work-pick" data-field="work">
-            <legend class="work-pick__legend">Что нужно сделать?</legend>
-            <div class="work-pick__options">
-              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="styazhka" required><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#floor"/></svg>Стяжка пола</span></label>
-              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="shtukaturka"><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#wall"/></svg>Штукатурка стен</span></label>
+        <div class="hero-form__top">
+          <h2 class="hero-form__title">Рассчитаем стоимость</h2>
+          <fieldset class="segment" data-field="work">
+            <legend class="visually-hidden">Что нужно сделать</legend>
+            <div class="segment__options">
+              <label class="segment__item"><input class="segment__input" type="radio" name="work" value="styazhka" required><span class="segment__label"><svg class="segment__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 5v4M12 7l4 2 4-2"/></svg>Стяжка пола</span></label>
+              <label class="segment__item"><input class="segment__input" type="radio" name="work" value="shtukaturka"><span class="segment__label"><svg class="segment__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v22H4z"/> <path fill="none" stroke="currentColor" stroke-width="2" d="M4 11h16M4 17h16M4 23h16M12 5v6M8 11v6M16 11v6M12 17v6"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M23 12l6 3-6 3z"/></svg>Штукатурка стен</span></label>
             </div>
             <p class="field__error" data-error></p>
           </fieldset>
+        </div>
 
-          <div class="field" data-field="name">
-            <label class="field__label" for="short-name">Ваше имя</label>
-            <input class="field__input" id="short-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Например, Иван" required>
+        <div class="hero-form__row">
+          <div class="field field--boxed" data-field="name">
+            <label class="field__box"><span class="field__caption">Ваше имя</span><input class="field__input field__input--bare" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Например, Иван" required></label>
             <p class="field__error" data-error></p>
           </div>
-          <div class="field" data-field="phone">
-            <label class="field__label" for="short-phone">Телефон</label>
-            <input class="field__input" id="short-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required data-phone>
+          <div class="field field--boxed" data-field="phone">
+            <label class="field__box"><span class="field__caption">Телефон</span><input class="field__input field__input--bare" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required data-phone></label>
             <p class="field__error" data-error></p>
           </div>
+          <button class="button button--primary hero-form__submit" type="submit">Получить расчёт</button>
+        </div>
 
-          <button class="button button--primary lead-form__submit" type="submit">Получить расчёт</button>
-          <label class="check" data-field="consent">
-            <input class="check__input" type="checkbox" name="consent" value="1" required>
-            <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg></span>
-            <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
-          </label>
-          <p class="lead-form__status" data-status role="alert"></p>
-        </form>
-      </div>
-
-      <ul class="hero__facts">
-        <li class="hero__fact"><b class="hero__fact-value">от 490 ₽/м²</b><span class="hero__fact-label">полусухая стяжка</span></li>
-        <li class="hero__fact"><b class="hero__fact-value">от 450 ₽/м²</b><span class="hero__fact-label">штукатурка стен</span></li>
-        <li class="hero__fact"><b class="hero__fact-value">до 250 м²</b><span class="hero__fact-label">стяжки за&nbsp;день</span></li>
-        <li class="hero__fact"><b class="hero__fact-value">до 200 м²</b><span class="hero__fact-label">штукатурки за&nbsp;смену</span></li>
-      </ul>
+        <label class="check" data-field="consent">
+          <input class="check__input" type="checkbox" name="consent" value="1" required>
+          <span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+          <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
+        </label>
+        <p class="lead-form__status" data-status role="alert"></p>
+      </form>
     </div>
   </section>
 
@@ -147,7 +138,7 @@
             <p class="service__text">Машинное нанесение гипсовой смеси по&nbsp;маякам, до&nbsp;200&nbsp;м² стен за&nbsp;смену.</p>
             <div class="service__footer">
               <p class="service__price">от 450 ₽/м²</p>
-              <svg class="service__arrow" aria-hidden="true"><use href="img/icons.svg#arrow"/></svg>
+              <svg class="service__arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
           </div>
         </li>
@@ -158,7 +149,7 @@
             <p class="service__text">Для подвалов, гаражей, лестниц и&nbsp;части санузлов. Смесь Крайзель.</p>
             <div class="service__footer">
               <p class="service__price">от 500 ₽/м²</p>
-              <svg class="service__arrow" aria-hidden="true"><use href="img/icons.svg#arrow"/></svg>
+              <svg class="service__arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
           </div>
         </li>
@@ -169,7 +160,7 @@
             <p class="service__text">Механизированная стяжка с&nbsp;фиброй и&nbsp;машинной затиркой, до&nbsp;250&nbsp;м² за&nbsp;день.</p>
             <div class="service__footer">
               <p class="service__price">от 490 ₽/м²</p>
-              <svg class="service__arrow" aria-hidden="true"><use href="img/icons.svg#arrow"/></svg>
+              <svg class="service__arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
           </div>
         </li>
@@ -180,7 +171,7 @@
             <p class="service__text">Слой подбираем так, чтобы надёжно закрыть трубы или кабель тёплого пола.</p>
             <div class="service__footer">
               <p class="service__price">от 550 ₽/м²</p>
-              <svg class="service__arrow" aria-hidden="true"><use href="img/icons.svg#arrow"/></svg>
+              <svg class="service__arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
             </div>
           </div>
         </li>
@@ -260,19 +251,19 @@
           <div class="includes__col">
             <h3 class="detail__subtitle">Материалы</h3>
             <ul class="includes__list">
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Цемент М500 и&nbsp;крупный песок</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Фиброволокно и&nbsp;пластификатор</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Плёнка на&nbsp;основание</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Демпферная лента</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Цемент М500 и&nbsp;крупный песок</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Фиброволокно и&nbsp;пластификатор</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Плёнка на&nbsp;основание</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Демпферная лента</li>
             </ul>
           </div>
           <div class="includes__col">
             <h3 class="detail__subtitle">Работы</h3>
             <ul class="includes__list">
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Маяки по&nbsp;лазерному уровню</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Подача раствора машиной</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Машинная затирка и&nbsp;нарезка швов</li>
-              <li class="includes__item"><svg class="includes__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Уборка мусора</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Маяки по&nbsp;лазерному уровню</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Подача раствора машиной</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Машинная затирка и&nbsp;нарезка швов</li>
+              <li class="includes__item"><svg class="includes__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Уборка мусора</li>
             </ul>
           </div>
         </div>
@@ -382,8 +373,8 @@
           <fieldset class="work-pick" data-field="work">
             <legend class="work-pick__legend">Что нужно сделать?</legend>
             <div class="work-pick__options">
-              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="styazhka" required><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#floor"/></svg>Стяжка пола</span></label>
-              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="shtukaturka"><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#wall"/></svg>Штукатурка стен</span></label>
+              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="styazhka" required><span class="work-pick__tile"><svg class="work-pick__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 5v4M12 7l4 2 4-2"/></svg>Стяжка пола</span></label>
+              <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="shtukaturka"><span class="work-pick__tile"><svg class="work-pick__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v22H4z"/> <path fill="none" stroke="currentColor" stroke-width="2" d="M4 11h16M4 17h16M4 23h16M12 5v6M8 11v6M16 11v6M12 17v6"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M23 12l6 3-6 3z"/></svg>Штукатурка стен</span></label>
             </div>
             <p class="field__error" data-error></p>
           </fieldset>
@@ -409,7 +400,7 @@
           <button class="button button--primary lead-form__submit" type="submit">Отправить заявку</button>
           <label class="check" data-field="consent">
             <input class="check__input" type="checkbox" name="consent" value="1" required>
-            <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg></span>
+            <span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
             <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
           </label>
           <p class="lead-form__status" data-status role="alert"></p>
@@ -463,9 +454,9 @@
             <span class="showcase__tag">Полусухая стяжка</span>
             <h3 class="showcase__title">Квартира</h3>
             <ul class="showcase__list">
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Плёнка и&nbsp;демпферная лента по&nbsp;периметру</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Горизонт по&nbsp;всей квартире от&nbsp;одной точки</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Основание под&nbsp;плитку, ламинат, кварцвинил</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Плёнка и&nbsp;демпферная лента по&nbsp;периметру</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Горизонт по&nbsp;всей квартире от&nbsp;одной точки</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Основание под&nbsp;плитку, ламинат, кварцвинил</li>
             </ul>
             <a class="button button--primary showcase__button" href="#raschet" data-pick="styazhka">Рассчитать похожий объект</a>
           </div>
@@ -476,9 +467,9 @@
             <span class="showcase__tag">Стяжка по&nbsp;тёплому полу</span>
             <h3 class="showcase__title">Частный дом</h3>
             <ul class="showcase__list">
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Слой с&nbsp;запасом над&nbsp;трубами тёплого пола</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Стяжка по&nbsp;утеплителю</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Раствор подаёт пневмонагнетатель на&nbsp;любой этаж</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Слой с&nbsp;запасом над&nbsp;трубами тёплого пола</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Стяжка по&nbsp;утеплителю</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Раствор подаёт пневмонагнетатель на&nbsp;любой этаж</li>
             </ul>
             <a class="button button--primary showcase__button" href="#raschet" data-pick="styazhka">Рассчитать похожий объект</a>
           </div>
@@ -489,9 +480,9 @@
             <span class="showcase__tag">Коммерческое помещение</span>
             <h3 class="showcase__title">Офис</h3>
             <ul class="showcase__list">
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>График работ под&nbsp;общий ремонт</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Учитываем нагрузку на&nbsp;перекрытия</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Сдаём основание технадзору</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>График работ под&nbsp;общий ремонт</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Учитываем нагрузку на&nbsp;перекрытия</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Сдаём основание технадзору</li>
             </ul>
             <a class="button button--primary showcase__button" href="#raschet" data-pick="styazhka">Рассчитать похожий объект</a>
           </div>
@@ -502,9 +493,9 @@
             <span class="showcase__tag">Большая площадь</span>
             <h3 class="showcase__title">Склад</h3>
             <ul class="showcase__list">
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>До&nbsp;250&nbsp;м² стяжки за&nbsp;день</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Смета: работа и&nbsp;материал отдельно</li>
-              <li class="showcase__item"><svg class="showcase__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Компенсационные швы по&nbsp;всей площади</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>До&nbsp;250&nbsp;м² стяжки за&nbsp;день</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Смета: работа и&nbsp;материал отдельно</li>
+              <li class="showcase__item"><svg class="showcase__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>Компенсационные швы по&nbsp;всей площади</li>
             </ul>
             <a class="button button--primary showcase__button" href="#raschet" data-pick="styazhka">Рассчитать похожий объект</a>
           </div>
@@ -536,19 +527,19 @@
         </div>
         <ul class="warranty__list">
           <li class="warranty__item">
-            <svg class="warranty__icon" aria-hidden="true"><use href="img/icons.svg#doc"/></svg>
+            <svg class="warranty__icon" viewBox="0 0 28 28" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h11l5 5v17H6z"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10 13h8M10 17h8M10 21h5"/></svg>
             <div><h3 class="warranty__item-title">Фиксированная сумма</h3><p class="warranty__item-text">Сумму фиксируем в&nbsp;договоре до&nbsp;начала работ.</p></div>
           </li>
           <li class="warranty__item">
-            <svg class="warranty__icon" aria-hidden="true"><use href="img/icons.svg#calendar"/></svg>
+            <svg class="warranty__icon" viewBox="0 0 28 28" aria-hidden="true"><rect x="3" y="5" width="22" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 11h22M9 3v4M19 3v4M9 16h2M13 16h2M17 16h2M9 20h2M13 20h2"/></svg>
             <div><h3 class="warranty__item-title">Точно в&nbsp;срок</h3><p class="warranty__item-text">Бригада выходит в&nbsp;оговоренную дату и&nbsp;время.</p></div>
           </li>
           <li class="warranty__item">
-            <svg class="warranty__icon" aria-hidden="true"><use href="img/icons.svg#broom"/></svg>
+            <svg class="warranty__icon" viewBox="0 0 28 28" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 3l-6 10M9 13h10l2 12H7zM11 19v6M15 19v6"/></svg>
             <div><h3 class="warranty__item-title">Плёнка и&nbsp;уборка</h3><p class="warranty__item-text">После работы укрываем стяжку плёнкой и&nbsp;убираем мусор.</p></div>
           </li>
           <li class="warranty__item">
-            <svg class="warranty__icon" aria-hidden="true"><use href="img/icons.svg#shield"/></svg>
+            <svg class="warranty__icon" viewBox="0 0 40 40" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M20 4l13 5v9c0 8.5-5.6 15-13 18-7.4-3-13-9.5-13-18V9z"/> <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M14 20l4.5 4.5L27 16"/></svg>
             <div><h3 class="warranty__item-title">Акт приёмки</h3><p class="warranty__item-text">Сдаём работу по&nbsp;акту, ровность проверяем при вас.</p></div>
           </li>
         </ul>
@@ -563,27 +554,27 @@
       </div>
       <div class="faq" data-faq>
         <details class="faq__item">
-          <summary class="faq__question">Когда можно ходить по&nbsp;стяжке?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Когда можно ходить по&nbsp;стяжке?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">Через 12&nbsp;часов после заливки.</p>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Не&nbsp;протечёт ли вода к&nbsp;соседям снизу?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Не&nbsp;протечёт ли вода к&nbsp;соседям снизу?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">Нет. Воды в&nbsp;полусухом растворе в&nbsp;разы меньше, чем в&nbsp;обычном, а&nbsp;основание мы закрываем плёнкой.</p>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Почему стяжка не&nbsp;трескается?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Почему стяжка не&nbsp;трескается?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">В&nbsp;раствор добавляем фиброволокно и&nbsp;пластификатор, такая стяжка не&nbsp;даёт усадку. По&nbsp;периметру кладём демпферную ленту, после затирки нарезаем швы.</p>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Как узнать точную цену?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Как узнать точную цену?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">Предварительную цену назовём по&nbsp;площади и&nbsp;толщине: оставьте заявку или посчитайте в&nbsp;боте в&nbsp;MAX. Точную сумму фиксируем в&nbsp;договоре после замера.</p>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Какую штукатурку выбрать?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Какую штукатурку выбрать?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">Гипсовую для жилых комнат и&nbsp;коридоров, цементно-песчаную для подвалов, гаражей, лестниц и&nbsp;санузлов.</p>
         </details>
         <details class="faq__item">
-          <summary class="faq__question">Работаете с&nbsp;коммерческими объектами?<svg class="faq__toggle" aria-hidden="true"><use href="img/icons.svg#chevron"/></svg></summary>
+          <summary class="faq__question">Работаете с&nbsp;коммерческими объектами?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg><svg class="faq__icon faq__icon--minus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></svg></span></summary>
           <p class="faq__answer">Да: склады, офисы, магазины, производства. Учитываем нагрузку на&nbsp;перекрытия и&nbsp;сдаём основание технадзору.</p>
         </details>
       </div>
@@ -621,8 +612,8 @@
         <fieldset class="work-pick" data-field="work">
           <legend class="work-pick__legend">Что нужно сделать?</legend>
           <div class="work-pick__options">
-            <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="styazhka" required data-work-switch><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#floor"/></svg>Стяжка пола</span></label>
-            <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="shtukaturka" data-work-switch><span class="work-pick__tile"><svg class="work-pick__icon" aria-hidden="true"><use href="img/icons.svg#wall"/></svg>Штукатурка стен</span></label>
+            <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="styazhka" required data-work-switch><span class="work-pick__tile"><svg class="work-pick__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 5v4M12 7l4 2 4-2"/></svg>Стяжка пола</span></label>
+            <label class="work-pick__item"><input class="work-pick__input" type="radio" name="work" value="shtukaturka" data-work-switch><span class="work-pick__tile"><svg class="work-pick__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v22H4z"/> <path fill="none" stroke="currentColor" stroke-width="2" d="M4 11h16M4 17h16M4 23h16M12 5v6M8 11v6M16 11v6M12 17v6"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M23 12l6 3-6 3z"/></svg>Штукатурка стен</span></label>
           </div>
           <p class="field__error" data-error></p>
         </fieldset>
@@ -666,7 +657,7 @@
         <button class="button button--primary lead-form__submit" type="submit">Отправить заявку</button>
         <label class="check" data-field="consent">
           <input class="check__input" type="checkbox" name="consent" value="1" required>
-          <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg></span>
+          <span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
           <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
         </label>
         <p class="lead-form__status" data-status role="alert"></p>
@@ -708,7 +699,7 @@
 </footer>
 
 <nav class="mobile-bar" aria-label="Связаться">
-  <a class="mobile-bar__call" href="tel:+79779948917" data-goal="click_phone"><svg class="mobile-bar__call-icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg>Позвонить</a>
+  <a class="mobile-bar__call" href="tel:+79779948917" data-goal="click_phone"><svg class="mobile-bar__call-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 7.3 7.3l1.4-2.2L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Позвонить</a>
   <a class="mobile-bar__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><img class="mobile-bar__icon" src="img/messengers/telegram.svg" width="36" height="36" alt=""></a>
   <a class="mobile-bar__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><img class="mobile-bar__icon" src="img/messengers/whatsapp.svg" width="36" height="36" alt=""></a>
   <a class="mobile-bar__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><img class="mobile-bar__icon" src="img/messengers/max.svg" width="36" height="36" alt=""></a>
@@ -720,7 +711,7 @@
   <a class="float-contacts__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="Написать в MAX" data-goal="click_max"><img class="float-contacts__icon" src="img/messengers/max.svg" width="52" height="52" alt=""></a>
 </div>
 
-<script src="js/form.js?v=5" defer></script>
-<script src="js/main.js?v=5" defer></script>
+<script src="js/form.js?v=6" defer></script>
+<script src="js/main.js?v=6" defer></script>
 </body>
 </html>
