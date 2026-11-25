@@ -772,42 +772,56 @@
   color: var(--color-text-muted);
 }
 
-/* ============ calc (полоса калькулятора) ============ */
+/* ============ calc (расчёт: фото телефона с ботом и форма) ============ */
 .calc {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-  padding: var(--space-xl);
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  overflow: hidden;
   color: var(--color-text-on-dark);
   background: var(--color-navy);
   border-radius: var(--radius-l);
 }
 
-.calc__intro {
-  display: flex;
-  flex: 1 1 0;
-  align-items: center;
-  gap: var(--space-xl);
+.calc__media {
+  position: relative;
   min-width: 0;
 }
 
-.calc__about {
+.calc__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+.calc__body {
   display: flex;
-  flex: 1 1 0;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-m);
+  justify-content: center;
+  gap: var(--space-l);
   min-width: 0;
+  padding: 48px;
+}
+
+.calc__head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .calc__title {
-  font-size: 28px;
+  font-size: var(--fs-h2);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .calc__text {
+  font-size: var(--fs-lead);
   color: var(--color-text-on-dark-muted);
+}
+
+.calc__bot {
+  align-self: flex-start;
 }
 
 .calc__max-icon {
@@ -815,65 +829,79 @@
   height: 22px;
 }
 
-.calc__form {
-  flex: 0 0 440px;
-}
-
-/* ============ phone (макет телефона с ботом) ============ */
-.phone {
-  flex: 0 0 210px;
-  padding: 8px;
-  background: #0b1222;
-  border-radius: 32px;
-}
-
-.phone__screen {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 400px;
-  background: #eef1f6;
-  border-radius: 25px;
-}
-
-.phone__bar {
+/* Разделитель «или»: текст между двумя тонкими линиями. */
+.calc__or {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 18px 12px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-text);
-  background: var(--color-surface);
+  gap: var(--space-m);
+  font-size: var(--fs-small);
+  color: var(--color-text-on-dark-muted);
 }
 
-.phone__bar-icon {
-  width: 22px;
-  height: 22px;
+.calc__or::before,
+.calc__or::after {
+  flex: 1 1 0;
+  height: 1px;
+  content: "";
+  background: var(--color-border-on-dark);
 }
 
-.phone__chat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 12px 10px;
+.calc__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
 }
 
-.phone__msg {
-  max-width: 85%;
-  padding: 7px 10px;
-  font-size: 11.5px;
-  line-height: 1.35;
-  color: var(--color-text);
-  background: var(--color-surface);
-  border-radius: 12px 12px 12px 4px;
-}
-
-.phone__msg--user {
-  align-self: flex-end;
+/* Форма на тёмном фоне: подписи светлые, поля белые. */
+.lead-form--dark {
   color: var(--color-text-on-dark);
-  background: #3b5bfd;
-  border-radius: 12px 12px 4px;
+}
+
+.lead-form--dark .check {
+  color: var(--color-text-on-dark-muted);
+}
+
+/* Пустая галочка на синем прозрачная: белая заливка читается как уже отмеченная. */
+.lead-form--dark .check__box {
+  background: transparent;
+  border-color: var(--color-text-on-dark-muted);
+}
+
+.lead-form--dark .check__input:checked + .check__box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.lead-form--dark .segment__options {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.lead-form--dark .segment__label {
+  color: var(--color-text-on-dark-muted);
+}
+
+.lead-form--dark .segment__input:checked + .segment__label {
+  color: var(--color-text-on-dark);
+  background: var(--color-primary);
+}
+
+.lead-form--dark .segment__input:checked + .segment__label .segment__icon {
+  color: var(--color-text-on-dark);
+}
+
+.lead-form--dark .field__error {
+  color: #ffb4ab;
+}
+
+@media (hover: hover) {
+  .lead-form--dark .segment__item:hover .segment__input:not(:checked) + .segment__label {
+    color: var(--color-text-on-dark);
+  }
+
+  .lead-form--dark .check__link:hover {
+    color: var(--color-text-on-dark);
+  }
 }
 
 /* ============ steps ============ */
@@ -1218,59 +1246,103 @@
   }
 }
 
-/* ============ contacts ============ */
+/* ============ contacts (синяя карточка контактов и форма одной высоты) ============ */
 .contacts {
-  display: flex;
-  align-items: flex-start;
-  gap: 56px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--grid-gap);
 }
 
-.contacts__info {
+.contacts__card {
   display: flex;
-  flex: 1 1 0;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 32px;
+  min-width: 0;
+  padding: 48px;
+  color: var(--color-text-on-dark);
+  background: var(--color-navy);
+  border-radius: var(--radius-l);
+}
+
+.contacts__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contacts__title {
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+}
+
+.contacts__lead {
+  font-size: var(--fs-lead);
+  color: var(--color-text-on-dark-muted);
+}
+
+.contacts__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.contacts__item {
+  display: flex;
+  align-items: center;
   gap: var(--space-m);
+}
+
+.contacts__icon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  padding: 14px;
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-m);
+}
+
+.contacts__text {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
 }
 
-.contacts__info .section__head {
-  margin-bottom: var(--space-s);
+.contacts__label {
+  font-size: var(--fs-xs);
+  color: var(--color-text-on-dark-muted);
 }
 
-.contacts__phone {
-  font-size: 32px;
+.contacts__value {
+  font-size: 18px;
+  font-weight: 700;
+  transition: color var(--transition);
+}
+
+.contacts__value--big {
+  font-size: 28px;
   font-weight: 800;
   line-height: 1.2;
-  color: var(--color-navy);
-  transition: color var(--transition);
-}
-
-.contacts__mail {
-  font-size: var(--fs-lead);
-  font-weight: 600;
-  transition: color var(--transition);
-}
-
-.contacts__area {
-  color: var(--color-text-muted);
 }
 
 .contacts__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s);
-  margin-top: var(--space-s);
+  margin-top: auto;
 }
 
+/* Форма тянется до высоты синей карточки: поля стоят по центру, без пустоты снизу. */
 .contacts__form {
-  flex: 0 0 480px;
+  justify-content: center;
+  min-width: 0;
 }
 
 @media (hover: hover) {
-  .contacts__phone:hover,
-  .contacts__mail:hover {
-    color: var(--color-primary-text);
+  a.contacts__value:hover {
+    color: var(--color-primary);
   }
 }
 
@@ -1563,18 +1635,13 @@
   }
 
   .detail,
-  .warranty,
-  .contacts {
+  .warranty {
     gap: var(--space-xl);
   }
 
-  .calc {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .calc__form {
-    flex-basis: auto;
+  .calc__body,
+  .contacts__card {
+    padding: var(--space-xl);
   }
 }
 
@@ -1694,9 +1761,21 @@
     aspect-ratio: 16 / 9;
   }
 
-  .contacts__form,
   .next__card {
     flex-basis: auto;
+  }
+
+  .calc,
+  .contacts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calc__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .calc__image {
+    object-position: 50% 55%;
   }
 
   .showcase__panel {
@@ -1816,22 +1895,30 @@
     width: 100%;
   }
 
-  .calc {
-    padding: var(--card-pad-l) var(--card-pad);
+  .calc,
+  .contacts__card {
     border-radius: var(--radius-m);
   }
 
-  .calc__intro {
-    flex-direction: column;
-    align-items: stretch;
+  .calc__body,
+  .contacts__card {
+    padding: var(--card-pad-l) var(--card-pad);
   }
 
-  .calc__about .button {
-    width: 100%;
+  .calc__media {
+    aspect-ratio: 4 / 3;
   }
 
-  .phone {
-    align-self: center;
+  .calc__bot {
+    align-self: stretch;
+  }
+
+  .calc__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contacts__value--big {
+    font-size: 24px;
   }
 
   .showcase__info {
@@ -1849,10 +1936,6 @@
 
   .faq__answer {
     padding: 0 var(--card-pad) var(--card-pad);
-  }
-
-  .contacts__phone {
-    font-size: 26px;
   }
 
   .contacts__buttons {
