@@ -7,8 +7,8 @@
   <title>Заявка отправлена | Центр механизированной отделки</title>
   <link rel="icon" href="../img/favicon-48.png" type="image/png">
   <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-  <link rel="stylesheet" href="../css/base.css?v=3">
-  <link rel="stylesheet" href="../css/blocks.css?v=3">
+  <link rel="stylesheet" href="../css/base.css?v=4">
+  <link rel="stylesheet" href="../css/blocks.css?v=4">
 </head>
 <body>
 
@@ -22,15 +22,47 @@
   </div>
 </header>
 
-<main class="thanks">
-  <div class="container thanks__inner">
-    <svg class="thanks__icon" aria-hidden="true"><use href="../img/icons.svg#check"/></svg>
-    <h1 class="thanks__title">Заявка отправлена</h1>
-    <p class="thanks__text">Перезвоним, уточним объект и назовём цену.</p>
-    <div class="thanks__actions">
-      <a class="button button--outline" href="../">На главную</a>
+<main>
+  <section class="thanks">
+    <div class="container thanks__inner">
+      <svg class="thanks__icon" aria-hidden="true"><use href="../img/icons.svg#check"/></svg>
+      <h1 class="thanks__title">Заявка отправлена</h1>
+      <p class="thanks__text">Перезвоним, уточним объект и назовём цену.</p>
     </div>
-  </div>
+  </section>
+
+  <section class="section">
+    <div class="container next">
+      <div class="next__steps">
+        <h2 class="section__title">Что дальше</h2>
+        <div class="next__step">
+          <span class="next__number">1</span>
+          <div><h3 class="next__title">Звонок</h3><p class="next__text">Уточним, что нужно: стяжка или штукатурка, площадь и адрес.</p></div>
+        </div>
+        <div class="next__step">
+          <span class="next__number">2</span>
+          <div><h3 class="next__title">Цена</h3><p class="next__text">Назовём предварительную стоимость по вашим вводным.</p></div>
+        </div>
+        <div class="next__step">
+          <span class="next__number">3</span>
+          <div><h3 class="next__title">Замер и договор</h3><p class="next__text">Договоримся о дате замера, после него фиксируем сумму в договоре.</p></div>
+        </div>
+      </div>
+      <div class="next__card">
+        <h2 class="next__card-title">Не хотите ждать звонка?</h2>
+        <p class="next__card-text">Позвоните сами или напишите в мессенджер.</p>
+        <div class="next__actions">
+          <a class="button button--primary" href="tel:+79779948917" data-goal="click_phone">Позвонить: +7 (977) 994-89-17</a>
+          <a class="button button--outline" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" data-goal="click_tg"><img class="button__icon" src="../img/messengers/telegram.svg" width="20" height="20" alt="">Telegram</a>
+          <a class="button button--outline" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><img class="button__icon" src="../img/messengers/whatsapp.svg" width="20" height="20" alt="">WhatsApp</a>
+          <a class="button button--outline" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><img class="button__icon" src="../img/messengers/max.svg" width="20" height="20" alt="">MAX</a>
+        </div>
+      </div>
+    </div>
+    <div class="container next__back">
+      <a class="button button--outline" href="../">Вернуться на сайт</a>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -54,6 +86,6 @@
   </div>
 </footer>
 
-<script src="../js/main.js?v=3" defer></script>
+<script src="../js/main.js?v=4" defer></script>
 </body>
 </html>
