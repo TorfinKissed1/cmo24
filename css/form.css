@@ -90,12 +90,14 @@
   color: var(--color-navy);
 }
 
-/* Кольца фокуса у поля нет: курсор и так показывает, куда пишешь, меняется только цвет рамки. */
+/* Кольца фокуса у поля нет, меняется только цвет рамки. Цвет текста задан явно:
+   в форме на синем фоне он иначе наследует белый и пропадает в белом поле. */
 .field__input {
   width: 100%;
   height: var(--control-height);
   padding: 0 var(--space-m);
   font-size: var(--fs-body);
+  color: var(--color-text);
   background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-s);
@@ -156,18 +158,30 @@
   border-color: var(--color-error);
 }
 
+/* Ошибку показывает цвет: подпись, подсказка и рамка краснеют. Текст остаётся только для экранных чтецов. */
 .field__error {
-  font-size: var(--fs-xs);
-  line-height: 1.3;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.field__caption,
+.field__input::placeholder,
+.check__text {
+  transition: color var(--transition);
+}
+
+.field--error .field__caption,
+.field--error .field__input::placeholder {
   color: var(--color-error);
+  opacity: 1;
 }
 
-.field__error:empty {
-  display: none;
-}
-
-.field__error:not(:empty) {
-  animation: reveal 0.25s ease-out;
+.check--error .check__text {
+  color: var(--color-error);
 }
 
 /* ============ choice (материал стен, кружками) ============ */

@@ -658,7 +658,11 @@
   background: var(--color-navy);
 }
 
+/* У каждого типа объекта свой текст и свои списки материалов и работ. */
 .tabs__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
   animation: reveal 0.3s ease-out;
 }
 
@@ -899,8 +903,17 @@
   color: var(--color-text-on-dark);
 }
 
-.lead-form--dark .field__error {
+/* Тёмно-красный на синем не читается: ошибка у галочки и переключателя светлее. */
+.lead-form--dark .check--error .check__text {
   color: #ffb4ab;
+}
+
+.lead-form--dark .check--error .check__box {
+  border-color: #ffb4ab;
+}
+
+.lead-form--dark .field--error .segment__options {
+  background: rgba(255, 180, 171, 0.22);
 }
 
 @media (hover: hover) {
@@ -1849,12 +1862,13 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .segment__label {
-    height: auto;
-    min-height: 48px;
-    padding: 6px 8px;
-    line-height: 1.2;
-    white-space: normal;
+  /* На телефоне варианты друг под другом: в ряд подписи переносились на две строки. */
+  .segment__options {
+    flex-direction: column;
+  }
+
+  .hero-form__title {
+    width: 100%;
     text-align: center;
   }
 
@@ -1910,11 +1924,7 @@
   }
 
   .calc__media {
-    aspect-ratio: 16 / 9;
-  }
-
-  .calc__image {
-    object-position: 50% 52%;
+    display: none;
   }
 
   .calc__bot {
