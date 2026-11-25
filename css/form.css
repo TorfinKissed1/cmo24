@@ -3,31 +3,32 @@
 .lead-form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: 14px;
   color: var(--color-text);
 }
 
 .lead-form--card {
-  padding: var(--space-xl);
+  padding: var(--space-l);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-card);
 }
 
 .lead-form__title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1.2;
+  color: var(--color-navy);
 }
 
 .lead-form__row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-m);
+  gap: 12px;
 }
 
 .lead-form__row > .field {
-  flex: 1 1 200px;
+  flex: 1 1 160px;
 }
 
 /* Приманка для ботов уведена за экран: display:none часть ботов пропускает. */
@@ -45,11 +46,6 @@
 
 .lead-form__submit {
   width: 100%;
-  margin-top: var(--space-s);
-}
-
-.lead-form__consent {
-  margin-top: calc(var(--space-xs) * -1);
 }
 
 .lead-form__status {
@@ -77,32 +73,52 @@
 }
 
 .field__label {
-  font-size: var(--fs-small);
+  font-size: var(--fs-xs);
   font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.field__control {
+  position: relative;
+}
+
+.field__icon {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 /* Кольца фокуса у поля нет: курсор и так показывает, куда пишешь, меняется только цвет рамки. */
 .field__input {
   width: 100%;
   height: var(--control-height);
-  padding: 0 var(--space-m);
+  padding: 0 14px;
   font-size: var(--fs-body);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-s);
   outline: none;
   transition: border-color var(--transition);
 }
 
+.field__icon + .field__input {
+  padding-left: 42px;
+}
+
 .field__input:focus,
 .field__input:focus-visible {
-  border-color: var(--color-ink);
+  border-color: var(--color-blue);
   outline: none;
 }
 
 .field__input::placeholder {
   color: var(--color-text-muted);
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .field--error .field__input {
@@ -123,7 +139,7 @@
   animation: reveal 0.25s ease-out;
 }
 
-/* ============ choice (выбор одного из вариантов) ============ */
+/* ============ choice (выбор одного варианта кружками) ============ */
 .choice {
   display: flex;
   flex-direction: column;
@@ -132,20 +148,26 @@
 
 .choice__legend {
   padding: 0;
-  margin-bottom: 6px;
-  font-size: var(--fs-small);
+  margin-bottom: 4px;
+  font-size: var(--fs-xs);
   font-weight: 600;
+  color: var(--color-text-muted);
 }
 
 .choice__options {
   display: flex;
-  gap: var(--space-s);
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-l);
 }
 
 .choice__item {
   position: relative;
-  flex: 1 1 0;
-  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .choice__input {
@@ -154,40 +176,48 @@
   pointer-events: none;
 }
 
-.choice__label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 46px;
-  padding: 0 var(--space-s);
-  font-size: var(--fs-small);
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-s);
-  transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+.choice__dot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-strong);
+  border-radius: var(--radius-round);
+  transition: border-color var(--transition);
 }
 
-.choice__input:checked + .choice__label {
-  color: var(--color-text-on-dark);
-  background: var(--color-ink);
-  border-color: var(--color-ink);
+.choice__dot::after {
+  position: absolute;
+  inset: 3px;
+  content: "";
+  background: var(--color-navy);
+  border-radius: var(--radius-round);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity var(--transition), transform var(--transition);
 }
 
-.choice__input:focus-visible + .choice__label {
+.choice__input:checked + .choice__dot {
+  border-color: var(--color-navy);
+}
+
+.choice__input:checked + .choice__dot::after {
+  opacity: 1;
+  transform: none;
+}
+
+.choice__input:focus-visible + .choice__dot {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
-.field--error .choice__label {
+.field--error .choice__dot {
   border-color: var(--color-error);
 }
 
 @media (hover: hover) {
-  .choice__input:not(:checked) + .choice__label:hover {
-    border-color: var(--color-border-strong);
+  .choice__item:hover .choice__input:not(:checked) + .choice__dot {
+    border-color: var(--color-navy-soft);
   }
 }
 
@@ -231,8 +261,8 @@
 }
 
 .check__input:checked + .check__box {
-  background: var(--color-ink);
-  border-color: var(--color-ink);
+  background: var(--color-navy);
+  border-color: var(--color-navy);
 }
 
 .check__input:checked + .check__box .check__icon {
@@ -268,10 +298,9 @@
   .lead-form--card {
     padding: var(--space-l) var(--space-m);
     padding-bottom: max(var(--space-l), env(safe-area-inset-bottom));
-    border-radius: var(--radius-m);
   }
 
   .lead-form__title {
-    font-size: 21px;
+    font-size: 20px;
   }
 }

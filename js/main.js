@@ -41,6 +41,15 @@
     });
   }
 
+  // Кнопки «Рассчитать стяжку/штукатурку» ведут к форме расчёта и сразу отмечают вид работ.
+  document.querySelectorAll('a[data-pick]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const target = document.querySelector(link.getAttribute('href'));
+      const radio = target && target.querySelector(`input[name="work"][value="${link.dataset.pick}"]`);
+      if (radio) radio.checked = true;
+    });
+  });
+
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[data-goal]');
     if (link && typeof window.ym === 'function' && window.YM_COUNTER) {
