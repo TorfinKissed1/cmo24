@@ -393,6 +393,12 @@
   background: #fdecea;
 }
 
+/* Узкая панель: поля у вариантов меньше, чтобы «Штукатурка стен» со значком не упиралась в край. */
+.segment--compact .segment__label {
+  gap: 6px;
+  padding: 0 10px;
+}
+
 @media (hover: hover) {
   .segment__item:hover .segment__input:not(:checked) + .segment__label {
     color: var(--color-navy);

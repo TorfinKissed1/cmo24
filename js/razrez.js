@@ -36,6 +36,7 @@ function initRazrez(root) {
   const sumEl = root.querySelector('[data-razrez-sum]');
   const perEl = root.querySelector('[data-razrez-per]');
   const legendEl = root.querySelector('[data-razrez-legend]');
+  const badgeEl = root.querySelector('[data-razrez-badge]');
   const screedSlider = form.elements.screed;
   let scene = null;
 
@@ -69,10 +70,13 @@ function initRazrez(root) {
     if (!area) {
       sumEl.textContent = '-';
       perEl.textContent = 'Укажите площадь';
+      badgeEl.hidden = true;
       return;
     }
     sumEl.textContent = 'от ' + rub(per * area);
     perEl.textContent = 'от ' + rub(per) + '/м² × ' + area.toLocaleString('ru-RU') + ' м²';
+    badgeEl.textContent = sumEl.textContent;
+    badgeEl.hidden = false;
   }
 
   function legendItems(state) {
@@ -119,7 +123,7 @@ function initRazrez(root) {
     const min = form.elements.heat.checked ? 50 : 30;
     screedSlider.min = String(min);
     if (Number(screedSlider.value) < min) screedSlider.value = String(min);
-    root.querySelector('[data-razrez-min="screed"]').textContent = String(min);
+    root.querySelector('[data-razrez-min="screed"]').textContent = min + ' мм';
   }
 
   function update(workChanged = false) {
@@ -156,6 +160,7 @@ function initRazrez(root) {
       areaInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
     lead.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    lead.querySelector('input[name="name"]').focus({ preventScroll: true });
   });
 
   // «Рассчитать стяжку / штукатурку» в секциях выше ведут сюда: разрез сразу показывает нужный вид работ.
@@ -275,6 +280,7 @@ function createScene(THREE, host, hint) {
   }
   controls.addEventListener('change', requestRender);
   controls.addEventListener('start', () => hint.classList.add('razrez__hint--gone'), { once: true });
+  if (window.matchMedia('(hover: none)').matches) hint.textContent = 'Поверните пальцем вбок';
 
   // На узкой сцене камера отходит дальше, чтобы разрез влез по ширине; направление взгляда не меняется.
   function fitCamera(reset) {

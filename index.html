@@ -339,20 +339,23 @@
     <div class="container">
       <div class="section__head">
         <h2 class="section__title">Разрез пола и&nbsp;стены</h2>
-        <p class="section__lead">Поменяйте толщину и&nbsp;слои, цена пересчитается сразу.</p>
+        <p class="section__lead">Выберите слои и&nbsp;покрутите разрез. Цена «от» считается по&nbsp;площади.</p>
       </div>
 
       <div class="razrez raschet__razrez" data-razrez>
-        <div class="razrez__stage">
-          <div class="razrez__scene" data-razrez-scene>
-            <span class="razrez__hint" data-razrez-hint>Поверните мышкой или&nbsp;пальцем</span>
-            <p class="razrez__fallback" data-razrez-fallback hidden>Браузер не&nbsp;показывает 3D. Цена справа считается и&nbsp;без него.</p>
+        <div class="razrez__dock">
+          <div class="razrez__stage">
+            <div class="razrez__scene" data-razrez-scene>
+              <span class="razrez__hint" data-razrez-hint>Поверните мышкой или&nbsp;пальцем</span>
+              <span class="razrez__badge" data-razrez-badge aria-hidden="true"></span>
+              <p class="razrez__fallback" data-razrez-fallback hidden>Браузер не&nbsp;показывает 3D. Цена справа считается и&nbsp;без него.</p>
+            </div>
+            <ul class="razrez__legend" data-razrez-legend></ul>
           </div>
-          <ul class="razrez__legend" data-razrez-legend></ul>
         </div>
 
         <form class="razrez__panel" novalidate data-razrez-form>
-          <fieldset class="segment">
+          <fieldset class="segment segment--compact">
             <legend class="visually-hidden">Что считаем</legend>
             <div class="segment__options">
               <label class="segment__item"><input class="segment__input" type="radio" name="rz_work" value="styazhka" checked><span class="segment__label"><svg class="segment__icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/> <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 5v4M12 7l4 2 4-2"/></svg>Стяжка пола</span></label>
@@ -364,7 +367,7 @@
             <div class="razrez__range">
               <label class="razrez__label" for="rz-screed">Толщина стяжки <output class="razrez__value" for="rz-screed" data-razrez-out="screed">60 мм</output></label>
               <input class="razrez__slider" type="range" id="rz-screed" name="screed" min="30" max="120" step="5" value="60">
-              <div class="razrez__scale"><span data-razrez-min="screed">30</span><span>120 мм</span></div>
+              <div class="razrez__scale"><span data-razrez-min="screed">30 мм</span><span>120 мм</span></div>
             </div>
             <label class="check razrez__check"><input class="check__input" type="checkbox" name="heat" checked><span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span class="check__text">Тёплый пол</span></label>
             <label class="check razrez__check"><input class="check__input" type="checkbox" name="insul" checked><span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span class="check__text">Утеплитель под стяжкой</span></label>
@@ -392,7 +395,7 @@
             <div class="razrez__range">
               <label class="razrez__label" for="rz-plaster">Толщина слоя <output class="razrez__value" for="rz-plaster" data-razrez-out="plaster">20 мм</output></label>
               <input class="razrez__slider" type="range" id="rz-plaster" name="plaster" min="10" max="50" step="5" value="20">
-              <div class="razrez__scale"><span>10</span><span>50 мм</span></div>
+              <div class="razrez__scale"><span>10 мм</span><span>50 мм</span></div>
             </div>
             <label class="check razrez__check"><input class="check__input" type="checkbox" name="mesh" checked><span class="check__box"><svg class="check__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><span class="check__text">Сетка на&nbsp;стыках</span></label>
             <div class="field field--boxed">
