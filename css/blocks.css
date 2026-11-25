@@ -11,9 +11,7 @@
   flex-direction: column;
   overflow: hidden;
   background: var(--color-surface);
-  border: 2px solid transparent;
   border-radius: var(--radius);
-  transition: border-color var(--transition);
 }
 
 .service:has(.service__link:focus-visible) {
@@ -39,6 +37,7 @@
   font-size: var(--fs-h3);
   font-weight: 600;
   line-height: 1.25;
+  transition: color var(--transition);
 }
 
 .service__link:focus-visible {
@@ -59,6 +58,7 @@
 }
 
 .service__footer {
+  position: relative;
   display: flex;
   gap: 12px;
   align-items: center;
@@ -66,6 +66,20 @@
   padding-top: 18px;
   margin-top: auto;
   border-top: 1px solid var(--color-line);
+}
+
+/* Оранжевая черта поверх линии над ценой: при наведении прорисовывается слева направо. */
+.service__footer::before {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: var(--color-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out);
 }
 
 .service__arrow {
@@ -77,11 +91,23 @@
   color: var(--color-navy);
   background: var(--color-orange);
   border-radius: var(--radius);
+  transition: background-color var(--transition), color var(--transition), transform var(--transition);
 }
 
+/* Обводки нет: на наведение отвечают заголовок, черта и стрелка, размеры карточки не меняются. */
 @media (hover: hover) {
-  .service:hover {
-    border-color: var(--color-navy);
+  .service:hover .service__title {
+    color: var(--color-orange-text);
+  }
+
+  .service:hover .service__footer::before {
+    transform: scaleX(1);
+  }
+
+  .service:hover .service__arrow {
+    color: var(--color-orange);
+    background: var(--color-navy);
+    transform: translateX(4px);
   }
 }
 
