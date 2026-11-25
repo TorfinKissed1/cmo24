@@ -88,7 +88,7 @@
   --color-focus: #e2620a;
 
   --font-main: "Montserrat", "Segoe UI", Arial, sans-serif;
-  --fs-hero: 52px;
+  --fs-hero: 62px;
   --fs-h2: 36px;
   --fs-h3: 20px;
   --fs-lead: 18px;
@@ -118,7 +118,7 @@
   --radius-round: 999px;
 
   --shadow-card: 0 2px 10px rgba(8, 42, 82, 0.07);
-  --container: 1140px;
+  --container: 1320px;
   --gutter: 24px;
   --control-height: 50px;
   --header-height: 76px;
@@ -419,14 +419,14 @@ svg {
 
 @media (max-width: 1240px) {
   :root {
-    --fs-hero: 46px;
+    --fs-hero: 54px;
     --fs-h2: 32px;
   }
 }
 
 @media (max-width: 1024px) {
   :root {
-    --fs-hero: 40px;
+    --fs-hero: 46px;
     --fs-h2: 30px;
     --space-section: 72px;
     --head-gap: 40px;
@@ -435,7 +435,7 @@ svg {
 
 @media (max-width: 768px) {
   :root {
-    --fs-hero: 32px;
+    --fs-hero: 34px;
     --fs-h2: 26px;
     --fs-h3: 18px;
     --fs-lead: 16px;

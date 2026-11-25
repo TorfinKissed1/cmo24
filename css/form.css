@@ -118,6 +118,44 @@
   border-color: var(--color-error);
 }
 
+/* Поле с подписью внутри рамки: строка панели на первом экране одной высоты с кнопкой. */
+.field__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  height: 60px;
+  padding: 0 var(--space-m);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 10px;
+  cursor: text;
+  transition: border-color var(--transition);
+}
+
+.field__box:focus-within {
+  border-color: var(--color-navy);
+}
+
+.field__caption {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-muted);
+}
+
+.field__input--bare {
+  height: 24px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.field--error .field__box {
+  border-color: var(--color-error);
+}
+
 .field__error {
   font-size: var(--fs-xs);
   line-height: 1.3;
