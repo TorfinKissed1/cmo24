@@ -95,4 +95,4 @@ HTML (`build_pages.py` вызывает его сам). Новая иконка 
 ## Выкладка
 
 GitHub Pages из ветки `main`, корень репозитория. После правки CSS или JS поднять версию в ссылках
-(`base.css?v=7`) в `index.html` и `VERSION` в `build_pages.py`: иначе телефон покажет старый файл из кеша.
+(`base.css?v=8`) в `index.html` и `VERSION` в `build_pages.py`: иначе телефон покажет старый файл из кеша.

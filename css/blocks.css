@@ -775,32 +775,35 @@
 /* ============ calc (расчёт: фото телефона с ботом и форма) ============ */
 .calc {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
   overflow: hidden;
   color: var(--color-text-on-dark);
   background: var(--color-navy);
   border-radius: var(--radius-l);
 }
 
+/* Фото только заполняет колонку: высоту блока задаёт форма, вертикальный кадр её не раздувает. */
 .calc__media {
   position: relative;
   min-width: 0;
 }
 
 .calc__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 45%;
+  object-position: 50% 50%;
 }
 
 .calc__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: var(--space-l);
+  gap: 20px;
   min-width: 0;
-  padding: 48px;
+  padding: 40px 48px;
 }
 
 .calc__head {
@@ -810,7 +813,7 @@
 }
 
 .calc__title {
-  font-size: var(--fs-h2);
+  font-size: 30px;
   font-weight: 800;
   line-height: var(--lh-tight);
 }
@@ -1765,17 +1768,8 @@
     flex-basis: auto;
   }
 
-  .calc,
   .contacts {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .calc__media {
-    aspect-ratio: 16 / 10;
-  }
-
-  .calc__image {
-    object-position: 50% 55%;
   }
 
   .showcase__panel {
@@ -1905,8 +1899,16 @@
     padding: var(--card-pad-l) var(--card-pad);
   }
 
+  .calc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .calc__media {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
+  }
+
+  .calc__image {
+    object-position: 50% 55%;
   }
 
   .calc__bot {
