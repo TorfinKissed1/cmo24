@@ -1228,15 +1228,16 @@
   opacity: 0;
 }
 
-.faq__item[open] .faq__sign {
+/* Пока вопрос закрывается, open ещё стоит: класс закрытия сразу возвращает знак «+» и гасит ответ. */
+.faq__item[open]:not(.faq__item--closing) .faq__sign {
   background: var(--color-navy);
 }
 
-.faq__item[open] .faq__icon--plus {
+.faq__item[open]:not(.faq__item--closing) .faq__icon--plus {
   opacity: 0;
 }
 
-.faq__item[open] .faq__icon--minus {
+.faq__item[open]:not(.faq__item--closing) .faq__icon--minus {
   opacity: 1;
 }
 
@@ -1244,22 +1245,15 @@
   max-width: 860px;
   padding: 0 var(--card-pad) 22px;
   color: var(--color-text-muted);
+  transition: opacity var(--transition);
 }
 
 .faq__item[open] .faq__answer {
   animation: reveal 0.3s ease-out;
 }
 
-/* [open] в селекторе нужен для веса: иначе побеждает правило открытия выше и анимация закрытия не стартует. */
-.faq__item--closing[open] .faq__answer {
-  animation: faq-out 0.2s ease-in forwards;
-}
-
-@keyframes faq-out {
-  to {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
+.faq__item--closing .faq__answer {
+  opacity: 0;
 }
 
 @media (hover: hover) {

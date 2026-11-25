@@ -75,16 +75,36 @@
     });
   });
 
-  // Вопросы закрываются плавно: снимаем open только после анимации ответа.
+  // Вопросы открываются и закрываются плавно по высоте. CSS не умеет анимировать высоту <details>
+  // в Safari, поэтому высота считается здесь, а open снимается только после анимации закрытия.
   document.querySelectorAll('[data-faq] details').forEach((item) => {
-    item.querySelector('summary').addEventListener('click', (event) => {
-      if (!item.open || reduceMotion.matches) return;
+    const summary = item.querySelector('summary');
+    let animation = null;
+    let closing = false;
+
+    summary.addEventListener('click', (event) => {
       event.preventDefault();
-      item.classList.add('faq__item--closing');
-      item.querySelector('.faq__answer').addEventListener('animationend', () => {
+      if (reduceMotion.matches) {
+        item.open = !item.open;
+        return;
+      }
+      const from = item.offsetHeight;
+      const opening = !item.open || closing;
+      if (animation) animation.cancel();
+      item.open = true;
+      const to = opening ? item.offsetHeight : summary.offsetHeight;
+      closing = !opening;
+      item.classList.toggle('faq__item--closing', closing);
+      item.style.overflow = 'hidden';
+      animation = item.animate({ height: [from + 'px', to + 'px'] }, { duration: 320, easing: 'ease' });
+      animation.onfinish = () => {
+        animation = null;
+        item.style.overflow = '';
+        if (!closing) return;
+        closing = false;
         item.classList.remove('faq__item--closing');
         item.open = false;
-      }, { once: true });
+      };
     });
   });
 
