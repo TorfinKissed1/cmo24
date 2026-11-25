@@ -53,10 +53,11 @@
   // Вкладки по типу объекта: клик и стрелки влево-вправо, как у системных вкладок.
   document.querySelectorAll('[data-tabs]').forEach((tabs) => {
     const buttons = [...tabs.querySelectorAll('[role="tab"]')];
+    const activeClass = tabs.dataset.activeClass;
     function select(button) {
       buttons.forEach((item) => {
         const active = item === button;
-        item.classList.toggle('tabs__button--active', active);
+        item.classList.toggle(activeClass, active);
         item.setAttribute('aria-selected', String(active));
         item.tabIndex = active ? 0 : -1;
         document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
@@ -87,34 +88,20 @@
     });
   });
 
-  // Значки мессенджеров в углу видны, когда первый экран ушёл из вида и пока не видны контакты или подвал:
-  // там те же ссылки, а значки поверх них только мешают.
+  // Значки мессенджеров в углу (на компьютере) видны, когда первый экран ушёл из вида и пока не видны
+  // контакты или подвал: там те же ссылки. На телефоне вместо них нижняя панель, она в CSS.
   const floating = document.querySelector('[data-float-contacts]');
-  if (floating) {
-    const floatToggle = floating.querySelector('[data-float-toggle]');
-    const setOpen = (open) => {
-      floating.classList.toggle('float-contacts--open', open);
-      floatToggle.setAttribute('aria-expanded', String(open));
-    };
-    floatToggle.addEventListener('click', () => setOpen(!floating.classList.contains('float-contacts--open')));
-    document.addEventListener('click', (event) => {
-      if (!floating.contains(event.target)) setOpen(false);
-    });
-
+  if (floating && 'IntersectionObserver' in window) {
     const watched = ['[data-hero]', '#kontakty', '.footer'].map((s) => document.querySelector(s)).filter(Boolean);
-    if ('IntersectionObserver' in window) {
-      const inView = new Set();
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => (entry.isIntersecting ? inView.add(entry.target) : inView.delete(entry.target)));
-        const visible = inView.size === 0;
-        floating.classList.toggle('float-contacts--visible', visible);
-        if (!visible) setOpen(false);
-      // Шапка закреплена и закрывает верх окна, плюс отступ якоря: край первого экрана под ними не считается видимым.
-      }, { rootMargin: `-${document.querySelector('.header').offsetHeight + 24}px 0px 0px 0px` });
-      watched.forEach((el) => observer.observe(el));
-    } else {
-      floating.classList.add('float-contacts--visible');
-    }
+    const inView = new Set();
+    // Шапка закреплена и закрывает верх окна, плюс отступ якоря: край первого экрана под ними не считается видимым.
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? inView.add(entry.target) : inView.delete(entry.target)));
+      floating.classList.toggle('float-contacts--visible', inView.size === 0);
+    }, { rootMargin: `-${document.querySelector('.header').offsetHeight + 24}px 0px 0px 0px` });
+    watched.forEach((el) => observer.observe(el));
+  } else if (floating) {
+    floating.classList.add('float-contacts--visible');
   }
 
   document.addEventListener('click', (event) => {
