@@ -7,10 +7,11 @@
   <meta name="description" content="Полусухая стяжка от 490 ₽/м² и механизированная штукатурка от 450 ₽/м². Москва и область, договор, гарантия 5 лет.">
   <link rel="icon" href="img/favicon-48.png" type="image/png">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-  <link rel="preload" href="fonts/montserrat-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/base.css?v=3">
-  <link rel="stylesheet" href="css/form.css?v=3">
-  <link rel="stylesheet" href="css/blocks.css?v=3">
+  <link rel="preload" href="fonts/montserrat-cyrillic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-cyrillic-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css?v=4">
+  <link rel="stylesheet" href="css/form.css?v=4">
+  <link rel="stylesheet" href="css/blocks.css?v=4">
 </head>
 <body>
 
@@ -27,6 +28,7 @@
       <a class="nav__link" href="#styazhka">Стяжка</a>
       <a class="nav__link" href="#shtukaturka">Штукатурка</a>
       <a class="nav__link" href="#obekty">Объекты</a>
+      <a class="nav__link" href="#voprosy">Вопросы</a>
       <a class="nav__link" href="#kontakty">Контакты</a>
     </nav>
 
@@ -50,6 +52,7 @@
       <a class="menu__link" href="#shtukaturka">Штукатурка</a>
       <a class="menu__link" href="#raschet">Расчёт стоимости</a>
       <a class="menu__link" href="#obekty">Объекты</a>
+      <a class="menu__link" href="#voprosy">Вопросы</a>
       <a class="menu__link" href="#kontakty">Контакты</a>
     </nav>
     <a class="menu__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
@@ -63,25 +66,33 @@
 
 <main>
 
-  <section class="hero">
+  <section class="hero" data-hero>
     <picture class="hero__photo">
       <source media="(max-width: 768px)" srcset="img/hero-m.webp">
       <img class="hero__image" src="img/hero.webp" width="1536" height="1024" alt="Мастер у машины для полусухой стяжки в новостройке">
     </picture>
     <div class="container hero__inner">
-      <div class="hero__content">
-        <h1 class="hero__title">Стяжка пола и&nbsp;штукатурка стен машиной</h1>
-        <p class="hero__lead">Москва и&nbsp;область. Договор, смета, гарантия 5&nbsp;лет.</p>
+      <div class="hero__main">
+        <div class="hero__content">
+          <p class="hero__place">Москва и Московская область</p>
+          <h1 class="hero__title">Стяжка пола и&nbsp;штукатурка стен <span class="hero__accent">машиной</span></h1>
+          <ul class="hero__points">
+            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Договор и&nbsp;смета до&nbsp;начала работ</li>
+            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Ходить по&nbsp;стяжке можно через 12&nbsp;часов</li>
+            <li class="hero__point"><svg class="hero__point-icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg>Гарантия 5&nbsp;лет</li>
+          </ul>
+        </div>
 
-        <form class="lead-form lead-form--card hero__form" action="html/spasibo-korotkaya.html" method="post" novalidate aria-label="Заявка на расчёт"
+        <form class="lead-form lead-form--card hero__form" action="html/spasibo-korotkaya.html" method="post" novalidate
               data-lead-form data-goal="form_short" data-thanks="html/spasibo-korotkaya.html">
+          <h2 class="lead-form__title">Рассчитать стоимость</h2>
           <div class="lead-form__trap" aria-hidden="true">
             <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
           </div>
           <input type="hidden" name="form" value="short">
 
           <fieldset class="choice" data-field="work">
-            <legend class="visually-hidden">Что нужно</legend>
+            <legend class="choice__legend">Что нужно</legend>
             <div class="choice__options">
               <label class="choice__item"><input class="choice__input" type="radio" name="work" value="styazhka" required><span class="choice__dot"></span>Стяжка</label>
               <label class="choice__item"><input class="choice__input" type="radio" name="work" value="shtukaturka"><span class="choice__dot"></span>Штукатурка</label>
@@ -89,23 +100,21 @@
             <p class="field__error" data-error></p>
           </fieldset>
 
-          <div class="lead-form__row">
-            <div class="field" data-field="name">
-              <label class="visually-hidden" for="short-name">Имя</label>
-              <div class="field__control">
-                <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#user"/></svg>
-                <input class="field__input" id="short-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Имя" required>
-              </div>
-              <p class="field__error" data-error></p>
+          <div class="field" data-field="name">
+            <label class="visually-hidden" for="short-name">Имя</label>
+            <div class="field__control">
+              <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#user"/></svg>
+              <input class="field__input" id="short-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Имя" required>
             </div>
-            <div class="field" data-field="phone">
-              <label class="visually-hidden" for="short-phone">Телефон</label>
-              <div class="field__control">
-                <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg>
-                <input class="field__input" id="short-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Телефон" required data-phone>
-              </div>
-              <p class="field__error" data-error></p>
+            <p class="field__error" data-error></p>
+          </div>
+          <div class="field" data-field="phone">
+            <label class="visually-hidden" for="short-phone">Телефон</label>
+            <div class="field__control">
+              <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg>
+              <input class="field__input" id="short-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Телефон" required data-phone>
             </div>
+            <p class="field__error" data-error></p>
           </div>
 
           <button class="button button--primary lead-form__submit" type="submit">Получить расчёт</button>
@@ -117,64 +126,52 @@
           <p class="lead-form__status" data-status role="alert"></p>
         </form>
       </div>
-    </div>
-  </section>
 
-  <section class="facts" aria-label="Коротко о работе">
-    <ul class="container facts__list">
-      <li class="facts__item">
-        <svg class="facts__icon" aria-hidden="true"><use href="img/icons.svg#area"/></svg>
-        <span class="facts__text"><b class="facts__value">до 250 м²</b><span class="facts__label">стяжки за&nbsp;день</span></span>
-      </li>
-      <li class="facts__item">
-        <svg class="facts__icon" aria-hidden="true"><use href="img/icons.svg#trowel"/></svg>
-        <span class="facts__text"><b class="facts__value">до 200 м²</b><span class="facts__label">штукатурки за&nbsp;смену</span></span>
-      </li>
-      <li class="facts__item">
-        <svg class="facts__icon" aria-hidden="true"><use href="img/icons.svg#clock"/></svg>
-        <span class="facts__text"><b class="facts__value">12 часов</b><span class="facts__label">и&nbsp;можно ходить по&nbsp;стяжке</span></span>
-      </li>
-      <li class="facts__item">
-        <svg class="facts__icon" aria-hidden="true"><use href="img/icons.svg#shield"/></svg>
-        <span class="facts__text"><b class="facts__value">5 лет</b><span class="facts__label">гарантия по&nbsp;договору</span></span>
-      </li>
-    </ul>
+      <ul class="hero__facts">
+        <li class="hero__fact"><b class="hero__fact-value">от 490 ₽/м²</b><span class="hero__fact-label">полусухая стяжка</span></li>
+        <li class="hero__fact"><b class="hero__fact-value">от 450 ₽/м²</b><span class="hero__fact-label">штукатурка стен</span></li>
+        <li class="hero__fact"><b class="hero__fact-value">до 250 м²</b><span class="hero__fact-label">стяжки за&nbsp;день</span></li>
+        <li class="hero__fact"><b class="hero__fact-value">до 200 м²</b><span class="hero__fact-label">штукатурки за&nbsp;смену</span></li>
+      </ul>
+    </div>
   </section>
 
   <section class="section" id="uslugi">
     <div class="container">
-      <h2 class="visually-hidden">Услуги и цены</h2>
+      <div class="section__head">
+        <h2 class="section__title">Услуги и цены</h2>
+      </div>
       <ul class="services">
         <li class="service">
           <img class="service__image" src="img/card-plaster.webp" width="820" height="547" alt="Комната со стенами, оштукатуренными гипсовой смесью" loading="lazy">
           <div class="service__body">
-            <p class="service__price">от 450 ₽/м²</p>
             <h3 class="service__title"><a class="service__link" href="#shtukaturka">Штукатурка стен</a></h3>
-            <p class="service__text">Гипсовая смесь по&nbsp;маякам, до&nbsp;200&nbsp;м² стен за&nbsp;смену.</p>
+            <p class="service__text">Машинное нанесение гипсовой смеси по&nbsp;маякам, до&nbsp;200&nbsp;м² стен за&nbsp;смену.</p>
+            <p class="service__price">от 450 ₽/м²</p>
           </div>
         </li>
         <li class="service">
           <img class="service__image" src="img/card-cement.webp" width="820" height="547" alt="Стена из газоблока под цементно-песчаной штукатуркой" loading="lazy">
           <div class="service__body">
-            <p class="service__price">от 500 ₽/м²</p>
             <h3 class="service__title"><a class="service__link" href="#shtukaturka">Цементно-песчаная штукатурка</a></h3>
-            <p class="service__text">Подвалы, гаражи, лестницы и&nbsp;санузлы. Смесь Крайзель.</p>
+            <p class="service__text">Для подвалов, гаражей, лестниц и&nbsp;части санузлов. Смесь Крайзель.</p>
+            <p class="service__price">от 500 ₽/м²</p>
           </div>
         </li>
         <li class="service">
           <img class="service__image" src="img/card-screed.webp" width="820" height="547" alt="Свежая полусухая стяжка с правилом на маяках" loading="lazy">
           <div class="service__body">
+            <h3 class="service__title"><a class="service__link" href="#styazhka">Полусухая стяжка пола</a></h3>
+            <p class="service__text">Механизированная стяжка с&nbsp;фиброй и&nbsp;машинной затиркой, до&nbsp;250&nbsp;м² за&nbsp;день.</p>
             <p class="service__price">от 490 ₽/м²</p>
-            <h3 class="service__title"><a class="service__link" href="#styazhka">Полусухая стяжка</a></h3>
-            <p class="service__text">С фиброй и&nbsp;машинной затиркой, до&nbsp;250&nbsp;м² за&nbsp;день.</p>
           </div>
         </li>
         <li class="service">
           <img class="service__image" src="img/card-warm.webp" width="820" height="547" alt="Трубы тёплого пола перед заливкой стяжки" loading="lazy">
           <div class="service__body">
+            <h3 class="service__title"><a class="service__link" href="#styazhka">Стяжка с&nbsp;тёплым полом</a></h3>
+            <p class="service__text">Слой подбираем так, чтобы надёжно закрыть трубы или кабель тёплого пола.</p>
             <p class="service__price">от 550 ₽/м²</p>
-            <h3 class="service__title"><a class="service__link" href="#styazhka">Стяжка с тёплым полом</a></h3>
-            <p class="service__text">Слой подбираем так, чтобы закрыть трубы или&nbsp;кабель.</p>
           </div>
         </li>
       </ul>
@@ -182,49 +179,142 @@
   </section>
 
   <section class="section section--pale">
-    <div class="container works">
-      <article class="work" id="styazhka">
-        <div class="work__body">
-          <h2 class="work__title">Полусухая стяжка пола</h2>
-          <p class="work__text">Раствор подаём пневмонагнетателем прямо на&nbsp;этаж. Квартиры, частные дома, склады и&nbsp;офисы.</p>
-          <ul class="work__list">
-            <li class="work__item">Цемент М500, песок, фиброволокно, пластификатор</li>
-            <li class="work__item">Плёнка и&nbsp;демпферная лента по&nbsp;периметру</li>
-            <li class="work__item">Машинная затирка и&nbsp;нарезка швов</li>
-            <li class="work__item">Воды мало, соседей снизу не&nbsp;зальём</li>
-          </ul>
-          <a class="button button--primary work__button" href="#raschet" data-pick="styazhka">Рассчитать стяжку</a>
-        </div>
-        <picture class="work__photo">
-          <source media="(max-width: 768px)" srcset="img/styazhka-m.webp">
-          <img class="work__image" src="img/styazhka.webp" width="1536" height="1024" alt="Мастер выравнивает полусухую стяжку правилом по маякам" loading="lazy">
-        </picture>
-      </article>
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Почему полусухая стяжка</h2>
+      </div>
+      <ul class="perks">
+        <li class="perk">
+          <svg class="perk__icon" aria-hidden="true"><use href="img/icons.svg#level"/></svg>
+          <h3 class="perk__title">Ровно и&nbsp;прочно</h3>
+          <p class="perk__text">Основание не&nbsp;нужно выравнивать ещё раз перед плиткой, ламинатом или кварцвинилом.</p>
+        </li>
+        <li class="perk">
+          <svg class="perk__icon" aria-hidden="true"><use href="img/icons.svg#clock"/></svg>
+          <h3 class="perk__title">Ходить через 12&nbsp;часов</h3>
+          <p class="perk__text">Воды в&nbsp;смеси мало, ремонт не&nbsp;встаёт на&nbsp;недели.</p>
+        </li>
+        <li class="perk">
+          <svg class="perk__icon" aria-hidden="true"><use href="img/icons.svg#grid"/></svg>
+          <h3 class="perk__title">Без трещин</h3>
+          <p class="perk__text">Фиброволокно армирует раствор, стяжка не&nbsp;даёт усадку.</p>
+        </li>
+        <li class="perk">
+          <svg class="perk__icon" aria-hidden="true"><use href="img/icons.svg#drop"/></svg>
+          <h3 class="perk__title">Не&nbsp;зальём соседей</h3>
+          <p class="perk__text">Воды в&nbsp;разы меньше, чем в&nbsp;обычной стяжке, основание закрываем плёнкой.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-      <article class="work" id="shtukaturka">
-        <div class="work__body">
-          <h2 class="work__title">Машинная штукатурка стен</h2>
-          <p class="work__text">Смесь подаёт штукатурная станция, стены выводим по&nbsp;маякам. Гипсовая смесь для&nbsp;комнат, цементная для&nbsp;подвалов, гаражей и&nbsp;санузлов. Ровность проверяем правилом 2&nbsp;м и&nbsp;лазером.</p>
-          <a class="button button--primary work__button" href="#raschet" data-pick="shtukaturka">Рассчитать штукатурку</a>
+  <section class="section" id="styazhka">
+    <div class="container detail">
+      <div class="detail__media">
+        <picture>
+          <source media="(max-width: 768px)" srcset="img/styazhka-m.webp">
+          <img class="detail__image" src="img/styazhka.webp" width="1536" height="1024" alt="Мастер выравнивает полусухую стяжку правилом по маякам" loading="lazy">
+        </picture>
+        <div class="detail__badge">
+          <b class="detail__badge-value">до 250 м²</b>
+          <span class="detail__badge-label">за один рабочий день</span>
         </div>
-        <ul class="walls">
-          <li class="wall">
-            <img class="wall__image" src="img/wall-gazoblok.webp" width="480" height="480" alt="Стена из газоблока" loading="lazy">
-            <h3 class="wall__name">Газоблок</h3>
-            <p class="wall__text">Грунт, сетка на&nbsp;стыках</p>
-          </li>
-          <li class="wall">
-            <img class="wall__image" src="img/wall-kirpich.webp" width="480" height="480" alt="Кирпичная стена" loading="lazy">
-            <h3 class="wall__name">Кирпич</h3>
-            <p class="wall__text">Сбиваем наплывы, грунтуем</p>
-          </li>
-          <li class="wall">
-            <img class="wall__image" src="img/wall-monolit.webp" width="480" height="480" alt="Монолитная бетонная стена" loading="lazy">
-            <h3 class="wall__name">Монолит</h3>
-            <p class="wall__text">Бетоноконтакт на&nbsp;гладкий бетон</p>
-          </li>
-        </ul>
-      </article>
+      </div>
+
+      <div class="detail__body">
+        <div class="section__head">
+          <h2 class="section__title">Полусухая стяжка пола</h2>
+          <p class="section__lead">Раствор подаём пневмонагнетателем прямо на&nbsp;этаж и&nbsp;выравниваем по&nbsp;лазеру.</p>
+        </div>
+
+        <div class="tabs" data-tabs>
+          <div class="tabs__list" role="tablist" aria-label="Тип объекта">
+            <button class="tabs__button tabs__button--active" type="button" role="tab" id="tab-flat" aria-controls="panel-flat" aria-selected="true">Квартиры</button>
+            <button class="tabs__button" type="button" role="tab" id="tab-house" aria-controls="panel-house" aria-selected="false" tabindex="-1">Частные дома</button>
+            <button class="tabs__button" type="button" role="tab" id="tab-commerce" aria-controls="panel-commerce" aria-selected="false" tabindex="-1">Коммерция</button>
+          </div>
+          <p class="tabs__panel" role="tabpanel" id="panel-flat" aria-labelledby="tab-flat">Основание под плитку, кварцвинил, ламинат, линолеум и&nbsp;инженерную доску. Пол не&nbsp;скрипит и&nbsp;не&nbsp;прогибается. Всё закрываем плёнкой, соседей снизу не&nbsp;зальём.</p>
+          <p class="tabs__panel" role="tabpanel" id="panel-house" aria-labelledby="tab-house" hidden>Коттеджи, дачи и&nbsp;бани. На&nbsp;больших площадях раствор подаёт пневмонагнетатель, это быстрее и&nbsp;смесь получается одинаковой по&nbsp;всему дому. Делаем стяжку по&nbsp;тёплому полу и&nbsp;утеплителю.</p>
+          <p class="tabs__panel" role="tabpanel" id="panel-commerce" aria-labelledby="tab-commerce" hidden>Склады, офисы, магазины и&nbsp;производства. Учитываем нагрузку на&nbsp;перекрытия, планируем график под ремонт и&nbsp;сдаём основание технадзору. Смета из&nbsp;двух частей: работа и&nbsp;материал.</p>
+        </div>
+
+        <div>
+          <h3 class="detail__subtitle">Что входит</h3>
+          <ul class="chips">
+            <li class="chips__item">Цемент М500</li>
+            <li class="chips__item">Крупный песок</li>
+            <li class="chips__item">Фиброволокно</li>
+            <li class="chips__item">Пластификатор</li>
+            <li class="chips__item">Демпферная лента</li>
+            <li class="chips__item">Плёнка</li>
+            <li class="chips__item">Машинная затирка</li>
+            <li class="chips__item">Нарезка швов</li>
+          </ul>
+        </div>
+
+        <div class="detail__footer">
+          <p class="detail__price">Стяжка с&nbsp;материалом<b class="detail__price-value">от 490 ₽/м²</b></p>
+          <a class="button button--primary" href="#raschet" data-pick="styazhka">Рассчитать стяжку</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--pale" id="shtukaturka">
+    <div class="container detail detail--reverse">
+      <div class="detail__media">
+        <picture>
+          <source media="(max-width: 768px)" srcset="img/shtukaturka-m.webp">
+          <img class="detail__image" src="img/shtukaturka.webp" width="1536" height="1024" alt="Штукатур наносит гипсовую смесь машиной на стену из газоблока" loading="lazy">
+        </picture>
+        <div class="detail__badge">
+          <b class="detail__badge-value">до 200 м²</b>
+          <span class="detail__badge-label">стен за&nbsp;смену</span>
+        </div>
+      </div>
+
+      <div class="detail__body">
+        <div class="section__head">
+          <h2 class="section__title">Механизированная штукатурка стен</h2>
+          <p class="section__lead">Смесь подаёт штукатурная станция, стены выводим по&nbsp;маякам. При приёмке проверяем ровность двухметровым правилом и&nbsp;лазером.</p>
+        </div>
+
+        <div class="mixes">
+          <div class="mix">
+            <h3 class="mix__title">Гипсовая</h3>
+            <p class="mix__price">от 450 ₽/м²</p>
+            <p class="mix__text">Жилые комнаты и&nbsp;коридоры.</p>
+          </div>
+          <div class="mix">
+            <h3 class="mix__title">Цементно-песчаная</h3>
+            <p class="mix__price">от 500 ₽/м²</p>
+            <p class="mix__text">Подвалы, гаражи, лестницы, санузлы. Смесь Крайзель.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="detail__subtitle">Готовим основание под&nbsp;стену</h3>
+          <ul class="walls">
+            <li class="wall">
+              <img class="wall__image" src="img/wall-gazoblok.webp" width="480" height="480" alt="Стена из газоблока" loading="lazy">
+              <span class="wall__text"><b class="wall__name">Газоблок</b><span class="wall__prep">грунт, сетка на&nbsp;стыках</span></span>
+            </li>
+            <li class="wall">
+              <img class="wall__image" src="img/wall-kirpich.webp" width="480" height="480" alt="Кирпичная стена" loading="lazy">
+              <span class="wall__text"><b class="wall__name">Кирпич</b><span class="wall__prep">сбиваем наплывы, грунтуем</span></span>
+            </li>
+            <li class="wall">
+              <img class="wall__image" src="img/wall-monolit.webp" width="480" height="480" alt="Монолитная бетонная стена" loading="lazy">
+              <span class="wall__text"><b class="wall__name">Монолит</b><span class="wall__prep">бетоноконтакт</span></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="detail__footer">
+          <p class="detail__price">Штукатурка стен<b class="detail__price-value">от 450 ₽/м²</b></p>
+          <a class="button button--primary" href="#raschet" data-pick="shtukaturka">Рассчитать штукатурку</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -243,7 +333,7 @@
 
         <form class="lead-form lead-form--dark calc__form" action="html/spasibo-srednyaya.html" method="post" novalidate
               data-lead-form data-goal="form_medium" data-thanks="html/spasibo-srednyaya.html">
-          <h3 class="lead-form__title">Рассчитаем стоимость</h3>
+          <h3 class="lead-form__title">Или оставьте заявку на&nbsp;расчёт</h3>
           <div class="lead-form__trap" aria-hidden="true">
             <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
           </div>
@@ -290,27 +380,30 @@
 
   <section class="section section--pale" id="etapy">
     <div class="container">
-      <h2 class="section__title">Как работаем</h2>
+      <div class="section__head">
+        <h2 class="section__title">От заявки до&nbsp;готового основания</h2>
+        <p class="section__lead">Передайте параметры объекта и&nbsp;адрес, дальше всё сделаем сами.</p>
+      </div>
       <ol class="steps">
         <li class="step">
           <span class="step__number">1</span>
           <h3 class="step__title">Заявка</h3>
-          <p class="step__text">Оставьте заявку или позвоните. Можно прислать фото и&nbsp;план помещения.</p>
+          <p class="step__text">Тип объекта, площадь, толщина и&nbsp;адрес. Можно прислать фото или план помещения.</p>
         </li>
         <li class="step">
           <span class="step__number">2</span>
           <h3 class="step__title">Замер и&nbsp;договор</h3>
-          <p class="step__text">Замерщик смотрит объект и&nbsp;подъезд. Цену и&nbsp;дату пишем в&nbsp;договор.</p>
+          <p class="step__text">Замерщик согласует толщину, замерит помещение и&nbsp;подъезд. Подписываем договор и&nbsp;назначаем дату.</p>
         </li>
         <li class="step">
           <span class="step__number">3</span>
-          <h3 class="step__title">Работа</h3>
-          <p class="step__text">Привозим материал и&nbsp;машины, выставляем маяки по&nbsp;лазеру.</p>
+          <h3 class="step__title">Подготовка</h3>
+          <p class="step__text">Завозим материал и&nbsp;машины, укрываем основание плёнкой, кладём демпферную ленту, выставляем лазер.</p>
         </li>
         <li class="step">
           <span class="step__number">4</span>
-          <h3 class="step__title">Сдача по&nbsp;акту</h3>
-          <p class="step__text">Проверяем ровность при вас, убираем мусор, подписываем акт.</p>
+          <h3 class="step__title">Работа и&nbsp;приёмка</h3>
+          <p class="step__text">Выравниваем, затираем, нарезаем швы и&nbsp;сдаём ровное основание по&nbsp;акту.</p>
         </li>
       </ol>
     </div>
@@ -318,7 +411,9 @@
 
   <section class="section" id="obekty">
     <div class="container">
-      <h2 class="section__title">Примеры объектов</h2>
+      <div class="section__head">
+        <h2 class="section__title">Примеры объектов</h2>
+      </div>
       <ul class="objects">
         <li class="object">
           <picture><source media="(max-width: 768px)" srcset="img/obj-kvartira-m.webp"><img class="object__image" src="img/obj-kvartira.webp" width="1536" height="1024" alt="Готовая полусухая стяжка в квартире после затирки" loading="lazy"></picture>
@@ -352,118 +447,160 @@
     </div>
   </section>
 
-  <section class="section section--pale">
-    <div class="container closing">
-      <div class="warranty" id="garantiya">
-        <div class="warranty__head">
-          <div class="warranty__shield">
-            <svg class="warranty__shield-icon" aria-hidden="true"><use href="img/icons.svg#shield-fill"/></svg>
-            <b class="warranty__years">5</b>
-            <span class="warranty__years-label">лет</span>
-          </div>
-          <h2 class="warranty__title">Договор и&nbsp;гарантия</h2>
+  <section class="section section--pale" id="garantiya">
+    <div class="container terms">
+      <div class="terms__badge">
+        <div class="terms__shield">
+          <svg class="terms__shield-icon" aria-hidden="true"><use href="img/icons.svg#shield-fill"/></svg>
+          <b class="terms__years">5</b>
+          <span class="terms__years-label">лет</span>
         </div>
-        <ul class="warranty__list">
-          <li class="warranty__item">
-            <h3 class="warranty__item-title">Цена в&nbsp;договоре</h3>
-            <p class="warranty__item-text">Сумму фиксируем до&nbsp;начала работ, потом она не&nbsp;меняется.</p>
-          </li>
-          <li class="warranty__item">
-            <h3 class="warranty__item-title">Дата в&nbsp;договоре</h3>
-            <p class="warranty__item-text">Бригада выходит в&nbsp;согласованный день и&nbsp;время.</p>
-          </li>
-          <li class="warranty__item">
-            <h3 class="warranty__item-title">Уборка</h3>
-            <p class="warranty__item-text">Укрываем стяжку плёнкой и&nbsp;вывозим мусор.</p>
-          </li>
-          <li class="warranty__item">
-            <h3 class="warranty__item-title">Акт и&nbsp;гарантия</h3>
-            <p class="warranty__item-text">Подписываем акт приёмки, гарантия на&nbsp;работы 5&nbsp;лет.</p>
-          </li>
-        </ul>
+        <div>
+          <h2 class="terms__badge-title">Договор и&nbsp;гарантия</h2>
+          <p class="terms__badge-text">Гарантию на&nbsp;выполненные работы пишем в&nbsp;договор.</p>
+        </div>
+      </div>
+      <ul class="terms__list">
+        <li class="term">
+          <svg class="term__icon" aria-hidden="true"><use href="img/icons.svg#doc"/></svg>
+          <h3 class="term__title">Фиксированная сумма</h3>
+          <p class="term__text">Сумму фиксируем в&nbsp;договоре до&nbsp;начала работ.</p>
+        </li>
+        <li class="term">
+          <svg class="term__icon" aria-hidden="true"><use href="img/icons.svg#calendar"/></svg>
+          <h3 class="term__title">Точно в&nbsp;срок</h3>
+          <p class="term__text">Бригада выходит в&nbsp;оговоренную дату и&nbsp;время.</p>
+        </li>
+        <li class="term">
+          <svg class="term__icon" aria-hidden="true"><use href="img/icons.svg#broom"/></svg>
+          <h3 class="term__title">Плёнка и&nbsp;уборка</h3>
+          <p class="term__text">После работы укрываем стяжку плёнкой и&nbsp;убираем мусор.</p>
+        </li>
+        <li class="term">
+          <svg class="term__icon" aria-hidden="true"><use href="img/icons.svg#shield"/></svg>
+          <h3 class="term__title">Акт приёмки</h3>
+          <p class="term__text">Сдаём работу по&nbsp;акту, ровность проверяем при вас.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="voprosy">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Частые вопросы</h2>
+      </div>
+      <div class="faq" data-faq>
+        <details class="faq__item">
+          <summary class="faq__question">Когда можно ходить по&nbsp;стяжке?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">Через 12&nbsp;часов после заливки.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Не&nbsp;протечёт ли вода к&nbsp;соседям снизу?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">Нет. Воды в&nbsp;полусухом растворе в&nbsp;разы меньше, чем в&nbsp;обычном, а&nbsp;основание мы закрываем плёнкой.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Почему стяжка не&nbsp;трескается?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">В&nbsp;раствор добавляем фиброволокно и&nbsp;пластификатор, такая стяжка не&nbsp;даёт усадку. По&nbsp;периметру кладём демпферную ленту, после затирки нарезаем швы.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Как узнать точную цену?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">Предварительную цену назовём по&nbsp;площади и&nbsp;толщине: оставьте заявку или посчитайте в&nbsp;боте в&nbsp;MAX. Точную сумму фиксируем в&nbsp;договоре после замера.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Какую штукатурку выбрать?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">Гипсовую для жилых комнат и&nbsp;коридоров, цементно-песчаную для подвалов, гаражей, лестниц и&nbsp;санузлов.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Работаете с&nbsp;коммерческими объектами?<span class="faq__sign" aria-hidden="true"></span></summary>
+          <p class="faq__answer">Да: склады, офисы, магазины, производства. Учитываем нагрузку на&nbsp;перекрытия и&nbsp;сдаём основание технадзору.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--pale" id="kontakty">
+    <div class="container contacts">
+      <div class="contacts__info">
+        <h2 class="section__title">Контакты</h2>
+        <a class="contacts__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
+        <a class="contacts__mail" href="mailto:sz123@mail.ru">sz123@mail.ru</a>
+        <p class="contacts__area">Москва и&nbsp;Московская область</p>
+        <div class="contacts__buttons">
+          <a class="button button--outline" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" data-goal="click_tg"><img class="button__icon" src="img/messengers/telegram.svg" width="20" height="20" alt="">Telegram</a>
+          <a class="button button--outline" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><img class="button__icon" src="img/messengers/whatsapp.svg" width="20" height="20" alt="">WhatsApp</a>
+          <a class="button button--outline" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><img class="button__icon" src="img/messengers/max.svg" width="20" height="20" alt="">MAX</a>
+        </div>
       </div>
 
-      <div class="contacts" id="kontakty">
-        <h2 class="contacts__title">Остались вопросы?</h2>
-        <div class="contacts__lines">
-          <a class="contacts__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
-          <a class="contacts__mail" href="mailto:sz123@mail.ru">sz123@mail.ru</a>
-          <div class="messengers">
-            <a class="messengers__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><img class="messengers__icon" src="img/messengers/telegram.svg" width="36" height="36" alt=""></a>
-            <a class="messengers__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><img class="messengers__icon" src="img/messengers/whatsapp.svg" width="36" height="36" alt=""></a>
-            <a class="messengers__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><img class="messengers__icon" src="img/messengers/max.svg" width="36" height="36" alt=""></a>
+      <form class="lead-form lead-form--card contacts__form" action="html/spasibo-dlinnaya.html" method="post" novalidate
+            data-lead-form data-goal="form_long" data-thanks="html/spasibo-dlinnaya.html">
+        <h3 class="lead-form__title">Заявка на&nbsp;смету</h3>
+        <div class="lead-form__trap" aria-hidden="true">
+          <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+        </div>
+        <input type="hidden" name="form" value="long">
+
+        <fieldset class="choice" data-field="work">
+          <legend class="choice__legend">Что нужно</legend>
+          <div class="choice__options">
+            <label class="choice__item"><input class="choice__input" type="radio" name="work" value="styazhka" required data-work-switch><span class="choice__dot"></span>Стяжка</label>
+            <label class="choice__item"><input class="choice__input" type="radio" name="work" value="shtukaturka" data-work-switch><span class="choice__dot"></span>Штукатурка</label>
+          </div>
+          <p class="field__error" data-error></p>
+        </fieldset>
+
+        <div class="lead-form__row">
+          <div class="field" data-field="name">
+            <label class="visually-hidden" for="long-name">Имя</label>
+            <div class="field__control">
+              <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#user"/></svg>
+              <input class="field__input" id="long-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Имя" required>
+            </div>
+            <p class="field__error" data-error></p>
+          </div>
+          <div class="field" data-field="phone">
+            <label class="visually-hidden" for="long-phone">Телефон</label>
+            <div class="field__control">
+              <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg>
+              <input class="field__input" id="long-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Телефон" required data-phone>
+            </div>
+            <p class="field__error" data-error></p>
           </div>
         </div>
+        <div class="field" data-field="area">
+          <label class="visually-hidden" for="long-area">Площадь, м²</label>
+          <input class="field__input" id="long-area" type="text" name="area" inputmode="decimal" maxlength="7" placeholder="Площадь, м²" required data-number>
+          <p class="field__error" data-error></p>
+        </div>
 
-        <form class="lead-form lead-form--card" action="html/spasibo-dlinnaya.html" method="post" novalidate
-              data-lead-form data-goal="form_long" data-thanks="html/spasibo-dlinnaya.html">
-          <h3 class="lead-form__title">Заявка на&nbsp;смету</h3>
-          <div class="lead-form__trap" aria-hidden="true">
-            <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+        <div class="lead-form__extra" data-work-field="styazhka" hidden>
+          <div class="field" data-field="thickness">
+            <label class="visually-hidden" for="long-thickness">Толщина стяжки, мм</label>
+            <input class="field__input" id="long-thickness" type="text" name="thickness" inputmode="numeric" maxlength="3" placeholder="Толщина стяжки, мм" data-number>
+            <p class="field__error" data-error></p>
           </div>
-          <input type="hidden" name="form" value="long">
-
-          <fieldset class="choice" data-field="work">
-            <legend class="visually-hidden">Что нужно</legend>
+        </div>
+        <div class="lead-form__extra" data-work-field="shtukaturka" hidden>
+          <fieldset class="choice" data-field="walls">
+            <legend class="choice__legend">Материал стен</legend>
             <div class="choice__options">
-              <label class="choice__item"><input class="choice__input" type="radio" name="work" value="styazhka" required data-work-switch><span class="choice__dot"></span>Стяжка</label>
-              <label class="choice__item"><input class="choice__input" type="radio" name="work" value="shtukaturka" data-work-switch><span class="choice__dot"></span>Штукатурка</label>
+              <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="monolit"><span class="choice__dot"></span>Монолит</label>
+              <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="kirpich"><span class="choice__dot"></span>Кирпич</label>
+              <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="gazoblok"><span class="choice__dot"></span>Газоблок</label>
             </div>
             <p class="field__error" data-error></p>
           </fieldset>
+        </div>
 
-          <div class="lead-form__row">
-            <div class="field" data-field="name">
-              <label class="visually-hidden" for="long-name">Имя</label>
-              <div class="field__control">
-                <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#user"/></svg>
-                <input class="field__input" id="long-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Имя" required>
-              </div>
-              <p class="field__error" data-error></p>
-            </div>
-            <div class="field" data-field="phone">
-              <label class="visually-hidden" for="long-phone">Телефон</label>
-              <div class="field__control">
-                <svg class="field__icon" aria-hidden="true"><use href="img/icons.svg#phone"/></svg>
-                <input class="field__input" id="long-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="Телефон" required data-phone>
-              </div>
-              <p class="field__error" data-error></p>
-            </div>
-          </div>
-          <div class="field" data-field="area">
-            <label class="visually-hidden" for="long-area">Площадь, м²</label>
-            <input class="field__input" id="long-area" type="text" name="area" inputmode="decimal" maxlength="7" placeholder="Площадь, м²" required data-number>
-            <p class="field__error" data-error></p>
-          </div>
-
-          <div class="lead-form__extra" data-work-field="styazhka" hidden>
-            <div class="field" data-field="thickness">
-              <label class="visually-hidden" for="long-thickness">Толщина стяжки, мм</label>
-              <input class="field__input" id="long-thickness" type="text" name="thickness" inputmode="numeric" maxlength="3" placeholder="Толщина стяжки, мм" data-number>
-              <p class="field__error" data-error></p>
-            </div>
-          </div>
-          <div class="lead-form__extra" data-work-field="shtukaturka" hidden>
-            <fieldset class="choice" data-field="walls">
-              <legend class="choice__legend">Материал стен</legend>
-              <div class="choice__options">
-                <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="monolit"><span class="choice__dot"></span>Монолит</label>
-                <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="kirpich"><span class="choice__dot"></span>Кирпич</label>
-                <label class="choice__item"><input class="choice__input" type="radio" name="walls" value="gazoblok"><span class="choice__dot"></span>Газоблок</label>
-              </div>
-              <p class="field__error" data-error></p>
-            </fieldset>
-          </div>
-
-          <button class="button button--primary lead-form__submit" type="submit">Отправить заявку</button>
-          <label class="check" data-field="consent">
-            <input class="check__input" type="checkbox" name="consent" value="1" required>
-            <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg></span>
-            <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
-          </label>
-          <p class="lead-form__status" data-status role="alert"></p>
-        </form>
-      </div>
+        <button class="button button--primary lead-form__submit" type="submit">Отправить заявку</button>
+        <label class="check" data-field="consent">
+          <input class="check__input" type="checkbox" name="consent" value="1" required>
+          <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="img/icons.svg#check"/></svg></span>
+          <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
+        </label>
+        <p class="lead-form__status" data-status role="alert"></p>
+      </form>
     </div>
   </section>
 
@@ -481,6 +618,7 @@
         <a class="footer__link" href="#styazhka">Стяжка</a>
         <a class="footer__link" href="#shtukaturka">Штукатурка</a>
         <a class="footer__link" href="#obekty">Объекты</a>
+        <a class="footer__link" href="#voprosy">Вопросы</a>
         <a class="footer__link" href="#kontakty">Контакты</a>
       </nav>
       <a class="footer__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
@@ -497,7 +635,18 @@
   </div>
 </footer>
 
-<script src="js/form.js?v=3" defer></script>
-<script src="js/main.js?v=3" defer></script>
+<div class="float-contacts" data-float-contacts>
+  <div class="float-contacts__list" id="float-list">
+    <a class="float-contacts__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Написать в Telegram" data-goal="click_tg"><img class="float-contacts__icon" src="img/messengers/telegram.svg" width="52" height="52" alt=""></a>
+    <a class="float-contacts__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" data-goal="click_wa"><img class="float-contacts__icon" src="img/messengers/whatsapp.svg" width="52" height="52" alt=""></a>
+    <a class="float-contacts__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="Написать в MAX" data-goal="click_max"><img class="float-contacts__icon" src="img/messengers/max.svg" width="52" height="52" alt=""></a>
+  </div>
+  <button class="float-contacts__toggle" type="button" aria-label="Написать в мессенджер" aria-expanded="false" aria-controls="float-list" data-float-toggle>
+    <svg class="float-contacts__toggle-icon" aria-hidden="true"><use href="img/icons.svg#chat"/></svg>
+  </button>
+</div>
+
+<script src="js/form.js?v=4" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

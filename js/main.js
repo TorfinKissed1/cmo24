@@ -50,6 +50,73 @@
     });
   });
 
+  // Вкладки по типу объекта: клик и стрелки влево-вправо, как у системных вкладок.
+  document.querySelectorAll('[data-tabs]').forEach((tabs) => {
+    const buttons = [...tabs.querySelectorAll('[role="tab"]')];
+    function select(button) {
+      buttons.forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('tabs__button--active', active);
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
+      });
+    }
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', () => select(button));
+      button.addEventListener('keydown', (event) => {
+        const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+        if (!step) return;
+        const next = buttons[(index + step + buttons.length) % buttons.length];
+        select(next);
+        next.focus();
+      });
+    });
+  });
+
+  // Вопросы закрываются плавно: снимаем open только после анимации ответа.
+  document.querySelectorAll('[data-faq] details').forEach((item) => {
+    item.querySelector('summary').addEventListener('click', (event) => {
+      if (!item.open || reduceMotion.matches) return;
+      event.preventDefault();
+      item.classList.add('faq__item--closing');
+      item.querySelector('.faq__answer').addEventListener('animationend', () => {
+        item.classList.remove('faq__item--closing');
+        item.open = false;
+      }, { once: true });
+    });
+  });
+
+  // Значки мессенджеров в углу видны, когда первый экран ушёл из вида и пока не видны контакты или подвал:
+  // там те же ссылки, а значки поверх них только мешают.
+  const floating = document.querySelector('[data-float-contacts]');
+  if (floating) {
+    const floatToggle = floating.querySelector('[data-float-toggle]');
+    const setOpen = (open) => {
+      floating.classList.toggle('float-contacts--open', open);
+      floatToggle.setAttribute('aria-expanded', String(open));
+    };
+    floatToggle.addEventListener('click', () => setOpen(!floating.classList.contains('float-contacts--open')));
+    document.addEventListener('click', (event) => {
+      if (!floating.contains(event.target)) setOpen(false);
+    });
+
+    const watched = ['[data-hero]', '#kontakty', '.footer'].map((s) => document.querySelector(s)).filter(Boolean);
+    if ('IntersectionObserver' in window) {
+      const inView = new Set();
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => (entry.isIntersecting ? inView.add(entry.target) : inView.delete(entry.target)));
+        const visible = inView.size === 0;
+        floating.classList.toggle('float-contacts--visible', visible);
+        if (!visible) setOpen(false);
+      // Шапка закреплена и закрывает верх окна, плюс отступ якоря: край первого экрана под ними не считается видимым.
+      }, { rootMargin: `-${document.querySelector('.header').offsetHeight + 24}px 0px 0px 0px` });
+      watched.forEach((el) => observer.observe(el));
+    } else {
+      floating.classList.add('float-contacts--visible');
+    }
+  }
+
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[data-goal]');
     if (link && typeof window.ym === 'function' && window.YM_COUNTER) {
