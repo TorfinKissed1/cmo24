@@ -1,0 +1,227 @@
+/* ============ thanks (страница после заявки) ============ */
+.thanks {
+  padding-block: 96px 88px;
+  color: var(--color-on-dark);
+  background: var(--color-navy);
+}
+
+.thanks__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.thanks__icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  color: var(--color-navy);
+  background: var(--color-orange);
+  border-radius: var(--radius);
+  animation: rise 0.8s var(--ease-out) both;
+}
+
+.thanks__icon-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.thanks__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+  animation: rise 0.8s 0.1s var(--ease-out) both;
+}
+
+.thanks__text {
+  max-width: 560px;
+  font-size: var(--fs-lead);
+  color: var(--color-on-dark-muted);
+  animation: rise 0.8s 0.2s var(--ease-out) both;
+}
+
+/* ============ next (что дальше и действие) ============ */
+.next {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+.next__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.next__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.next__title {
+  margin-bottom: 24px;
+}
+
+.next__step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+
+.next__number {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--color-orange-text);
+}
+
+.next__step-title {
+  margin-bottom: 4px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.next__step-text {
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+.next__card {
+  display: flex;
+  flex: 0 0 440px;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--card-pad);
+  color: var(--color-on-dark);
+  background: var(--color-navy);
+  border-radius: var(--radius);
+}
+
+.next__card-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+}
+
+.next__card-text {
+  color: var(--color-on-dark-muted);
+}
+
+.next__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.next__back {
+  margin-top: 48px;
+}
+
+/* ============ doc (политика) ============ */
+.doc {
+  padding-block: 72px 96px;
+}
+
+.doc__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 860px;
+  padding: 48px 56px;
+  margin: 0 auto;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+
+.doc__back {
+  align-self: flex-start;
+  font-weight: 600;
+  color: var(--color-orange-text);
+  transition: color var(--transition);
+}
+
+.doc__title {
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.4vw, 60px);
+  font-weight: 800;
+  line-height: var(--lh-tight);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
+}
+
+.doc__subtitle {
+  margin-top: 16px;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+.doc__text {
+  color: var(--color-text-muted);
+}
+
+.doc__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: var(--color-text-muted);
+}
+
+@media (hover: hover) {
+  .doc__back:hover {
+    color: var(--color-navy);
+  }
+}
+
+@media (max-width: 1024px) {
+  .next {
+    flex-direction: column;
+    gap: 40px;
+    align-items: stretch;
+  }
+
+  .next__card {
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .thanks {
+    padding-block: 56px 48px;
+  }
+
+  .thanks__inner {
+    align-items: center;
+    text-align: center;
+  }
+
+  .doc {
+    padding-block: 32px 64px;
+  }
+
+  .doc__inner {
+    padding: 28px var(--card-pad);
+  }
+
+  .next__step {
+    padding: 18px 20px;
+  }
+
+  .next__back .button {
+    width: 100%;
+  }
+}
