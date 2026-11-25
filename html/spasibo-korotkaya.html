@@ -5,57 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex">
   <title>Заявка отправлена | Центр механизированной отделки</title>
+  <meta name="theme-color" content="#071f47">
   <link rel="icon" href="../img/favicon-48.png" type="image/png">
   <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-  <link rel="stylesheet" href="../css/base.css?v=11">
-  <link rel="stylesheet" href="../css/blocks.css?v=11">
+  <link rel="stylesheet" href="../css/base.css?v=8">
+  <link rel="stylesheet" href="../css/pages.css?v=8">
 </head>
-<body>
+<body class="page page--with-bar">
 
-<header class="header">
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="max-gradient" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#00EAFF"/><stop offset="0.4" stop-color="#1591FF"/><stop offset="0.7" stop-color="#3C22FE"/><stop offset="1" stop-color="#8419FF"/></linearGradient>
+  </defs>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="#26A5E4" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-max" viewBox="0 0 100 100"><path fill="url(#max-gradient)" fill-rule="evenodd" d="M50.7571 0.261719C78.2929 0.261719 99.8857 22.5974 99.8857 50.1474C99.8857 77.6974 77.6071 99.4903 51.0214 99.4903C41.5857 99.4903 37.0143 98.1617 29.65 92.9474C29.1429 92.5903 28.45 92.6831 28.0214 93.1403C22.3571 99.1831 7.85 103.426 7.18571 95.176C7.18571 80.7903 0 71.4474 0 49.876C0 21.5546 23.2214 0.261719 50.7571 0.261719ZM51.5286 24.8117C38.4643 24.126 28.2643 33.1974 26.0143 47.3831C24.15 59.1332 27.45 73.4546 30.2786 74.176C31.4786 74.4832 34.3571 72.276 36.4571 70.2974C36.85 69.926 37.45 69.8617 37.9071 70.1474C41.1786 72.1474 44.8786 73.6474 48.9571 73.8617C62.3714 74.5617 74.2571 64.0617 74.9643 50.6474C75.6643 37.2331 64.9429 25.5046 51.5286 24.8046V24.8117Z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 7.3 7.3l1.4-2.2L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></symbol>
+  <symbol id="i-floor" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 4v4M12 6l4 2 4-2"/></symbol>
+  <symbol id="i-wall" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5h16v22H4z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M4 11h16M4 17h16M4 23h16M12 5v6M8 11v6M16 11v6M12 17v6"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M23 12l6 3-6 3z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m4 7 8 6 8-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 28 28"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M6 3h11l5 5v17H6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M10 13h8M10 17h8M10 21h5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 28 28"><rect x="3" y="5" width="22" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M3 11h22M9 3v4M19 3v4M9 16h2M13 16h2M17 16h2M9 20h2M13 20h2"/></symbol>
+  <symbol id="i-broom" viewBox="0 0 28 28"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 3l-6 10M9 13h10l2 12H7zM11 19v6M15 19v6"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 40 40"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M20 4l13 5v9c0 8.5-5.6 15-13 18-7.4-3-13-9.5-13-18V9z"/><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M14 20l4.5 4.5L27 16"/></symbol>
+</svg>
+
+<header class="header header--page" data-header>
   <div class="container header__inner">
     <a class="logo header__logo" href="../" aria-label="Центр механизированной отделки, на главную">
       <img class="logo__mark" src="../img/logo-mark.webp" width="227" height="256" alt="">
       <span class="logo__text">Центр механизированной отделки</span>
     </a>
-    <a class="header__phone header__phone--page" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
+    <a class="header__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
+    <div class="messengers header__messengers">
+      <a class="messengers__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><svg class="messengers__icon" aria-hidden="true"><use href="#i-tg"></use></svg></a>
+      <a class="messengers__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><svg class="messengers__icon" aria-hidden="true"><use href="#i-wa"></use></svg></a>
+      <a class="messengers__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><svg class="messengers__icon" aria-hidden="true"><use href="#i-max"></use></svg></a>
+    </div>
+    <a class="header__call" href="tel:+79779948917" aria-label="Позвонить" data-goal="click_phone"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg></a>
   </div>
 </header>
 
 <main>
   <section class="thanks">
     <div class="container thanks__inner">
-      <svg class="thanks__icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      <span class="thanks__icon"><svg class="thanks__icon-svg" aria-hidden="true"><use href="#i-check"></use></svg></span>
       <h1 class="thanks__title">Заявка отправлена</h1>
-      <p class="thanks__text">Перезвоним, уточним объект и назовём цену.</p>
+      <p class="thanks__text">Перезвоним, уточним объект и&nbsp;назовём цену.</p>
     </div>
   </section>
-
-  <section class="section">
+  <section class="section section--concrete">
     <div class="container next">
-      <div class="next__steps">
-        <h2 class="section__title">Что дальше</h2>
-        <div class="next__step">
+      <div class="next__main">
+        <h2 class="section__title next__title">Что дальше</h2>
+        <ol class="next__steps">
+        <li class="next__step">
           <span class="next__number">1</span>
-          <div><h3 class="next__title">Звонок</h3><p class="next__text">Уточним, что нужно: стяжка или штукатурка, площадь и адрес.</p></div>
-        </div>
-        <div class="next__step">
+          <div><h3 class="next__step-title">Звонок</h3><p class="next__step-text">Уточним, что нужно: стяжка или штукатурка, площадь и&nbsp;адрес.</p></div>
+        </li>
+        <li class="next__step">
           <span class="next__number">2</span>
-          <div><h3 class="next__title">Цена</h3><p class="next__text">Назовём предварительную стоимость по вашим вводным.</p></div>
-        </div>
-        <div class="next__step">
+          <div><h3 class="next__step-title">Цена</h3><p class="next__step-text">Назовём предварительную стоимость по&nbsp;вашим вводным.</p></div>
+        </li>
+        <li class="next__step">
           <span class="next__number">3</span>
-          <div><h3 class="next__title">Замер и договор</h3><p class="next__text">Договоримся о дате замера, после него фиксируем сумму в договоре.</p></div>
-        </div>
+          <div><h3 class="next__step-title">Замер и&nbsp;договор</h3><p class="next__step-text">Договоримся о&nbsp;дате замера, после него фиксируем сумму в&nbsp;договоре.</p></div>
+        </li>
+        </ol>
       </div>
       <div class="next__card">
-        <h2 class="next__card-title">Не хотите ждать звонка?</h2>
-        <p class="next__card-text">Позвоните сами или напишите в мессенджер.</p>
+        <h2 class="next__card-title">Не&nbsp;хотите ждать звонка?</h2>
+        <p class="next__card-text">Позвоните сами или напишите в&nbsp;мессенджер.</p>
         <div class="next__actions">
-          <a class="button button--primary" href="tel:+79779948917" data-goal="click_phone">Позвонить: +7 (977) 994-89-17</a>
-          <a class="button button--outline" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" data-goal="click_tg"><img class="button__icon" src="../img/messengers/telegram.svg" width="20" height="20" alt="">Telegram</a>
-          <a class="button button--outline" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><img class="button__icon" src="../img/messengers/whatsapp.svg" width="20" height="20" alt="">WhatsApp</a>
-          <a class="button button--outline" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><img class="button__icon" src="../img/messengers/max.svg" width="20" height="20" alt="">MAX</a>
+          <a class="button button--primary" href="tel:+79779948917" data-goal="click_phone"><svg class="button__icon" aria-hidden="true"><use href="#i-phone"></use></svg>+7 (977) 994-89-17</a>
+          <a class="button button--outline-light" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" data-goal="click_tg"><svg class="button__icon" aria-hidden="true"><use href="#i-tg"></use></svg>Telegram</a>
+          <a class="button button--outline-light" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><svg class="button__icon" aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a>
+          <a class="button button--outline-light" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><svg class="button__icon" aria-hidden="true"><use href="#i-max"></use></svg>MAX</a>
         </div>
       </div>
     </div>
@@ -68,26 +99,53 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
-      <a class="logo logo--light" href="../">
-        <img class="logo__mark" src="../img/logo-mark.webp" width="227" height="256" alt="">
-        <span class="logo__text">Центр механизированной отделки</span>
-      </a>
-      <div class="footer__contacts">
+      <div class="footer__brand">
+        <a class="logo" href="../">
+          <img class="logo__mark" src="../img/logo-mark-light.webp" width="227" height="256" alt="">
+          <span class="logo__text">Центр механизированной отделки</span>
+        </a>
         <a class="footer__phone" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
         <div class="messengers">
-        <a class="messengers__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><img class="messengers__icon" src="../img/messengers/telegram.svg" width="36" height="36" alt=""></a>
-        <a class="messengers__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><img class="messengers__icon" src="../img/messengers/whatsapp.svg" width="36" height="36" alt=""></a>
-        <a class="messengers__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><img class="messengers__icon" src="../img/messengers/max.svg" width="36" height="36" alt=""></a>
+          <a class="messengers__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><svg class="messengers__icon" aria-hidden="true"><use href="#i-tg"></use></svg></a>
+          <a class="messengers__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><svg class="messengers__icon" aria-hidden="true"><use href="#i-wa"></use></svg></a>
+          <a class="messengers__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><svg class="messengers__icon" aria-hidden="true"><use href="#i-max"></use></svg></a>
+        </div>
       </div>
-      </div>
+      <nav class="footer__nav" aria-label="Разделы">
+        <a class="footer__link" href="../#uslugi">Услуги</a>
+        <a class="footer__link" href="../#styazhka">Стяжка</a>
+        <a class="footer__link" href="../#shtukaturka">Штукатурка</a>
+        <a class="footer__link" href="../#raschet">Расчёт</a>
+        <a class="footer__link" href="../#etapy">Этапы</a>
+        <a class="footer__link" href="../#obekty">Объекты</a>
+        <a class="footer__link" href="../#voprosy">Вопросы</a>
+        <a class="footer__link" href="../#kontakty">Контакты</a>
+      </nav>
     </div>
+
+    <div class="stamp footer__stamp">
+      <p class="stamp__cell"><span class="label stamp__label">Исполнитель</span>ИП Жуков Сергей Александрович</p>
+      <p class="stamp__cell"><span class="label stamp__label">ИНН</span>772126461600</p>
+      <p class="stamp__cell"><span class="label stamp__label">ОГРНИП</span>324508100314549</p>
+      <p class="stamp__cell"><span class="label stamp__label">Адрес</span>125413, г.&nbsp;Москва, Солнечногорский проезд,&nbsp;4</p>
+      <p class="stamp__cell"><span class="label stamp__label">Почта</span><a href="mailto:sz123@mail.ru">sz123@mail.ru</a></p>
+      <p class="stamp__cell"><span class="label stamp__label">Документы</span><a class="stamp__link" href="politika.html">Политика обработки персональных данных</a></p>
+    </div>
+
     <div class="footer__bottom">
-      <p class="footer__legal"><span class="footer__legal-part">ИП Жуков Сергей Александрович,</span> <span class="footer__legal-part">ИНН 772126461600,</span> <span class="footer__legal-part">ОГРНИП 324508100314549</span></p>
-      <a class="footer__policy" href="politika.html">Политика обработки персональных данных</a>
+      <span>© 2026 Центр механизированной отделки</span>
+      <span>Москва и&nbsp;Московская область</span>
     </div>
   </div>
 </footer>
 
-<script src="../js/main.js?v=11" defer></script>
+<nav class="mobile-bar" aria-label="Связаться">
+  <a class="mobile-bar__call" href="tel:+79779948917" data-goal="click_phone"><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>Позвонить</a>
+  <a class="mobile-bar__link" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" aria-label="Telegram" data-goal="click_tg"><svg class="mobile-bar__icon" aria-hidden="true"><use href="#i-tg"></use></svg></a>
+  <a class="mobile-bar__link" href="https://wa.me/79779948917" target="_blank" rel="noopener" aria-label="WhatsApp" data-goal="click_wa"><svg class="mobile-bar__icon" aria-hidden="true"><use href="#i-wa"></use></svg></a>
+  <a class="mobile-bar__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="MAX" data-goal="click_max"><svg class="mobile-bar__icon" aria-hidden="true"><use href="#i-max"></use></svg></a>
+</nav>
+
+<script src="../js/main.js?v=8" defer></script>
 </body>
 </html>

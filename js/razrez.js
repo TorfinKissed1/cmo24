@@ -27,10 +27,19 @@
     gazoblok: '#e2e2db',
     kirpich: '#b4532f',
     monolit: '#a5a8a5',
+    primer: '#cfe3ea',
+    contact: '#e3a3a6',
   };
 
   const WALL_NAME = { gazoblok: 'газоблок', kirpich: 'кирпич', monolit: 'монолит' };
   const MIX_NAME = { gyps: 'гипсовая', cem: 'цементная' };
+  // Подготовка основания как в разделе штукатурки: газоблок и кирпич грунтуют, монолит под бетоноконтакт,
+  // сетку на стыках ставят только на газоблок.
+  const PRIMER = {
+    gazoblok: { name: 'Грунт', color: COLOR.primer },
+    kirpich: { name: 'Грунт', color: COLOR.primer },
+    monolit: { name: 'Бетоноконтакт', color: COLOR.contact },
+  };
 
   const rub = (n) => n.toLocaleString('ru-RU') + ' ₽';
 
@@ -61,7 +70,7 @@
         wall: el.wall.value,
         mix: el.mix.value,
         plaster: Number(el.plaster.value),
-        mesh: el.mesh.checked,
+        mesh: el.mesh.checked && el.wall.value === 'gazoblok',
         wallArea: readArea(el.wall_area),
       };
     }
@@ -86,9 +95,9 @@
       if (state.work === 'styazhka') {
         const items = [{ name: 'Стяжка', mm: state.screed + ' мм', color: COLOR.screed }];
         if (state.heat) items.push({ name: 'Трубы тёплого пола', color: COLOR.pipe });
+        items.push({ name: 'Плёнка', color: COLOR.film });
         if (state.insul) items.push({ name: 'Утеплитель', color: COLOR.insul });
         items.push(
-          { name: 'Плёнка', color: COLOR.film },
           { name: 'Демпферная лента', color: COLOR.tape },
           { name: 'Перекрытие', color: COLOR.slab },
         );
@@ -98,8 +107,11 @@
         { name: 'Штукатурка ' + MIX_NAME[state.mix], mm: state.plaster + ' мм', color: COLOR[state.mix] },
         { name: 'Маяки', color: COLOR.rail },
       ];
-      if (state.mesh) items.push({ name: 'Сетка', color: COLOR.mesh });
-      items.push({ name: 'Стена: ' + WALL_NAME[state.wall], color: COLOR[state.wall] });
+      if (state.mesh) items.push({ name: 'Сетка на стыках', color: COLOR.mesh });
+      items.push(
+        { name: PRIMER[state.wall].name, color: PRIMER[state.wall].color },
+        { name: 'Стена: ' + WALL_NAME[state.wall], color: COLOR[state.wall] },
+      );
       return items;
     }
 
@@ -135,6 +147,7 @@
       root.querySelectorAll('[data-razrez-group]').forEach((group) => {
         group.hidden = group.dataset.razrezGroup !== state.work;
       });
+      root.querySelector('[data-razrez-mesh]').hidden = state.wall !== 'gazoblok';
       root.querySelector('[data-razrez-out="screed"]').textContent = state.screed + ' мм';
       root.querySelector('[data-razrez-out="plaster"]').textContent = state.plaster + ' мм';
       renderPrice(state);
@@ -364,18 +377,21 @@
       left.position.set(-W / 2 + WALL_T / 2, WALL_H / 2, WALL_T / 2);
       group.add(slab, back, left);
 
-      const film = plain(innerW, 0.004, innerD, COLOR.film, { opacity: 0.6 });
-      film.position.set(cx, 0.002, cz);
-      group.add(film);
-      let y = 0.004;
+      let y = 0;
 
       if (state.insul) {
         const insH = 0.04 * V;
         const insulation = box(innerW, insH, innerD, textures.epsSide, [0.2, 0.2], textures.eps);
-        insulation.position.set(cx, y + insH / 2, cz);
+        insulation.position.set(cx, insH / 2, cz);
         group.add(insulation);
         y += insH;
       }
+
+      // Плёнкой укрывают основание прямо под раствором: перекрытие или утеплитель.
+      const film = plain(innerW, 0.004, innerD, COLOR.film, { opacity: 0.6 });
+      film.position.set(cx, y + 0.002, cz);
+      group.add(film);
+      y += 0.004;
 
       if (state.heat) {
         const r = 0.008 * V, gap = 0.16, margin = 0.12;
@@ -426,9 +442,15 @@
       group.add(floor, back, left);
 
       // Штукатурка от угла до среза, правее голая стена: срез смотрит на камеру, толщина слоя видна.
-      const face = -D / 2 + WT;
-      const pt = (state.plaster / 1000) * V;
       const start = -W / 2 + WT, cut = 0.2;
+      // Грунт или бетоноконтакт покрывает всю стену, штукатурка ложится поверх.
+      const PRIMER_T = 0.004;
+      const primer = plain(W / 2 - start, H, PRIMER_T, PRIMER[state.wall].color, { rough: 0.8 });
+      primer.position.set((start + W / 2) / 2, H / 2, -D / 2 + WT + PRIMER_T / 2);
+      group.add(primer);
+
+      const face = -D / 2 + WT + PRIMER_T;
+      const pt = (state.plaster / 1000) * V;
       const plaster = box(cut - start, H, pt, textures[state.mix], [0.5, 0.5]);
       plaster.position.set((start + cut) / 2, H / 2, face + pt / 2);
       group.add(plaster);

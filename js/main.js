@@ -1,13 +1,24 @@
-// Меню на телефоне и цели Метрики на ссылках с data-goal.
+// Шапка, меню на телефоне, вкладки, вопросы, значки в углу, цели Метрики и появление блоков при прокрутке.
 (function () {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---------- шапка: прозрачная над первым экраном, тёмная после него ---------- */
+  const header = document.querySelector('[data-header]');
+  if (header) {
+    const updateHeader = () => header.classList.toggle('header--solid', window.scrollY > 8);
+    updateHeader();
+    window.addEventListener('scroll', updateHeader, { passive: true });
+  }
+
+  /* ---------- меню ---------- */
   const toggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function openMenu() {
     menu.hidden = false;
     toggle.classList.add('burger--open');
     toggle.setAttribute('aria-expanded', 'true');
+    header.classList.add('header--solid');
     document.body.style.overflow = 'hidden';
   }
 
@@ -17,6 +28,7 @@
     toggle.classList.remove('burger--open');
     toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    header.classList.toggle('header--solid', window.scrollY > 8);
     if (reduceMotion.matches) {
       menu.hidden = true;
       return;
@@ -41,16 +53,18 @@
     });
   }
 
-  // Кнопки «Рассчитать стяжку/штукатурку» ведут к форме расчёта и сразу отмечают вид работ.
+  /* ---------- кнопки «Рассчитать…» отмечают вид работ в форме расчёта ---------- */
   document.querySelectorAll('a[data-pick]').forEach((link) => {
     link.addEventListener('click', () => {
       const target = document.querySelector(link.getAttribute('href'));
       const radio = target && target.querySelector(`input[name="work"][value="${link.dataset.pick}"]`);
-      if (radio) radio.checked = true;
+      if (!radio) return;
+      radio.checked = true;
+      radio.dispatchEvent(new Event('change', { bubbles: true }));
     });
   });
 
-  // Вкладки по типу объекта: клик и стрелки влево-вправо, как у системных вкладок.
+  /* ---------- вкладки: клик и стрелки влево-вправо, как у системных вкладок ---------- */
   document.querySelectorAll('[data-tabs]').forEach((tabs) => {
     const buttons = [...tabs.querySelectorAll('[role="tab"]')];
     const activeClass = tabs.dataset.activeClass;
@@ -75,8 +89,9 @@
     });
   });
 
-  // Вопросы открываются и закрываются плавно по высоте. CSS не умеет анимировать высоту <details>
-  // в Safari, поэтому высота считается здесь, а open снимается только после анимации закрытия.
+  /* ---------- вопросы ---------- */
+  // Высоту <details> CSS в Safari не анимирует, поэтому она считается здесь,
+  // а open снимается только после анимации закрытия. Класс открытого вопроса меняет значок сразу.
   document.querySelectorAll('[data-faq] details').forEach((item) => {
     const summary = item.querySelector('summary');
     let animation = null;
@@ -84,17 +99,17 @@
 
     summary.addEventListener('click', (event) => {
       event.preventDefault();
+      const opening = !item.open || closing;
+      item.classList.toggle('faq__item--open', opening);
       if (reduceMotion.matches) {
-        item.open = !item.open;
+        item.open = opening;
         return;
       }
       const from = item.offsetHeight;
-      const opening = !item.open || closing;
       if (animation) animation.cancel();
       item.open = true;
       const to = opening ? item.offsetHeight : summary.offsetHeight;
       closing = !opening;
-      item.classList.toggle('faq__item--closing', closing);
       item.style.overflow = 'hidden';
       animation = item.animate({ height: [from + 'px', to + 'px'] }, { duration: 320, easing: 'ease' });
       animation.onfinish = () => {
@@ -102,32 +117,153 @@
         item.style.overflow = '';
         if (!closing) return;
         closing = false;
-        item.classList.remove('faq__item--closing');
         item.open = false;
       };
     });
   });
 
-  // Значки мессенджеров в углу (на компьютере) видны, когда первый экран ушёл из вида и пока не видны
-  // контакты или подвал: там те же ссылки. На телефоне вместо них нижняя панель, она в CSS.
+  /* ---------- значки мессенджеров в углу ---------- */
+  // На компьютере видны, когда первый экран ушёл из вида и пока не видны контакты или подвал: там те же ссылки.
+  // До 1100 px вместо них нижняя панель, она в CSS.
   const floating = document.querySelector('[data-float-contacts]');
   if (floating && 'IntersectionObserver' in window) {
     const watched = ['[data-hero]', '#kontakty', '.footer'].map((s) => document.querySelector(s)).filter(Boolean);
     const inView = new Set();
-    // Шапка закреплена и закрывает верх окна, плюс отступ якоря: край первого экрана под ними не считается видимым.
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => (entry.isIntersecting ? inView.add(entry.target) : inView.delete(entry.target)));
       floating.classList.toggle('float-contacts--visible', inView.size === 0);
-    }, { rootMargin: `-${document.querySelector('.header').offsetHeight + 24}px 0px 0px 0px` });
+    }, { rootMargin: `-${header.offsetHeight + 24}px 0px 0px 0px` });
     watched.forEach((el) => observer.observe(el));
   } else if (floating) {
     floating.classList.add('float-contacts--visible');
   }
 
+  /* ---------- цели Метрики на ссылках ---------- */
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[data-goal]');
     if (link && typeof window.ym === 'function' && window.YM_COUNTER) {
       window.ym(window.YM_COUNTER, 'reachGoal', link.dataset.goal);
     }
   });
+
+  /* ---------- объекты: открытое фото шире, остальные сжаты ---------- */
+  document.querySelectorAll('[data-objects]').forEach((list) => {
+    const items = [...list.querySelectorAll('.object')];
+    items.forEach((item) => {
+      item.querySelector('.object__toggle').addEventListener('click', () => {
+        items.forEach((other) => {
+          const open = other === item;
+          other.classList.toggle('object--open', open);
+          other.querySelector('.object__toggle').setAttribute('aria-expanded', String(open));
+        });
+      });
+    });
+  });
+
+  const animate = 'IntersectionObserver' in window && !reduceMotion.matches;
+
+  /* ---------- нарезка текста для появления по буквам и по словам ---------- */
+  // Видимый текст режется на span'ы и прячется от экранного чтеца, рядом остаётся скрытая копия целиком.
+  function split(el, mode) {
+    const plain = document.createElement('span');
+    plain.className = 'visually-hidden';
+    plain.textContent = el.textContent.replace(/\s+/g, ' ').trim();
+    let index = 0;
+
+    const piece = (className, text) => {
+      const span = document.createElement('span');
+      span.className = className;
+      span.style.setProperty('--i', index++);
+      span.textContent = text;
+      return span;
+    };
+
+    const walk = (node) => {
+      [...node.childNodes].forEach((child) => {
+        if (child.nodeType === Node.ELEMENT_NODE) {
+          if (child.tagName !== 'BR') walk(child);
+          return;
+        }
+        if (child.nodeType !== Node.TEXT_NODE) return;
+        const fragment = document.createDocumentFragment();
+        // Делим только по обычным пробелам: неразрывный держит предлог со словом.
+        child.textContent.split(/( )/).forEach((part) => {
+          if (!part) return;
+          if (part === ' ') {
+            fragment.append(' ');
+            return;
+          }
+          if (mode === 'words') {
+            fragment.append(piece('split__piece', part));
+            return;
+          }
+          const word = document.createElement('span');
+          word.className = 'split__word';
+          [...part].forEach((char) => word.append(piece('split__char', char)));
+          fragment.append(word);
+        });
+        child.replaceWith(fragment);
+      });
+    };
+
+    const visible = document.createElement('span');
+    visible.setAttribute('aria-hidden', 'true');
+    visible.append(...el.childNodes);
+    walk(visible);
+    el.append(plain, visible);
+    el.classList.add('split');
+  }
+
+  if (animate) {
+    document.querySelectorAll('.section__title, .perk__word, .calc__title, .warranty__years').forEach((el) => split(el, 'chars'));
+    document.querySelectorAll('.section__lead, .contacts__lead').forEach((el) => split(el, 'words'));
+  }
+
+  /* ---------- появление блоков при прокрутке ---------- */
+  // Блоки прячутся только здесь, через класс на <html>: без скрипта страница видна целиком.
+  const revealed = document.querySelectorAll('.reveal');
+  if (revealed.length && animate) {
+    document.documentElement.classList.add('js-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('reveal--visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    revealed.forEach((el) => revealObserver.observe(el));
+  }
+
+  /* ---------- стык бетонных секций: машина проезжает один раз, когда стык на экране ---------- */
+  const seams = document.querySelectorAll('[data-seam]');
+  if (seams.length && animate) {
+    const seamObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('seam--go');
+        seamObserver.unobserve(entry.target);
+      });
+    }, { threshold: 1, rootMargin: '0px 0px -12% 0px' });
+    seams.forEach((el) => seamObserver.observe(el));
+  }
+
+  /* ---------- машина внизу вопросов едет вместе с прокруткой ---------- */
+  const lane = document.querySelector('[data-lane]');
+  if (lane && !reduceMotion.matches) {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = lane.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      // 0, когда полоса появляется снизу окна, 1, когда она поднялась на пятую часть окна от верха.
+      const progress = Math.min(1, Math.max(0, (viewport - rect.bottom) / (viewport * 0.8)));
+      lane.style.setProperty('--p', progress.toFixed(4));
+    };
+    const request = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+  }
 })();

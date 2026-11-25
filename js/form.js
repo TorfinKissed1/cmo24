@@ -14,6 +14,8 @@
     send: 'Не удалось отправить заявку. Позвоните нам: +7 (977) 994-89-17',
   };
 
+  const FIELDS = ['work', 'name', 'phone', 'area', 'thickness', 'consent'];
+
   /* ---------- телефон ---------- */
 
   function formatPhone(raw) {
@@ -83,21 +85,29 @@
 
   /* ---------- ошибки ---------- */
 
+  // У каждого вида поля свой модификатор ошибки: подпись и рамка краснеют, текст слышит экранный чтец.
+  function errorClass(holder) {
+    if (holder.classList.contains('check')) return 'check--error';
+    if (holder.classList.contains('choice')) return 'choice--error';
+    return 'field--error';
+  }
+
   function setError(form, name, message) {
     const holder = form.querySelector(`[data-field="${name}"]`);
     if (!holder) return;
-    const errorClass = holder.classList.contains('check') ? 'check--error' : 'field--error';
-    holder.classList.toggle(errorClass, Boolean(message));
+    holder.classList.toggle(errorClass(holder), Boolean(message));
     const text = holder.querySelector('[data-error]');
     if (text) text.textContent = message || '';
   }
 
   function clearOnEdit(form) {
-    form.addEventListener('input', (event) => {
+    const reset = (event) => {
       const holder = event.target.closest('[data-field]');
       if (holder) setError(form, holder.dataset.field, '');
       form.querySelector('[data-status]').textContent = '';
-    });
+    };
+    form.addEventListener('input', reset);
+    form.addEventListener('change', reset);
   }
 
   /* ---------- поле под вид работ (длинная форма) ---------- */
@@ -176,17 +186,19 @@
     form.querySelectorAll('[data-number]').forEach((input) => input.addEventListener('input', handleNumberInput));
     form.querySelectorAll('[data-work-switch]').forEach((input) => input.addEventListener('change', () => syncWorkFields(form)));
     clearOnEdit(form);
+    syncWorkFields(form);
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const errors = validate(form);
-      ['work', 'name', 'phone', 'area', 'thickness', 'consent'].forEach((name) => setError(form, name, errors[name]));
+      FIELDS.forEach((name) => setError(form, name, errors[name]));
 
       const firstError = Object.keys(errors)[0];
       if (firstError) {
-        const target = form.querySelector(`[data-field="${firstError}"] input`);
+        const holder = form.querySelector(`[data-field="${firstError}"]`);
+        const target = holder.querySelector('input');
         if (target) target.focus({ preventScroll: true });
-        form.querySelector(`[data-field="${firstError}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        holder.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
       submit(form);

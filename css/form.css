@@ -1,29 +1,52 @@
-/* ============ lead-form ============
-   Одна разметка у трёх форм заявки, отличаются набором полей. */
+/* ============ lead-form (заявка: короткая, средняя, длинная) ============ */
 .lead-form {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
-  color: var(--color-text);
+  gap: 16px;
+  color: var(--color-navy);
 }
 
 .lead-form--card {
-  padding: var(--card-pad-l);
+  padding: var(--card-pad);
   background: var(--color-surface);
-  border-radius: var(--radius-l);
+  border-radius: var(--radius);
+}
+
+/* Форма первого экрана: белая полоса с оранжевой кромкой, на компьютере поля в одну строку. */
+.lead-form--bar {
+  gap: 14px;
+  padding: 26px 30px 22px;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+
+.lead-form--bar::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  content: "";
+  background: var(--color-orange);
+  border-radius: var(--radius) var(--radius) 0 0;
+  transform-origin: left;
 }
 
 .lead-form__head {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .lead-form__title {
-  font-size: 24px;
+  font-family: var(--font-display);
+  font-size: 34px;
   font-weight: 800;
-  line-height: 1.2;
-  color: var(--color-navy);
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: var(--ls-display);
 }
 
 .lead-form__text {
@@ -31,33 +54,63 @@
   color: var(--color-text-muted);
 }
 
+.lead-form__line {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.lead-form__title--bar {
+  flex: 0 0 180px;
+  margin-bottom: 9px;
+  font-size: 29px;
+}
+
+.lead-form__choice--bar {
+  flex: none;
+}
+
+.lead-form__field--bar {
+  flex: 1 1 0;
+}
+
+.lead-form__submit--bar {
+  flex: none;
+}
+
+.lead-form__consent--bar {
+  padding-left: 194px;
+}
+
 .lead-form__row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-m);
+  gap: 12px;
 }
 
-.lead-form__row > .field {
-  flex: 1 1 180px;
+.lead-form__field {
+  flex: 1 1 200px;
 }
 
-/* Приманка для ботов уведена за экран: display:none часть ботов пропускает. */
+.lead-form__extra {
+  animation: rise 0.35s var(--ease-out);
+}
+
+.lead-form__extra[hidden] {
+  display: none;
+}
+
+.lead-form__submit {
+  width: 100%;
+}
+
+/* Приманка для ботов: человек её не видит и не попадает в неё с клавиатуры. */
 .lead-form__trap {
   position: absolute;
   left: -10000px;
   width: 1px;
   height: 1px;
   overflow: hidden;
-}
-
-.lead-form__extra {
-  animation: reveal 0.3s ease-out;
-}
-
-.lead-form__submit {
-  width: 100%;
-  min-height: 56px;
-  font-size: var(--fs-body);
 }
 
 .lead-form__status {
@@ -69,13 +122,6 @@
   display: none;
 }
 
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-}
-
 /* ============ field ============ */
 .field {
   display: flex;
@@ -85,24 +131,29 @@
 }
 
 .field__label {
-  font-size: var(--fs-small);
-  font-weight: 600;
-  color: var(--color-navy);
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
 }
 
-/* Кольца фокуса у поля нет, меняется только цвет рамки. Цвет текста задан явно:
-   в форме на синем фоне он иначе наследует белый и пропадает в белом поле. */
 .field__input {
   width: 100%;
-  height: var(--control-height);
-  padding: 0 var(--space-m);
-  font-size: var(--fs-body);
-  color: var(--color-text);
+  height: 58px;
+  padding: 0 16px;
+  font-size: 17px;
+  color: var(--color-navy);
+  appearance: none;
   background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-s);
+  border: 2px solid var(--color-field);
+  border-radius: var(--radius);
   outline: none;
-  transition: border-color var(--transition);
+  transition: border-color 0.2s ease;
+}
+
+.field__input::placeholder {
+  color: var(--color-placeholder);
+  opacity: 1;
 }
 
 .field__input:focus,
@@ -111,157 +162,133 @@
   outline: none;
 }
 
-.field__input::placeholder {
-  color: var(--color-text-muted);
-  opacity: 0.7;
-}
-
-.field--error .field__input {
-  border-color: var(--color-error);
-}
-
-/* Поле с подписью внутри рамки: строка панели на первом экране одной высоты с кнопкой. */
-.field__box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  height: 60px;
-  padding: 0 var(--space-m);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: 10px;
-  cursor: text;
-  transition: border-color var(--transition);
-}
-
-.field__box:focus-within {
-  border-color: var(--color-navy);
-}
-
-.field__caption {
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--color-text-muted);
-}
-
-.field__input--bare {
-  height: 24px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-}
-
-.field--error .field__box {
-  border-color: var(--color-error);
-}
-
-/* Ошибку показывает цвет: подпись, подсказка и рамка краснеют. Текст остаётся только для экранных чтецов. */
+/* Ошибку показывают цвет подписи и рамка, текст ошибки слышит только экранный чтец. */
 .field__error {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
-  clip-path: inset(50%);
   white-space: nowrap;
+  clip: rect(0 0 0 0);
 }
 
-.field__caption,
-.field__input::placeholder,
-.check__text {
-  transition: color var(--transition);
-}
-
-.field--error .field__caption,
-.field--error .field__input::placeholder {
-  color: var(--color-error);
-  opacity: 1;
-}
-
-.check--error .check__text {
+.field--error .field__label {
   color: var(--color-error);
 }
 
-/* ============ choice (материал стен, кружками) ============ */
+.field--error .field__input,
+.field--error .field__input:focus {
+  border-color: var(--color-error);
+}
+
+/* ============ choice (выбор вида работ и материала стен) ============ */
 .choice {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  min-width: 0;
+  padding: 0;
+  border: 0;
 }
 
 .choice__legend {
+  float: left;
+  width: 100%;
   padding: 0;
   margin-bottom: 8px;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  color: var(--color-navy);
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
 }
 
 .choice__options {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s) var(--space-l);
+  gap: 8px;
 }
 
 .choice__item {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  cursor: pointer;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.choice--inline .choice__item {
+  flex: none;
 }
 
 .choice__input {
   position: absolute;
-  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
   pointer-events: none;
-}
-
-.choice__dot {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  background: var(--color-surface);
-  border: 2px solid var(--color-border-strong);
-  border-radius: var(--radius-round);
-  transition: border-color var(--transition);
-}
-
-.choice__dot::after {
-  position: absolute;
-  inset: 3px;
-  content: "";
-  background: var(--color-navy);
-  border-radius: var(--radius-round);
   opacity: 0;
-  transform: scale(0.4);
-  transition: opacity var(--transition), transform var(--transition);
 }
 
-.choice__input:checked + .choice__dot {
+.choice__box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 58px;
+  padding: 8px 18px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  background: var(--color-surface);
+  border: 2px solid var(--color-field);
+  border-radius: var(--radius);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.choice__icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+}
+
+.choice--inline .choice__box {
+  white-space: nowrap;
+}
+
+.choice__input:checked + .choice__box {
+  color: var(--color-on-dark);
+  background: var(--color-navy);
   border-color: var(--color-navy);
 }
 
-.choice__input:checked + .choice__dot::after {
-  opacity: 1;
-  transform: none;
-}
-
-.choice__input:focus-visible + .choice__dot {
-  outline: 2px solid var(--color-focus);
+.choice__input:focus-visible + .choice__box {
+  outline: 3px solid var(--color-orange);
   outline-offset: 2px;
 }
 
-/* ============ check (галочка согласия) ============ */
+.choice--compact .choice__box {
+  justify-content: center;
+  min-height: 48px;
+  padding: 6px 14px;
+  text-align: center;
+}
+
+.choice--error .choice__legend {
+  color: var(--color-error);
+}
+
+.choice--error .choice__box {
+  border-color: var(--color-error);
+}
+
+@media (hover: hover) {
+  .choice__box:hover {
+    border-color: var(--color-navy);
+  }
+}
+
+/* ============ check (галочка согласия и настройки разреза) ============ */
 .check {
-  position: relative;
   display: flex;
-  align-items: flex-start;
   gap: 10px;
+  align-items: flex-start;
   font-size: var(--fs-xs);
   line-height: 1.4;
   color: var(--color-text-muted);
@@ -270,30 +297,32 @@
 
 .check__input {
   position: absolute;
-  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
   pointer-events: none;
+  opacity: 0;
 }
 
 .check__box {
-  display: flex;
+  display: grid;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   width: 20px;
   height: 20px;
+  color: var(--color-on-dark);
   background: var(--color-surface);
-  border: 1px solid var(--color-border-strong);
-  border-radius: 5px;
-  transition: background-color var(--transition), border-color var(--transition);
+  border: 2px solid var(--color-field);
+  border-radius: 3px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .check__icon {
   width: 14px;
   height: 14px;
-  color: var(--color-text-on-dark);
   opacity: 0;
   transform: scale(0.6);
-  transition: opacity var(--transition), transform var(--transition);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .check__input:checked + .check__box {
@@ -307,38 +336,98 @@
 }
 
 .check__input:focus-visible + .check__box {
-  outline: 2px solid var(--color-focus);
+  outline: 3px solid var(--color-orange);
   outline-offset: 2px;
+}
+
+.check__text {
+  padding-top: 1px;
+  transition: color 0.2s ease;
+}
+
+.check__link {
+  color: var(--color-navy);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .check--error .check__box {
   border-color: var(--color-error);
 }
 
-.check__text {
-  padding-top: 1px;
-}
-
-.check__link {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.check--error .check__text {
+  color: var(--color-error);
 }
 
 @media (hover: hover) {
-  .check__link:hover {
-    color: var(--color-text);
+  .check:hover .check__box {
+    border-color: var(--color-navy);
+  }
+}
+
+/* ============ адаптив форм ============ */
+@media (max-width: 1240px) {
+  .lead-form__line {
+    flex-wrap: wrap;
+  }
+
+  .lead-form__title--bar {
+    flex-basis: 100%;
+    margin-bottom: 4px;
+  }
+
+  .lead-form__consent--bar {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lead-form__choice--bar {
+    flex-basis: 100%;
+  }
+
+  .choice--inline .choice__item {
+    flex: 1 1 0;
+  }
+
+  .lead-form__field--bar {
+    flex: 1 1 calc(50% - 7px);
+  }
+
+  .lead-form__submit--bar {
+    flex-basis: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .lead-form--card {
-    padding: var(--card-pad-l) var(--card-pad);
-    padding-bottom: max(var(--card-pad-l), env(safe-area-inset-bottom));
-    border-radius: var(--radius-m);
+  .lead-form--bar {
+    padding: 28px var(--gutter) 24px;
+    border-radius: 0;
+  }
+
+  .lead-form--bar::before {
+    border-radius: 0;
   }
 
   .lead-form__title {
-    font-size: 21px;
+    font-size: 30px;
+  }
+
+  .lead-form__field--bar {
+    flex-basis: 100%;
+  }
+
+  /* На телефоне варианты работ столбиком: в строку подписи не помещаются. */
+  .choice__options {
+    flex-direction: column;
+  }
+
+  .choice--compact .choice__options {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .choice--compact .choice__item {
+    flex: 1 1 30%;
   }
 }
-
