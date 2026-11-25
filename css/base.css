@@ -1,39 +1,91 @@
 /* Брейкпоинты: 1240, 1100, 1024, 768, 480, 340. В @media переменные не работают, поэтому числа. */
+
+/* Шрифт отдельными файлами на каждую насыщенность: переменный файл WebKit под Windows рисует тонким. */
 @font-face {
   font-family: "Montserrat";
-  src: url("../fonts/montserrat-cyrillic-wght-normal.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("../fonts/montserrat-cyrillic-400-normal.woff2") format("woff2");
+  font-weight: 400;
   font-display: swap;
   unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("../fonts/montserrat-latin-wght-normal.woff2") format("woff2");
-  font-weight: 100 900;
+  src: url("../fonts/montserrat-cyrillic-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-cyrillic-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-cyrillic-800-normal.woff2") format("woff2");
+  font-weight: 800;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/montserrat-latin-800-normal.woff2") format("woff2");
+  font-weight: 800;
   font-display: swap;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+20BD, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 :root {
-  --color-navy: #082a52;
-  --color-navy-soft: #0f3a6e;
-  --color-blue: #0e4a8f;
-  --color-blue-hover: #0b3c75;
-  --color-accent: #3a99d2;
+  /* Тёмно-синий и оранжевый сняты с логотипа-образца заказчика. */
+  --color-navy: #071f47;
+  --color-navy-soft: #12305f;
+  --color-primary: #e2620a;
+  --color-primary-hover: #c95504;
+  --color-primary-text: #c25400;
   --color-bg: #ffffff;
-  --color-pale: #eaf3fc;
-  --color-pale-strong: #dbeaf7;
+  --color-pale: #f2f4f7;
+  --color-pale-strong: #e6eaf0;
   --color-surface: #ffffff;
-  --color-text: #0d1b2e;
-  --color-text-muted: #4d5f76;
+  --color-text: #0f1b2d;
+  --color-text-muted: #55627a;
   --color-text-on-dark: #ffffff;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
-  --color-border: #d3e1ee;
-  --color-border-strong: #a9bfd4;
-  --color-border-on-dark: rgba(255, 255, 255, 0.2);
+  --color-border: #dde2e9;
+  --color-border-strong: #b3bdca;
+  --color-border-on-dark: rgba(255, 255, 255, 0.18);
+  --color-photo-shade: rgba(7, 31, 71, 0.88);
   --color-error: #c62828;
-  --color-focus: #3a99d2;
+  --color-focus: #e2620a;
 
   --font-main: "Montserrat", "Segoe UI", Arial, sans-serif;
   --fs-hero: 52px;
@@ -239,7 +291,7 @@ svg {
 
 .button--primary {
   color: var(--color-text-on-dark);
-  background: var(--color-blue);
+  background: var(--color-primary);
 }
 
 .button--light {
@@ -260,7 +312,7 @@ svg {
 
 @media (hover: hover) {
   .button--primary:hover {
-    background: var(--color-blue-hover);
+    background: var(--color-primary-hover);
   }
 
   .button--light:hover {

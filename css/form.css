@@ -112,7 +112,7 @@
 
 .field__input:focus,
 .field__input:focus-visible {
-  border-color: var(--color-blue);
+  border-color: var(--color-navy);
   outline: none;
 }
 
