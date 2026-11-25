@@ -425,8 +425,11 @@
   color: var(--color-on-dark-muted);
 }
 
-.calc__button {
-  align-self: flex-start;
+.calc__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .calc__form {
@@ -548,12 +551,15 @@
   cursor: default;
 }
 
+/* Текст выше кнопки-переключателя, но нажатия пропускает к ней: иначе слой переключателя
+   накрывает ссылку «Рассчитать похожий объект». Ссылке нажатия возвращены отдельно. */
 .object__content {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 3;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -615,9 +621,8 @@
 }
 
 .object__button {
-  position: relative;
-  z-index: 3;
   visibility: hidden;
+  pointer-events: auto;
   opacity: 0;
 }
 
@@ -1169,8 +1174,8 @@
     padding: 28px var(--card-pad);
   }
 
-  .calc__button {
-    align-self: stretch;
+  .calc__buttons {
+    align-items: stretch;
   }
 
   .objects {
