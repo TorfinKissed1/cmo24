@@ -158,10 +158,16 @@
     form.addEventListener('input', (event) => update(event.target.name === 'rz_work'));
     form.addEventListener('change', (event) => update(event.target.name === 'rz_work'));
 
-    // Кнопка переносит вид работ и площадь в форму расчёта ниже, остальное человек заполнит сам.
+    // Кнопка переносит вид работ и площадь в окно расчёта, остальное человек заполнит сам.
+    // Без окон (браузер без <dialog>) те же данные уходят в форму расчёта ниже.
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       const state = readState();
+      const area = state.work === 'styazhka' ? state.floorArea : state.wallArea;
+      if (window.popups) {
+        window.popups.open('popup-calc', { work: state.work, area, source: '3D-разрез' });
+        return;
+      }
       const lead = document.querySelector('#raschet [data-lead-form]');
       if (!lead) return;
       const radio = lead.querySelector(`input[name="work"][value="${state.work}"]`);
@@ -169,7 +175,6 @@
         radio.checked = true;
         radio.dispatchEvent(new Event('change', { bubbles: true }));
       }
-      const area = state.work === 'styazhka' ? state.floorArea : state.wallArea;
       const areaInput = lead.querySelector('input[name="area"]');
       if (areaInput && area) {
         areaInput.value = String(area);

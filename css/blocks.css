@@ -163,26 +163,6 @@
   --fx: 0.55;
 }
 
-.detail__note--rule {
-  --x: 35%;
-  --y: 64%;
-}
-
-.detail__note--pump {
-  --x: 72%;
-  --y: 35%;
-}
-
-.detail__note--spray {
-  --x: 52.4%;
-  --y: 38.4%;
-}
-
-.detail__note--bead {
-  --x: 55.5%;
-  --y: 56%;
-}
-
 .detail__badge {
   position: absolute;
   top: 0;
@@ -817,6 +797,14 @@
   letter-spacing: 0.01em;
 }
 
+.faq__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+  margin-top: 4px;
+}
+
 .faq__list {
   display: flex;
   flex: 1;
@@ -1204,8 +1192,10 @@
     padding: 28px var(--card-pad);
   }
 
+  /* Обе кнопки одной ширины и высоты: сетка с одинаковыми строками тянет короткую до высоты длинной. */
   .calc__buttons {
-    align-items: stretch;
+    display: grid;
+    grid-auto-rows: 1fr;
   }
 
   .objects {

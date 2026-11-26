@@ -53,17 +53,6 @@
     });
   }
 
-  /* ---------- кнопки «Рассчитать…» отмечают вид работ в форме расчёта ---------- */
-  document.querySelectorAll('a[data-pick]').forEach((link) => {
-    link.addEventListener('click', () => {
-      const target = document.querySelector(link.getAttribute('href'));
-      const radio = target && target.querySelector(`input[name="work"][value="${link.dataset.pick}"]`);
-      if (!radio) return;
-      radio.checked = true;
-      radio.dispatchEvent(new Event('change', { bubbles: true }));
-    });
-  });
-
   /* ---------- вкладки: клик и стрелки влево-вправо, как у системных вкладок ---------- */
   document.querySelectorAll('[data-tabs]').forEach((tabs) => {
     const buttons = [...tabs.querySelectorAll('[role="tab"]')];

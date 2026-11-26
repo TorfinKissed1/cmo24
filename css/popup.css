@@ -1,0 +1,165 @@
+/* ============ popup (окно с формой заявки) ============ */
+/* <dialog> растянут на весь экран и прозрачен: затемнение и само окно лежат внутри него,
+   потому что ::backdrop и переход на открытие <dialog> в Safari на iPhone не анимируются.
+   Открытие идёт ключевой анимацией на [open], закрытие классом popup--closing, close() зовёт popup.js. */
+.popup {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  padding: 24px;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color: var(--color-navy);
+  background: transparent;
+  border: 0;
+}
+
+.popup[open] {
+  display: flex;
+}
+
+.popup::backdrop {
+  background: transparent;
+}
+
+.popup__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 31, 71, 0.72);
+  animation: popup-fade-in 0.3s ease-out;
+}
+
+.popup__window {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  padding: 40px var(--card-pad) var(--card-pad);
+  margin: auto;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  animation: popup-rise 0.35s var(--ease-out);
+}
+
+.popup__window:focus {
+  outline: none;
+}
+
+.popup--closing .popup__overlay {
+  animation: popup-fade-out 0.25s ease-in forwards;
+}
+
+.popup--closing .popup__window {
+  animation: popup-sink 0.25s ease-in forwards;
+}
+
+.popup__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-navy);
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius);
+  transition: background-color var(--transition);
+}
+
+.popup__messengers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 20px;
+  margin-top: 4px;
+  border-top: 1px solid var(--color-line);
+}
+
+.popup__messengers-title {
+  flex-basis: 100%;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+
+.popup__messenger {
+  flex: 1 1 0;
+  min-height: 48px;
+  padding: 0 12px;
+  font-size: 16px;
+}
+
+@media (hover: hover) {
+  .popup__close:hover {
+    background: var(--color-concrete);
+  }
+}
+
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes popup-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes popup-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes popup-sink {
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+/* Телефон: окно на весь экран выезжает снизу и уезжает вниз, прокрутка внутри окна. */
+@keyframes popup-slide-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes popup-slide-out {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .popup {
+    padding: 0;
+  }
+
+  .popup__window {
+    max-width: none;
+    min-height: 100%;
+    padding: 56px var(--gutter) max(var(--card-pad), env(safe-area-inset-bottom));
+    margin: 0;
+    border-radius: 0;
+    animation: popup-slide-in 0.4s var(--ease-out);
+  }
+
+  .popup--closing .popup__window {
+    animation: popup-slide-out 0.3s ease-in forwards;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup__messenger {
+    flex-basis: 100%;
+  }
+}

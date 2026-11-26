@@ -334,6 +334,21 @@ button {
   color: var(--color-on-dark-muted);
 }
 
+/* Кнопка под содержимым секции. */
+.section__action {
+  display: flex;
+  margin-top: 40px;
+}
+
+/* Страница под открытым окном не прокручивается, нижняя панель связи не просвечивает сквозь окно. */
+.page--locked {
+  overflow: hidden;
+}
+
+.page--locked .mobile-bar {
+  visibility: hidden;
+}
+
 /* ============ label (моноширинная подпись: цифры, единицы, служебные пометки) ============ */
 .label {
   font-family: var(--font-mono);
@@ -1060,6 +1075,10 @@ button {
   /* В столбце основа flex считается по высоте: 440px превратились бы в пустоту под подводкой. */
   .section__lead {
     flex: none;
+  }
+
+  .section__button {
+    width: 100%;
   }
 
   .footer {

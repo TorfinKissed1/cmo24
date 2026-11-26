@@ -1,0 +1,86 @@
+/* ============ tehnadzor (секция «Технадзор на объекте»: раскладка detail из blocks.css) ============ */
+/* На кадре двое по краям: высокая рамка detail срезала бы одного, поэтому кадр ниже, 4:3.
+   Только в две колонки: в столбце align-self сжал бы рамку до нулевой ширины (картинка в ней абсолютная). */
+@media (min-width: 1025px) {
+  .tehnadzor__media {
+    align-self: flex-start;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.tehnadzor__canvas {
+  --fx: 0.45;
+  --fy: 0.3;
+}
+
+/* ============ control (что проверяет технадзор, по шагам) ============ */
+.control {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-line);
+}
+
+.control__item {
+  display: flex;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.control__number {
+  flex: none;
+  width: 28px;
+  padding-top: 4px;
+  color: var(--color-orange-text);
+}
+
+.control__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.control__title {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.control__text {
+  color: var(--color-text-muted);
+}
+
+/* ============ control-note (строка про технадзор в разделах стяжки и штукатурки) ============ */
+.control-note {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+}
+
+.control-note__icon {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  color: var(--color-orange-text);
+}
+
+.control-note__title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .control__item {
+    gap: 14px;
+    padding: 16px 0;
+  }
+
+  .control__title {
+    font-size: 18px;
+  }
+}

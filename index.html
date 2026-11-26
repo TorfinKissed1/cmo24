@@ -12,11 +12,13 @@
   <link rel="preload" href="fonts/fira-sans-400-cyr.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/hero.webp" as="image" media="(min-width: 769px)">
   <link rel="preload" href="img/hero-m.webp" as="image" media="(max-width: 768px)">
-  <link rel="stylesheet" href="css/base.css?v=9">
-  <link rel="stylesheet" href="css/form.css?v=9">
-  <link rel="stylesheet" href="css/hero.css?v=9">
-  <link rel="stylesheet" href="css/blocks.css?v=9">
-  <link rel="stylesheet" href="css/razrez.css?v=9">
+  <link rel="stylesheet" href="css/base.css?v=10">
+  <link rel="stylesheet" href="css/form.css?v=10">
+  <link rel="stylesheet" href="css/hero.css?v=10">
+  <link rel="stylesheet" href="css/blocks.css?v=10">
+  <link rel="stylesheet" href="css/razrez.css?v=10">
+  <link rel="stylesheet" href="css/tehnadzor.css?v=10">
+  <link rel="stylesheet" href="css/popup.css?v=10">
 </head>
 <body class="page page--with-bar">
 
@@ -30,6 +32,7 @@
   <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 3h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 7.3 7.3l1.4-2.2L21 15.5V19a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
   <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></symbol>
   <symbol id="i-floor" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17l13-6 13 6-13 6z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 17v4l13 6 13-6v-4"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 4v4M12 6l4 2 4-2"/></symbol>
@@ -76,6 +79,7 @@
 <div class="menu" id="menu" hidden data-menu>
   <nav class="menu__nav" aria-label="Разделы">
     <a class="menu__link" href="#uslugi">Услуги</a>
+    <a class="menu__link" href="#tehnadzor">Технадзор</a>
     <a class="menu__link" href="#styazhka">Стяжка</a>
     <a class="menu__link" href="#shtukaturka">Штукатурка</a>
     <a class="menu__link" href="#raschet">Расчёт стоимости</a>
@@ -100,9 +104,6 @@
           <source media="(max-width: 768px)" srcset="img/hero-m.webp">
           <img class="frame__image" src="img/hero.webp" width="1536" height="1024" alt="Мастер выравнивает полусухую стяжку правилом по маякам в новостройке" fetchpriority="high">
         </picture>
-        <span class="note hero__note hero__note--rule" aria-hidden="true"><span class="note__label">Выравниваем правилом</span></span>
-        <span class="note hero__note hero__note--rails" aria-hidden="true"><span class="note__label">Маяки по лазеру</span></span>
-        <span class="note note--left hero__note hero__note--mobile" aria-hidden="true"><span class="note__label">Выравниваем правилом</span></span>
       </div>
       <div class="hero__shade"></div>
     </div>
@@ -123,7 +124,7 @@
         <p class="hero__lead">Москва и&nbsp;область. Цены с&nbsp;материалом, договор и&nbsp;смета до&nbsp;начала работ.</p>
         <ul class="hero__facts">
           <li class="label hero__fact">До 250 м² стяжки за&nbsp;день</li>
-          <li class="label hero__fact">Ходить через 12&nbsp;часов</li>
+          <li class="label hero__fact">Технадзор на&nbsp;объекте</li>
           <li class="label hero__fact">Гарантия 5&nbsp;лет по&nbsp;договору</li>
         </ul>
       </div>
@@ -172,7 +173,7 @@
     <div class="container">
       <div class="section__head">
         <h2 class="section__title reveal">Услуги и&nbsp;цены</h2>
-        <p class="section__lead reveal reveal--d1">Цена за&nbsp;квадратный метр с&nbsp;материалом. Точную сумму фиксируем в&nbsp;договоре после замера.</p>
+        <p class="section__lead reveal reveal--d1">Черновая отделка под&nbsp;ключ: стяжка пола и&nbsp;штукатурка стен. Цена за&nbsp;квадратный метр с&nbsp;материалом, точную сумму фиксируем в&nbsp;договоре после замера.</p>
       </div>
       <ul class="services">
         <li class="service reveal">
@@ -223,6 +224,86 @@
     </div>
   </section>
 
+  <div class="seam" aria-hidden="true" data-seam>
+    <span class="seam__track"></span>
+    <span class="seam__trail"></span>
+    <svg class="seam__machine" viewBox="0 0 96 56">
+      <path d="M24 37 8 15" fill="none" stroke="#071f47" stroke-width="4" stroke-linecap="round"/>
+      <path d="M3 12h10" fill="none" stroke="#071f47" stroke-width="5" stroke-linecap="round"/>
+      <path d="M31 9h38l-7 21H38z" fill="#ff6b1a"/>
+      <rect x="28" y="6" width="44" height="5" rx="1.5" fill="#071f47"/>
+      <rect x="36" y="29" width="28" height="9" rx="1.5" fill="#3f4858"/>
+      <rect x="64" y="20" width="23" height="17" rx="2" fill="#0e2a5a"/>
+      <path d="M68 25h15M68 29h15M68 33h15" stroke="#5b6f93" stroke-width="1.5"/>
+      <rect x="20" y="36" width="70" height="5" rx="1.5" fill="#071f47"/>
+      <path d="M87 41v8" stroke="#071f47" stroke-width="3"/>
+      <g class="seam__wheel"><circle cx="54" cy="44" r="10" fill="#071f47"/><circle cx="54" cy="44" r="3.5" fill="#ffffff"/><path d="M54 35.5v5M54 47.5v5M45.5 44h5M57.5 44h5" stroke="#ffffff" stroke-width="2"/></g>
+    </svg>
+  </div>
+
+  <section class="section section--concrete" id="tehnadzor">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title reveal">Технадзор на&nbsp;объекте</h2>
+        <p class="section__lead reveal reveal--d1">За&nbsp;работу бригады отвечает наш технадзор. Он принимает материалы, допускает к&nbsp;работам и&nbsp;подписывает акты.</p>
+      </div>
+
+      <div class="detail">
+        <div class="frame detail__media tehnadzor__media reveal reveal--wipe">
+          <div class="frame__canvas tehnadzor__canvas">
+            <picture>
+              <source media="(max-width: 768px)" srcset="img/tehnadzor-m.webp">
+              <img class="frame__image" src="img/tehnadzor.webp" width="1536" height="1024" alt="Технадзор с папкой следит, как рабочий выравнивает стяжку по маякам" loading="lazy">
+            </picture>
+          </div>
+        </div>
+
+        <div class="detail__body">
+          <ol class="control">
+            <li class="control__item reveal">
+              <span class="label control__number">01</span>
+              <div class="control__body">
+                <h3 class="control__title">Проверяет проект</h3>
+                <p class="control__text">Сверяет толщину слоя и&nbsp;отметки с&nbsp;проектом до&nbsp;начала работ.</p>
+              </div>
+            </li>
+            <li class="control__item reveal">
+              <span class="label control__number">02</span>
+              <div class="control__body">
+                <h3 class="control__title">Принимает материалы</h3>
+                <p class="control__text">На&nbsp;стяжке проверяет раствор: пропорции цемента и&nbsp;песка, фибру и&nbsp;пластификатор.</p>
+              </div>
+            </li>
+            <li class="control__item reveal">
+              <span class="label control__number">03</span>
+              <div class="control__body">
+                <h3 class="control__title">Даёт допуск к&nbsp;работам</h3>
+                <p class="control__text">Бригада начинает работу только с&nbsp;его допуска.</p>
+              </div>
+            </li>
+            <li class="control__item reveal">
+              <span class="label control__number">04</span>
+              <div class="control__body">
+                <h3 class="control__title">Проверяет качество</h3>
+                <p class="control__text">Стяжку принимает по&nbsp;горизонту и&nbsp;толщине, штукатурку по&nbsp;ровности стен правилом и&nbsp;лазером.</p>
+              </div>
+            </li>
+            <li class="control__item reveal">
+              <span class="label control__number">05</span>
+              <div class="control__body">
+                <h3 class="control__title">Подписывает акты</h3>
+                <p class="control__text">Ставит подпись в&nbsp;акте и&nbsp;отвечает за&nbsp;результат перед вами.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="section__action">
+            <a class="button button--primary section__button" href="#raschet-forma" data-popup="popup-calc" data-source="Блок технадзора">Рассчитать стоимость</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--navy">
     <div class="container">
       <div class="section__head">
@@ -246,6 +327,9 @@
           <p class="perk__text">Воды в&nbsp;разы меньше, чем в&nbsp;обычной стяжке, основание закрываем плёнкой.</p>
         </li>
       </ul>
+      <div class="section__action">
+        <a class="button button--primary section__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka" data-source="Почему полусухая стяжка">Рассчитать стяжку</a>
+      </div>
     </div>
   </section>
 
@@ -263,8 +347,6 @@
               <source media="(max-width: 768px)" srcset="img/styazhka-m.webp">
               <img class="frame__image" src="img/styazhka.webp" width="1536" height="1024" alt="Мастер выравнивает полусухую стяжку правилом по маякам, за ним пневмонагнетатель" loading="lazy">
             </picture>
-            <span class="note detail__note--rule" aria-hidden="true"><span class="note__label">Правило по маякам</span></span>
-            <span class="note note--up detail__note--pump" aria-hidden="true"><span class="note__label">Пневмонагнетатель</span></span>
           </div>
           <p class="detail__badge"><b class="detail__badge-value">до 250 м²</b><span class="detail__badge-caption">стяжки за&nbsp;один рабочий день</span></p>
         </div>
@@ -338,12 +420,14 @@
                     <li class="ticks__item">Учитываем нагрузку на&nbsp;перекрытия</li>
                     <li class="ticks__item">Планируем график под&nbsp;общий ремонт</li>
                     <li class="ticks__item">Затирка и&nbsp;нарезка швов</li>
-                    <li class="ticks__item">Сдаём работу технадзору</li>
+                    <li class="ticks__item">Акты подписывает наш технадзор</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
+
+          <p class="control-note reveal"><svg class="control-note__icon" aria-hidden="true"><use href="#i-shield"></use></svg><span class="control-note__text"><b class="control-note__title">Технадзор</b> проверяет раствор на&nbsp;объекте: пропорции цемента и&nbsp;песка, фибру и&nbsp;толщину слоя.</span></p>
 
           <div class="offer reveal">
             <div class="offer__price-box">
@@ -351,7 +435,7 @@
               <p class="price price--on-dark offer__price"><span class="price__unit">от</span> 490 <span class="price__unit">₽/м²</span></p>
               <p class="offer__note">Точную сумму фиксируем в&nbsp;договоре после замера.</p>
             </div>
-            <a class="button button--primary offer__button" href="#raschet-forma" data-pick="styazhka">Рассчитать стяжку</a>
+            <a class="button button--primary offer__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka">Рассчитать стяжку</a>
           </div>
         </div>
       </div>
@@ -389,8 +473,6 @@
               <source media="(max-width: 768px)" srcset="img/shtukaturka-m.webp">
               <img class="frame__image" src="img/shtukaturka.webp" width="1536" height="1024" alt="Штукатур наносит гипсовую смесь машиной на стену из газоблока по маякам" loading="lazy">
             </picture>
-            <span class="note note--left detail__note--spray" aria-hidden="true"><span class="note__label">Смесь подаёт машина</span></span>
-            <span class="note note--left detail__note--bead" aria-hidden="true"><span class="note__label">Маяк</span></span>
           </div>
           <p class="detail__badge detail__badge--bottom"><b class="detail__badge-value">до 200 м²</b><span class="detail__badge-caption">стен за&nbsp;смену</span></p>
         </div>
@@ -429,13 +511,15 @@
             </li>
           </ul>
 
+          <p class="control-note reveal"><svg class="control-note__icon" aria-hidden="true"><use href="#i-shield"></use></svg><span class="control-note__text"><b class="control-note__title">Технадзор</b> принимает стены по&nbsp;ровности: двухметровым правилом и&nbsp;лазером.</span></p>
+
           <div class="offer reveal">
             <div class="offer__price-box">
               <span class="label offer__label">Штукатурка с&nbsp;материалом</span>
               <p class="price price--on-dark offer__price"><span class="price__unit">от</span> 450 <span class="price__unit">₽/м²</span></p>
               <p class="offer__note">Точную сумму фиксируем в&nbsp;договоре после замера.</p>
             </div>
-            <a class="button button--primary offer__button" href="#raschet-forma" data-pick="shtukaturka">Рассчитать штукатурку</a>
+            <a class="button button--primary offer__button" href="#raschet-forma" data-popup="popup-calc" data-pick="shtukaturka">Рассчитать штукатурку</a>
           </div>
         </div>
       </div>
@@ -604,15 +688,18 @@
           <img class="step__image" src="img/etap-podgotovka.webp" width="960" height="640" alt="Плёнка, демпферная лента и маяки перед стяжкой" loading="lazy">
           <div class="step__head"><span class="step__number">03</span><span class="step__line"></span></div>
           <h3 class="step__title">Подготовка</h3>
-          <p class="step__text">Завозим материал и&nbsp;машины, укрываем основание плёнкой, кладём демпферную ленту, выставляем лазер.</p>
+          <p class="step__text">Завозим материал и&nbsp;машины, укрываем основание плёнкой, кладём демпферную ленту. Технадзор принимает материал и&nbsp;даёт допуск.</p>
         </li>
         <li class="step reveal reveal--d3">
           <img class="step__image" src="img/etap-priemka.webp" width="960" height="640" alt="Мастер проверяет ровность готовой стяжки уровнем" loading="lazy">
           <div class="step__head"><span class="step__number">04</span><span class="step__line"></span></div>
           <h3 class="step__title">Работа и&nbsp;приёмка</h3>
-          <p class="step__text">Выравниваем, затираем, нарезаем швы и&nbsp;сдаём работу по&nbsp;акту.</p>
+          <p class="step__text">Выравниваем, затираем, нарезаем швы. Технадзор проверяет работу и&nbsp;подписывает акт.</p>
         </li>
       </ol>
+      <div class="section__action">
+        <a class="button button--primary section__button" href="#kontakty" data-popup="popup-call" data-source="Этапы работ">Оставить заявку</a>
+      </div>
     </div>
   </section>
 
@@ -656,7 +743,7 @@
               </div>
             </div>
             <div class="object__bottom">
-              <a class="button button--primary object__button" href="#raschet-forma" data-pick="styazhka">Рассчитать похожий объект</a>
+              <a class="button button--primary object__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka" data-source="Похожий объект: квартира">Рассчитать похожий объект</a>
               <span class="object__hint" aria-hidden="true"><svg class="icon object__hint-icon"><use href="#i-hand"></use></svg>Подробнее</span>
             </div>
           </div>
@@ -677,7 +764,7 @@
               </div>
             </div>
             <div class="object__bottom">
-              <a class="button button--primary object__button" href="#raschet-forma" data-pick="styazhka">Рассчитать похожий объект</a>
+              <a class="button button--primary object__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka" data-source="Похожий объект: частный дом">Рассчитать похожий объект</a>
               <span class="object__hint" aria-hidden="true"><svg class="icon object__hint-icon"><use href="#i-hand"></use></svg>Подробнее</span>
             </div>
           </div>
@@ -693,12 +780,12 @@
                 <ul class="ticks object__list">
                   <li class="ticks__item">График работ под&nbsp;общий ремонт</li>
                   <li class="ticks__item">Учитываем нагрузку на&nbsp;перекрытия</li>
-                  <li class="ticks__item">Сдаём работу технадзору</li>
+                  <li class="ticks__item">Акты подписывает наш технадзор</li>
                 </ul>
               </div>
             </div>
             <div class="object__bottom">
-              <a class="button button--primary object__button" href="#raschet-forma" data-pick="styazhka">Рассчитать похожий объект</a>
+              <a class="button button--primary object__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka" data-source="Похожий объект: офис">Рассчитать похожий объект</a>
               <span class="object__hint" aria-hidden="true"><svg class="icon object__hint-icon"><use href="#i-hand"></use></svg>Подробнее</span>
             </div>
           </div>
@@ -719,7 +806,7 @@
               </div>
             </div>
             <div class="object__bottom">
-              <a class="button button--primary object__button" href="#raschet-forma" data-pick="styazhka">Рассчитать похожий объект</a>
+              <a class="button button--primary object__button" href="#raschet-forma" data-popup="popup-calc" data-pick="styazhka" data-source="Похожий объект: склад">Рассчитать похожий объект</a>
               <span class="object__hint" aria-hidden="true"><svg class="icon object__hint-icon"><use href="#i-hand"></use></svg>Подробнее</span>
             </div>
           </div>
@@ -736,7 +823,7 @@
       </div>
       <div class="warranty">
         <div class="warranty__media reveal reveal--wipe">
-          <picture><source media="(max-width: 768px)" srcset="img/garantiya-m.webp"><img class="warranty__image" src="img/garantiya.webp" width="1536" height="1024" alt="Договор и акт приёмки на готовой стяжке рядом с уровнем" loading="lazy"></picture>
+          <picture><source media="(max-width: 768px)" srcset="img/garantiya-m.webp?v=2"><img class="warranty__image" src="img/garantiya.webp?v=2" width="1536" height="1024" alt="Технадзор с папкой документов и заказчик смотрят, как рабочий выравнивает стяжку" loading="lazy"></picture>
           <p class="warranty__badge"><b class="warranty__years">5 лет</b><span class="warranty__years-caption">гарантия по&nbsp;договору</span></p>
         </div>
       <ul class="warranty__list">
@@ -758,9 +845,12 @@
         <li class="warranty__item reveal reveal--d1">
           <svg class="warranty__icon" aria-hidden="true"><use href="#i-shield"></use></svg>
           <h3 class="warranty__item-title">Акт приёмки</h3>
-          <p class="warranty__item-text">Сдаём работу по&nbsp;акту, ровность проверяем при вас.</p>
+          <p class="warranty__item-text">Акт подписывает наш технадзор, ровность проверяем при вас.</p>
         </li>
       </ul>
+      </div>
+      <div class="section__action">
+        <a class="button button--primary section__button" href="#raschet-forma" data-popup="popup-calc" data-source="Работаем по договору">Рассчитать стоимость</a>
       </div>
     </div>
   </section>
@@ -771,6 +861,11 @@
         <h2 class="section__title reveal">Частые вопросы</h2>
         <p class="faq__note reveal reveal--d1">Не&nbsp;нашли ответ? Позвоните или напишите в&nbsp;мессенджер.</p>
         <a class="faq__phone reveal reveal--d2" href="tel:+79779948917" data-goal="click_phone">+7 (977) 994-89-17</a>
+        <div class="faq__buttons reveal reveal--d2">
+          <a class="button button--dark" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><svg class="button__icon" aria-hidden="true"><use href="#i-max"></use></svg>Написать в&nbsp;MAX</a>
+          <a class="button button--dark" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><svg class="button__icon" aria-hidden="true"><use href="#i-wa"></use></svg>Написать в&nbsp;WhatsApp</a>
+          <a class="button button--outline" href="#kontakty" data-popup="popup-call" data-source="Частые вопросы">Заказать звонок</a>
+        </div>
       </div>
       <div class="faq__list" data-faq>
         <details class="faq__item reveal">
@@ -795,7 +890,11 @@
         </details>
         <details class="faq__item reveal">
           <summary class="faq__question">Работаете с&nbsp;коммерческими объектами?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="faq__icon faq__icon--minus" aria-hidden="true"><use href="#i-minus"></use></svg></span></summary>
-          <p class="faq__answer">Да: склады, офисы, магазины, производства. Учитываем нагрузку на&nbsp;перекрытия и&nbsp;сдаём работу технадзору.</p>
+          <p class="faq__answer">Да: склады, офисы, магазины, производства. Учитываем нагрузку на&nbsp;перекрытия, акты подписывает наш технадзор.</p>
+        </details>
+        <details class="faq__item reveal">
+          <summary class="faq__question">Что делает технадзор?<span class="faq__sign"><svg class="faq__icon faq__icon--plus" aria-hidden="true"><use href="#i-plus"></use></svg><svg class="faq__icon faq__icon--minus" aria-hidden="true"><use href="#i-minus"></use></svg></span></summary>
+          <p class="faq__answer">Проверяет проект, принимает материалы, даёт бригаде допуск к&nbsp;работам, проверяет качество и&nbsp;подписывает акты. На&nbsp;стяжке следит за&nbsp;раствором, на&nbsp;штукатурке за&nbsp;ровностью стен.</p>
         </details>
       </div>
     </div>
@@ -928,6 +1027,7 @@
       </div>
       <nav class="footer__nav" aria-label="Разделы">
         <a class="footer__link" href="#uslugi">Услуги</a>
+        <a class="footer__link" href="#tehnadzor">Технадзор</a>
         <a class="footer__link" href="#styazhka">Стяжка</a>
         <a class="footer__link" href="#shtukaturka">Штукатурка</a>
         <a class="footer__link" href="#raschet">Расчёт</a>
@@ -967,8 +1067,119 @@
   <a class="float-contacts__link" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" aria-label="Написать в MAX" data-goal="click_max"><svg class="float-contacts__icon" aria-hidden="true"><use href="#i-max"></use></svg></a>
 </div>
 
-<script src="js/form.js?v=9" defer></script>
-<script src="js/main.js?v=9" defer></script>
-<script src="js/razrez.js?v=9" defer></script>
+<dialog class="popup" id="popup-calc" aria-labelledby="popup-calc-title" data-popup-window>
+  <div class="popup__overlay" data-popup-close></div>
+  <div class="popup__window" tabindex="-1" autofocus>
+    <button class="popup__close" type="button" aria-label="Закрыть" data-popup-close><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <form class="lead-form" action="html/spasibo-srednyaya.html" method="post" novalidate
+          data-lead-form data-goal="form_popup_calc" data-thanks="html/spasibo-srednyaya.html">
+      <div class="lead-form__head">
+        <h2 class="lead-form__title" id="popup-calc-title">Рассчитаем стоимость</h2>
+        <p class="lead-form__text">Укажите площадь, перезвоним с&nbsp;расчётом.</p>
+      </div>
+      <div class="lead-form__trap" aria-hidden="true">
+        <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <input type="hidden" name="form" value="popup_calc">
+      <input type="hidden" name="source" value="">
+
+      <fieldset class="choice" data-field="work">
+        <legend class="choice__legend">Что нужно сделать</legend>
+        <div class="choice__options">
+          <label class="choice__item"><input class="choice__input" type="radio" name="work" value="styazhka" required><span class="choice__box"><svg class="choice__icon" aria-hidden="true"><use href="#i-floor"></use></svg>Стяжка пола</span></label>
+          <label class="choice__item"><input class="choice__input" type="radio" name="work" value="shtukaturka"><span class="choice__box"><svg class="choice__icon" aria-hidden="true"><use href="#i-wall"></use></svg>Штукатурка стен</span></label>
+        </div>
+        <p class="field__error" data-error></p>
+      </fieldset>
+
+      <div class="field" data-field="name">
+        <label class="field__label" for="popup-calc-name">Ваше имя</label>
+        <input class="field__input" id="popup-calc-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Например, Иван" required>
+        <p class="field__error" data-error></p>
+      </div>
+      <div class="lead-form__row">
+        <div class="field lead-form__field" data-field="phone">
+          <label class="field__label" for="popup-calc-phone">Телефон</label>
+          <input class="field__input" id="popup-calc-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required data-phone>
+          <p class="field__error" data-error></p>
+        </div>
+        <div class="field lead-form__field" data-field="area">
+          <label class="field__label" for="popup-calc-area">Площадь, м²</label>
+          <input class="field__input" id="popup-calc-area" type="text" name="area" inputmode="decimal" maxlength="7" placeholder="Например, 70" required data-number>
+          <p class="field__error" data-error></p>
+        </div>
+      </div>
+
+      <button class="button button--primary lead-form__submit" type="submit">Получить расчёт</button>
+      <label class="check" data-field="consent">
+        <input class="check__input" type="checkbox" name="consent" value="1" required>
+        <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+        <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
+      </label>
+      <p class="lead-form__status" data-status role="alert"></p>
+    </form>
+  </div>
+</dialog>
+
+<dialog class="popup" id="popup-call" aria-labelledby="popup-call-title" data-popup-window>
+  <div class="popup__overlay" data-popup-close></div>
+  <div class="popup__window" tabindex="-1" autofocus>
+    <button class="popup__close" type="button" aria-label="Закрыть" data-popup-close><svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <form class="lead-form" action="html/spasibo-korotkaya.html" method="post" novalidate
+          data-lead-form data-goal="form_popup_call" data-thanks="html/spasibo-korotkaya.html">
+      <div class="lead-form__head">
+        <h2 class="lead-form__title" id="popup-call-title">Перезвоним вам</h2>
+        <p class="lead-form__text">Оставьте телефон, ответим на&nbsp;вопросы и&nbsp;назовём цену.</p>
+      </div>
+      <div class="lead-form__trap" aria-hidden="true">
+        <label>Сайт компании <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <input type="hidden" name="form" value="popup_call">
+      <input type="hidden" name="source" value="">
+
+      <fieldset class="choice" data-field="work">
+        <legend class="choice__legend">Что нужно сделать</legend>
+        <div class="choice__options">
+          <label class="choice__item"><input class="choice__input" type="radio" name="work" value="styazhka" required><span class="choice__box"><svg class="choice__icon" aria-hidden="true"><use href="#i-floor"></use></svg>Стяжка пола</span></label>
+          <label class="choice__item"><input class="choice__input" type="radio" name="work" value="shtukaturka"><span class="choice__box"><svg class="choice__icon" aria-hidden="true"><use href="#i-wall"></use></svg>Штукатурка стен</span></label>
+        </div>
+        <p class="field__error" data-error></p>
+      </fieldset>
+
+      <div class="lead-form__row">
+        <div class="field lead-form__field" data-field="name">
+          <label class="field__label" for="popup-call-name">Ваше имя</label>
+          <input class="field__input" id="popup-call-name" type="text" name="name" autocomplete="name" maxlength="60" placeholder="Например, Иван" required>
+          <p class="field__error" data-error></p>
+        </div>
+        <div class="field lead-form__field" data-field="phone">
+          <label class="field__label" for="popup-call-phone">Телефон</label>
+          <input class="field__input" id="popup-call-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required data-phone>
+          <p class="field__error" data-error></p>
+        </div>
+      </div>
+
+      <button class="button button--primary lead-form__submit" type="submit">Перезвоните мне</button>
+      <label class="check" data-field="consent">
+        <input class="check__input" type="checkbox" name="consent" value="1" required>
+        <span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+        <span class="check__text">Даю согласие на обработку <a class="check__link" href="html/politika.html" target="_blank">персональных данных</a></span>
+      </label>
+      <p class="lead-form__status" data-status role="alert"></p>
+    </form>
+
+    <div class="popup__messengers">
+      <p class="popup__messengers-title">Или напишите в&nbsp;мессенджер</p>
+      <a class="button button--outline popup__messenger" href="https://max.ru/u/f9LHodD0cOK57oRTaqPjELPti3PkPoSijGbegKc0o6yi1J7AMNEoWh8wfnU" target="_blank" rel="noopener" data-goal="click_max"><svg class="button__icon" aria-hidden="true"><use href="#i-max"></use></svg>MAX</a>
+      <a class="button button--outline popup__messenger" href="https://wa.me/79779948917" target="_blank" rel="noopener" data-goal="click_wa"><svg class="button__icon" aria-hidden="true"><use href="#i-wa"></use></svg>WhatsApp</a>
+      <a class="button button--outline popup__messenger" href="https://t.me/zhukov_serega" target="_blank" rel="noopener" data-goal="click_tg"><svg class="button__icon" aria-hidden="true"><use href="#i-tg"></use></svg>Telegram</a>
+    </div>
+  </div>
+</dialog>
+
+<script src="js/form.js?v=10" defer></script>
+<script src="js/popup.js?v=10" defer></script>
+<script src="js/main.js?v=10" defer></script>
+<script src="js/razrez.js?v=10" defer></script>
 </body>
 </html>
