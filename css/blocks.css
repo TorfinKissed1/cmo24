@@ -1198,6 +1198,15 @@
     grid-auto-rows: 1fr;
   }
 
+  .faq__buttons {
+    max-width: none;
+  }
+
+  /* Мессенджеры столбиком во всю ширину, как кнопки в вопросах. */
+  .contacts__buttons {
+    flex-direction: column;
+  }
+
   .objects {
     grid-template-columns: minmax(0, 1fr);
   }
