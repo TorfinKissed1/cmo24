@@ -76,6 +76,51 @@
   border-radius: var(--radius);
 }
 
+/* Подпись слоя во время сборки: проявляется и гаснет плавно, класс ставит razrez.js. */
+.razrez__step {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1;
+  padding: 7px 11px;
+  color: var(--color-navy);
+  pointer-events: none;
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.razrez__step--on {
+  opacity: 1;
+  transform: none;
+}
+
+/* На месте подписи шага: подпись видна только во время сборки, кнопка только после неё. */
+.razrez__replay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 1;
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-on-dark);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-line-dark-strong);
+  border-radius: var(--radius);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+@media (hover: hover) {
+  .razrez__replay:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: var(--color-on-dark);
+  }
+}
+
 .razrez__fallback {
   position: absolute;
   inset: 0;

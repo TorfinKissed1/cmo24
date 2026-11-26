@@ -12,13 +12,13 @@
   <link rel="preload" href="fonts/fira-sans-400-cyr.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/hero.webp" as="image" media="(min-width: 769px)">
   <link rel="preload" href="img/hero-m.webp" as="image" media="(max-width: 768px)">
-  <link rel="stylesheet" href="css/base.css?v=12">
-  <link rel="stylesheet" href="css/form.css?v=12">
-  <link rel="stylesheet" href="css/hero.css?v=12">
-  <link rel="stylesheet" href="css/blocks.css?v=12">
-  <link rel="stylesheet" href="css/razrez.css?v=12">
-  <link rel="stylesheet" href="css/tehnadzor.css?v=12">
-  <link rel="stylesheet" href="css/popup.css?v=12">
+  <link rel="stylesheet" href="css/base.css?v=13">
+  <link rel="stylesheet" href="css/form.css?v=13">
+  <link rel="stylesheet" href="css/hero.css?v=13">
+  <link rel="stylesheet" href="css/blocks.css?v=13">
+  <link rel="stylesheet" href="css/razrez.css?v=13">
+  <link rel="stylesheet" href="css/tehnadzor.css?v=13">
+  <link rel="stylesheet" href="css/popup.css?v=13">
 </head>
 <body class="page page--with-bar">
 
@@ -539,6 +539,8 @@
             <div class="razrez__scene" data-razrez-scene>
               <span class="label razrez__hint" data-razrez-hint>Поверните мышкой или&nbsp;пальцем</span>
               <span class="razrez__badge" data-razrez-badge aria-hidden="true"></span>
+              <span class="label razrez__step" data-razrez-step aria-hidden="true"></span>
+              <button class="razrez__replay" type="button" data-razrez-replay hidden>Собрать заново</button>
               <p class="razrez__fallback" data-razrez-fallback hidden>Браузер не&nbsp;показывает 3D. Цена справа считается и&nbsp;без него.</p>
             </div>
             <ul class="razrez__legend" data-razrez-legend></ul>
@@ -562,6 +564,15 @@
             </div>
             <label class="check razrez__check"><input class="check__input" type="checkbox" name="heat" checked><span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span class="check__text">Тёплый пол</span></label>
             <label class="check razrez__check"><input class="check__input" type="checkbox" name="insul" checked><span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span class="check__text">Утеплитель под&nbsp;стяжкой</span></label>
+            <fieldset class="choice choice--compact">
+              <legend class="choice__legend">Покрытие пола, для&nbsp;примера</legend>
+              <div class="choice__options">
+                <label class="choice__item"><input class="choice__input" type="radio" name="floor_finish" value="laminat" checked><span class="choice__box">Ламинат</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="floor_finish" value="plitka"><span class="choice__box">Плитка</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="floor_finish" value="linoleum"><span class="choice__box">Линолеум</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="floor_finish" value="none"><span class="choice__box">Без покрытия</span></label>
+              </div>
+            </fieldset>
             <div class="field">
               <label class="field__label" for="rz-floor-area">Площадь пола, м²</label>
               <input class="field__input" id="rz-floor-area" type="text" name="floor_area" inputmode="numeric" maxlength="5" value="60">
@@ -590,6 +601,15 @@
               <div class="label razrez__scale"><span>10 мм</span><span>50 мм</span></div>
             </div>
             <label class="check razrez__check" data-razrez-mesh><input class="check__input" type="checkbox" name="mesh" checked><span class="check__box"><svg class="check__icon" aria-hidden="true"><use href="#i-check"></use></svg></span><span class="check__text">Сетка на&nbsp;стыках</span></label>
+            <fieldset class="choice choice--compact">
+              <legend class="choice__legend">Отделка стены, для&nbsp;примера</legend>
+              <div class="choice__options">
+                <label class="choice__item"><input class="choice__input" type="radio" name="wall_finish" value="kraska" checked><span class="choice__box">Покраска</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="wall_finish" value="oboi"><span class="choice__box">Обои</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="wall_finish" value="plitka"><span class="choice__box">Плитка</span></label>
+                <label class="choice__item"><input class="choice__input" type="radio" name="wall_finish" value="none"><span class="choice__box">Без отделки</span></label>
+              </div>
+            </fieldset>
             <div class="field">
               <label class="field__label" for="rz-wall-area">Площадь стен, м²</label>
               <input class="field__input" id="rz-wall-area" type="text" name="wall_area" inputmode="numeric" maxlength="5" value="180">
@@ -1177,9 +1197,9 @@
   </div>
 </dialog>
 
-<script src="js/form.js?v=12" defer></script>
-<script src="js/popup.js?v=12" defer></script>
-<script src="js/main.js?v=12" defer></script>
-<script src="js/razrez.js?v=12" defer></script>
+<script src="js/form.js?v=13" defer></script>
+<script src="js/popup.js?v=13" defer></script>
+<script src="js/main.js?v=13" defer></script>
+<script src="js/razrez.js?v=13" defer></script>
 </body>
 </html>

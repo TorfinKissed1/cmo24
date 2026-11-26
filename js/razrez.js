@@ -29,6 +29,26 @@
     monolit: '#a5a8a5',
     primer: '#cfe3ea',
     contact: '#e3a3a6',
+    laminat: '#b98a5a',
+    tileFloor: '#d9d6cf',
+    linoleum: '#c8b597',
+    plinth: '#f2f0eb',
+    kraska: '#a9bfc9',
+    oboi: '#e8ddcc',
+    tileWall: '#f3f3f0',
+  };
+
+  // Чистовое покрытие поверх стяжки и штукатурки: только для наглядности, в цену не входит.
+  // mm: толщина слоя, tex: текстура из makeTextures (без неё слой рисуется сплошным цветом), tile: метры на повтор.
+  const FLOOR_FINISH = {
+    laminat: { name: 'Ламинат', mm: 8, tex: 'laminat', tile: 0.8, color: COLOR.laminat },
+    plitka: { name: 'Плитка', mm: 12, tex: 'tileFloor', tile: 0.6, color: COLOR.tileFloor },
+    linoleum: { name: 'Линолеум', mm: 3, tex: 'linoleum', tile: 0.5, color: COLOR.linoleum },
+  };
+  const WALL_FINISH = {
+    kraska: { name: 'Покраска', mm: 1.5, color: COLOR.kraska },
+    oboi: { name: 'Обои', mm: 2, tex: 'oboi', tile: 0.5, color: COLOR.oboi },
+    plitka: { name: 'Плитка', mm: 12, tex: 'tileWall', tile: 0.6, color: COLOR.tileWall },
   };
 
   const WALL_NAME = { gazoblok: 'газоблок', kirpich: 'кирпич', monolit: 'монолит' };
@@ -72,6 +92,8 @@
         plaster: Number(el.plaster.value),
         mesh: el.mesh.checked && el.wall.value === 'gazoblok',
         wallArea: readArea(el.wall_area),
+        floorFinish: el.floor_finish.value,
+        wallFinish: el.wall_finish.value,
       };
     }
 
@@ -91,9 +113,16 @@
       badgeEl.hidden = false;
     }
 
+    function finishItem(finish) {
+      return finish ? [{ name: finish.name, mm: 'для примера', color: finish.color }] : [];
+    }
+
     function legendItems(state) {
       if (state.work === 'styazhka') {
-        const items = [{ name: 'Стяжка', mm: state.screed + ' мм', color: COLOR.screed }];
+        const items = [
+          ...finishItem(FLOOR_FINISH[state.floorFinish]),
+          { name: 'Стяжка', mm: state.screed + ' мм', color: COLOR.screed },
+        ];
         if (state.heat) items.push({ name: 'Трубы тёплого пола', color: COLOR.pipe });
         items.push({ name: 'Плёнка', color: COLOR.film });
         if (state.insul) items.push({ name: 'Утеплитель', color: COLOR.insul });
@@ -104,6 +133,7 @@
         return items;
       }
       const items = [
+        ...finishItem(WALL_FINISH[state.wallFinish]),
         { name: 'Штукатурка ' + MIX_NAME[state.mix], mm: state.plaster + ' мм', color: COLOR[state.mix] },
         { name: 'Маяки', color: COLOR.rail },
       ];
@@ -196,7 +226,11 @@
       const script = document.createElement('script');
       script.src = THREE_URL;
       script.onload = () => {
-        scene = createScene(window.THREE, host, root.querySelector('[data-razrez-hint]'));
+        scene = createScene(window.THREE, host, {
+          hint: root.querySelector('[data-razrez-hint]'),
+          step: root.querySelector('[data-razrez-step]'),
+          replay: root.querySelector('[data-razrez-replay]'),
+        });
         if (!scene) return showFallback();
         scene.update(readState(), true);
       };
@@ -228,7 +262,14 @@
     shtukaturka: { pos: [2.45, 1.8, 3.25], target: [-0.15, 0.6, -0.35] },
   };
 
-  function createScene(THREE, host, hint) {
+  // Сборка: слои по очереди въезжают на место (пол сверху, стена спереди), под ними подпись шага.
+  const STEP_GAP = 0.55;
+  const STEP_DUR = 0.6;
+  const STEP_FROM = { styazhka: [0, 0.5, 0], shtukaturka: [0, 0, 0.6] };
+
+  function createScene(THREE, host, ui) {
+    const { hint, step, replay } = ui;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let renderer;
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -282,16 +323,79 @@
     const group = new THREE.Group();
     scene.add(group);
 
-    // Кадр рисуется только при изменении: пока разрез не трогают, видеокарта стоит.
+    // Кадр рисуется только при изменении или во время сборки: пока разрез не трогают, видеокарта стоит.
     let frame = 0;
     function requestRender() {
       if (!frame) frame = requestAnimationFrame(renderFrame);
     }
-    function renderFrame() {
+    function renderFrame(now) {
       frame = 0;
+      if (assembly) advanceAssembly(now);
       controls.update();
       renderer.render(scene, camera);
+      if (assembly) requestRender();
     }
+
+    // Слои текущего разреза в порядке работ: [{ name, meshes }]. Основание (перекрытие, стены) в сборке не участвует.
+    let steps = [];
+    let assembly = null;
+
+    function showStep(text) {
+      step.textContent = text;
+      step.classList.toggle('razrez__step--on', Boolean(text));
+    }
+
+    function finishAssembly() {
+      assembly = null;
+      steps.forEach((s) => s.meshes.forEach((mesh) => {
+        mesh.visible = true;
+        mesh.position.copy(mesh.userData.home);
+      }));
+      showStep('');
+      replay.hidden = reduceMotion.matches || !seen;
+      requestRender();
+    }
+
+    function playAssembly() {
+      if (reduceMotion.matches || !steps.length) return finishAssembly();
+      steps.forEach((s) => s.meshes.forEach((mesh) => { mesh.visible = false; }));
+      assembly = { start: performance.now(), from: new THREE.Vector3(...STEP_FROM[mode]) };
+      replay.hidden = true;
+      requestRender();
+    }
+
+    function advanceAssembly(now) {
+      const t = (now - assembly.start) / 1000;
+      let current = '';
+      steps.forEach((s, index) => {
+        const k = (t - index * STEP_GAP) / STEP_DUR;
+        if (k > 0) current = s.name;
+        const eased = 1 - Math.pow(1 - Math.min(1, Math.max(0, k)), 3);
+        s.meshes.forEach((mesh) => {
+          mesh.visible = k > 0;
+          mesh.position.copy(mesh.userData.home).addScaledVector(assembly.from, 1 - eased);
+        });
+      });
+      showStep(current);
+      if (t > (steps.length - 1) * STEP_GAP + STEP_DUR + 0.8) finishAssembly();
+    }
+
+    function setSteps(list) {
+      steps = list.filter((s) => s.meshes.length);
+      steps.forEach((s) => s.meshes.forEach((mesh) => { mesh.userData.home = mesh.position.clone(); }));
+    }
+
+    replay.addEventListener('click', playAssembly);
+
+    // Сборку показываем, когда разрез и правда на экране: three.js грузится заранее, за 600 px до секции.
+    let seen = false;
+    const seenObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      seenObserver.disconnect();
+      seen = true;
+      playAssembly();
+    }, { threshold: 0.5 });
+    seenObserver.observe(host);
     controls.addEventListener('change', requestRender);
     controls.addEventListener('start', () => hint.classList.add('razrez__hint--gone'), { once: true });
     if (window.matchMedia('(hover: none)').matches) hint.textContent = 'Поверните пальцем вбок';
@@ -383,10 +487,12 @@
       group.add(slab, back, left);
 
       let y = 0;
+      let insulation = null;
+      let pipe = null;
 
       if (state.insul) {
         const insH = 0.04 * V;
-        const insulation = box(innerW, insH, innerD, textures.epsSide, [0.2, 0.2], textures.eps);
+        insulation = box(innerW, insH, innerD, textures.epsSide, [0.2, 0.2], textures.eps);
         insulation.position.set(cx, insH / 2, cz);
         group.add(insulation);
         y += insH;
@@ -407,7 +513,7 @@
           points.push(new THREE.Vector3(a, y + r, z), new THREE.Vector3(b, y + r, z));
         }
         const curve = new THREE.CatmullRomCurve3(points, false, 'catmullrom', 0.08);
-        const pipe = new THREE.Mesh(
+        pipe = new THREE.Mesh(
           new THREE.TubeGeometry(curve, points.length * 40, r, 10, false),
           new THREE.MeshStandardMaterial({ color: COLOR.pipe, roughness: 0.45 }),
         );
@@ -428,6 +534,33 @@
       const tapeLeft = plain(TAPE, tapeH, D - WALL_T, COLOR.tape, { rough: 0.6 });
       tapeLeft.position.set(-W / 2 + WALL_T + TAPE / 2, tapeH / 2, WALL_T / 2);
       group.add(tapeBack, tapeLeft);
+
+      // Покрытие короче стяжки: ступенькой видны все слои под ним. Плинтус закрывает ленту у стен.
+      const finishMeshes = [];
+      const finish = FLOOR_FINISH[state.floorFinish];
+      if (finish) {
+        const fh = (finish.mm / 1000) * V;
+        const fcut = cut - 0.4;
+        const top = y + sh;
+        const layer = box(innerW, fh, fcut - z0, textures[finish.tex], [finish.tile, finish.tile]);
+        layer.position.set(cx, top + fh / 2, (z0 + fcut) / 2);
+        const PH = 0.07, PT = 0.016;
+        const plinthBack = plain(innerW, PH, PT, COLOR.plinth, { rough: 0.5 });
+        plinthBack.position.set(cx, top + fh + PH / 2, z0 + PT / 2);
+        const plinthLeft = plain(PT, PH, fcut - z0, COLOR.plinth, { rough: 0.5 });
+        plinthLeft.position.set(x0 + PT / 2, top + fh + PH / 2, (z0 + fcut) / 2);
+        group.add(layer, plinthBack, plinthLeft);
+        finishMeshes.push(layer, plinthBack, plinthLeft);
+      }
+
+      setSteps([
+        { name: 'Демпферная лента', meshes: [tapeBack, tapeLeft] },
+        { name: 'Утеплитель', meshes: insulation ? [insulation] : [] },
+        { name: 'Плёнка', meshes: [film] },
+        { name: 'Трубы тёплого пола', meshes: pipe ? [pipe] : [] },
+        { name: 'Стяжка ' + state.screed + ' мм', meshes: [screed] },
+        { name: finish ? finish.name : '', meshes: finishMeshes },
+      ]);
     }
 
     function buildWall(state) {
@@ -461,15 +594,17 @@
       group.add(plaster);
 
       // Маяки: один на краю штукатурки, второй уже стоит на голой стене впереди работы.
-      for (const x of [cut + 0.012, cut + 0.75]) {
+      const rails = [cut + 0.012, cut + 0.75].map((x) => {
         const rail = plain(0.025, H * 0.96, pt * 0.95, COLOR.rail, { rough: 0.4, metal: 0.3 });
         rail.position.set(x, H * 0.49, face + pt * 0.475);
         group.add(rail);
-      }
+        return rail;
+      });
 
+      let mesh = null;
       if (state.mesh) {
         const mw = 0.5, mh = H * 0.92;
-        const mesh = new THREE.Mesh(
+        mesh = new THREE.Mesh(
           new THREE.PlaneGeometry(mw, mh),
           new THREE.MeshStandardMaterial({
             map: tex(textures.mesh, mw / 0.05, mh / 0.05),
@@ -481,17 +616,40 @@
         mesh.position.set(cut + mw / 2 + 0.03, H / 2, face + 0.004);
         group.add(mesh);
       }
+
+      // Отделка короче штукатурки: между ними видна сама штукатурка и её толщина.
+      let finishLayer = null;
+      const finish = WALL_FINISH[state.wallFinish];
+      if (finish) {
+        const ft = (finish.mm / 1000) * V;
+        const end = cut - 0.45;
+        finishLayer = finish.tex
+          ? box(end - start, H, ft, textures[finish.tex], [finish.tile, finish.tile])
+          : plain(end - start, H, ft, finish.color, { rough: 0.85 });
+        finishLayer.position.set((start + end) / 2, H / 2, face + pt + ft / 2);
+        group.add(finishLayer);
+      }
+
+      setSteps([
+        { name: PRIMER[state.wall].name, meshes: [primer] },
+        { name: 'Маяки', meshes: rails },
+        { name: 'Сетка на стыках', meshes: mesh ? [mesh] : [] },
+        { name: 'Штукатурка ' + state.plaster + ' мм', meshes: [plaster] },
+        { name: finish ? finish.name : '', meshes: finishLayer ? [finishLayer] : [] },
+      ]);
     }
 
     return {
       update(state, workChanged) {
         clearGroup();
         if (state.work === 'styazhka') buildFloor(state); else buildWall(state);
-        if (workChanged || mode !== state.work) {
+        const switched = workChanged || mode !== state.work;
+        if (switched) {
           mode = state.work;
           fitCamera(true);
         }
-        requestRender();
+        // Пол сменился на стену: собираем заново. Толщина, покрытие и галочки перестраивают разрез сразу.
+        if (switched && seen) playAssembly(); else finishAssembly();
       },
     };
   }
@@ -595,6 +753,49 @@
         g.clearRect(0, 0, w, h);
         g.strokeStyle = 'rgba(236,214,92,.95)'; g.lineWidth = 4;
         g.strokeRect(0, 0, w, h);
+      }),
+      // Ламинат: 4 ряда досок на 0,8 м, у каждого ряда один стык со сдвигом. Один тон на ряд,
+      // иначе на краю повтора виден перепад цвета без шва.
+      laminat: canvasTex(512, 512, (g, w, h) => {
+        const tones = ['#b98a5a', '#a87b4d', '#c49a6c', '#b08154'];
+        const ph = h / 4;
+        for (let r = 0; r < 4; r++) {
+          const y = r * ph;
+          g.fillStyle = tones[r];
+          g.fillRect(0, y, w, ph);
+          g.strokeStyle = 'rgba(80,50,25,.16)'; g.lineWidth = 1;
+          for (let i = 0; i < 10; i++) { // волокна дерева
+            const gy = y + 6 + Math.random() * (ph - 12);
+            g.beginPath(); g.moveTo(0, gy);
+            g.bezierCurveTo(w * 0.3, gy + 4, w * 0.6, gy - 4, w, gy);
+            g.stroke();
+          }
+          g.fillStyle = 'rgba(60,35,15,.45)';
+          g.fillRect((r * 0.37 + 0.15) % 1 * w, y, 3, ph); // торцевой стык доски
+          g.fillStyle = 'rgba(60,35,15,.35)';
+          g.fillRect(0, y, w, 2); // шов между рядами
+        }
+      }),
+      tileFloor: canvasTex(256, 256, (g, w, h) => {
+        g.fillStyle = '#b4afa6'; g.fillRect(0, 0, w, h);
+        g.fillStyle = '#d9d6cf'; g.fillRect(3, 3, w - 6, h - 6);
+        speckle(g, w, h, 500, ['#cfccc4', '#e2dfd8'], 1.6);
+      }),
+      linoleum: canvasTex(256, 256, (g, w, h) => {
+        g.fillStyle = '#c8b597'; g.fillRect(0, 0, w, h);
+        speckle(g, w, h, 1800, ['#bba98b', '#d3c2a5', '#c0ad8f'], 2.4);
+      }),
+      oboi: canvasTex(256, 256, (g, w, h) => {
+        g.fillStyle = '#e8ddcc'; g.fillRect(0, 0, w, h);
+        g.fillStyle = '#efe6d8';
+        for (let x = 0; x < w; x += 32) g.fillRect(x, 0, 14, h); // полосы
+        speckle(g, w, h, 400, ['#ddd1bd'], 1.2);
+      }),
+      // Настенная плитка 30 × 30 см: четыре плитки на повтор 0,6 м.
+      tileWall: canvasTex(256, 256, (g, w, h) => {
+        g.fillStyle = '#cfcfca'; g.fillRect(0, 0, w, h);
+        g.fillStyle = '#f3f3f0';
+        for (const x of [0, w / 2]) for (const y of [0, h / 2]) g.fillRect(x + 2, y + 2, w / 2 - 4, h / 2 - 4);
       }),
     };
   }
